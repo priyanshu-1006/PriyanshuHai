@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/mark.svg" />
+
+    <title>Priyanshu Chaurasia — Systems &amp; Platform Engineer</title>
+    <meta name="description" content="Third-year CSE student at MMMUT. CTO at Gryork and Washtro, founder-President of Nexsus. I build the systems institutions run on." />
+    <meta name="author" content="Priyanshu Chaurasia" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Priyanshu Chaurasia — Systems &amp; Platform Engineer" />
+    <meta property="og:description" content="Two startups run on architecture I designed. A registered university society runs on a platform I built." />
+    <meta property="og:image" content="/me.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    />
+
+    <script>
+      // Resolve the theme before first paint so there is never a flash of the
+      // wrong one. Mirrors the logic in src/lib/theme.jsx.
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var mode = stored === 'light' || stored === 'dark' ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', mode);
+          document.documentElement.style.colorScheme = mode;
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,322 @@
+@import 'tailwindcss';
+
+/* ══════════════════════════════════════════════════════════════════
+   DESIGN TOKENS
+   Palette is derived from the rooftop illustration: indigo night,
+   cyan and magenta neon. Light mode is a warm paper counterpart, not
+   an inversion — the two are designed separately.
+   ══════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Bound to data-theme; both modes defined below. */
+  --color-bg: var(--c-bg);
+  --color-bg2: var(--c-bg2);
+  --color-bg3: var(--c-bg3);
+  --color-ink: var(--c-ink);
+  --color-ink2: var(--c-ink2);
+  --color-ink3: var(--c-ink3);
+  --color-rule: var(--c-rule);
+  --color-rule2: var(--c-rule2);
+  --color-accent: var(--c-accent);
+  --color-accent2: var(--c-accent2);
+  --color-accent3: var(--c-accent3);
+  --color-onaccent: var(--c-onaccent);
+
+  --font-display: var(--f-display);
+  --font-body: var(--f-body);
+  --font-mono: var(--f-mono);
+  --font-accent: var(--f-accent);
+}
+
+:root {
+  /* ── Type families. Project pages may override --f-display / --f-body. ── */
+  --f-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --f-accent: 'Instrument Serif', ui-serif, Georgia, serif;
+  --f-body: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* ── Fluid type scale ── */
+  /* --fs-display is for the homepage name only: two short words across the full
+     shell. Bounded by the shell (1160px inner), not the viewport, so it cannot
+     clip on an ultrawide display.
+     --fs-hero is for project-page headings, which are sentences — at display
+     scale a sentence swallowed the whole fold. */
+  --fs-display: clamp(2.5rem, 9.5vw, 8.5rem);
+  --fs-hero: clamp(2.125rem, 6vw, 4.75rem);
+  --fs-h1: clamp(1.875rem, 4.2vw, 3.25rem);
+  --fs-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --fs-h3: clamp(1.125rem, 1.8vw, 1.5rem);
+  --fs-lead: clamp(1.0625rem, 1.35vw, 1.3125rem);
+  --fs-body: 1.0625rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
+  --fs-micro: 0.6875rem;
+
+  /* ── Tracking tightens as size grows; labels open up ── */
+  --tr-display: -0.045em;
+  --tr-h1: -0.035em;
+  --tr-h2: -0.028em;
+  --tr-h3: -0.018em;
+  --tr-body: -0.004em;
+  --tr-label: 0.145em;
+
+  /* ── Leading ── */
+  --lh-display: 0.84;
+  --lh-hero: 1.0;
+  --lh-h1: 0.95;
+  --lh-h2: 1.06;
+  --lh-h3: 1.24;
+  --lh-body: 1.66;
+
+  --shell: 1240px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── LIGHT ── warm paper, ink violet, deepened accents for contrast ── */
+:root,
+[data-theme='light'] {
+  --c-bg: #faf8f4;
+  --c-bg2: #f2efe8;
+  --c-bg3: #e7e2d8;
+  --c-ink: #16130f;
+  --c-ink2: #4a453e;
+  --c-ink3: #625c53;
+  --c-rule: #e2dcd2;
+  --c-rule2: #c6bfb2;
+  --c-accent: #815006;
+  --c-accent2: #2b6353;
+  --c-accent3: #a83f22;
+  --c-onaccent: #ffffff;
+}
+
+/* ── DARK ── indigo night from the illustration ── */
+/* True black, warm neutrals. Amber leads, sage and coral support. */
+[data-theme='dark'] {
+  --c-bg: #000000;
+  --c-bg2: #0b0a09;
+  --c-bg3: #161513;
+  --c-ink: #f5f1ea;
+  --c-ink2: #aba49a;
+  --c-ink3: #8a837a;
+  --c-rule: #24221f;
+  --c-rule2: #3c3833;
+  --c-accent: #e9a03b;
+  --c-accent2: #7fbfa6;
+  --c-accent3: #e5714b;
+  --c-onaccent: #000000;
+}
+
+@layer base {
+  * {
+    border-color: var(--c-rule);
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--c-bg);
+    color: var(--c-ink);
+    font-family: var(--f-body);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    letter-spacing: var(--tr-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    transition: background-color 320ms var(--ease), color 320ms var(--ease);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--f-display);
+    font-weight: 800;
+  }
+
+  ::selection {
+    background: var(--c-accent);
+    color: var(--c-onaccent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-accent2);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: var(--c-bg); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--c-rule2);
+    border: 3px solid var(--c-bg);
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--c-accent); }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) { .shell { padding-inline: 2.5rem; } }
+
+  /* ── Type roles ── */
+  .t-display {
+    font-family: var(--f-display);
+    font-size: var(--fs-display);
+    font-weight: 900;
+    line-height: var(--lh-display);
+    letter-spacing: var(--tr-display);
+  }
+  .t-hero {
+    font-family: var(--f-display);
+    font-size: var(--fs-hero);
+    font-weight: 800;
+    line-height: var(--lh-hero);
+    letter-spacing: -0.032em;
+  }
+  .t-h1 {
+    font-family: var(--f-display);
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    line-height: var(--lh-h1);
+    letter-spacing: var(--tr-h1);
+  }
+  .t-h2 {
+    font-family: var(--f-display);
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    line-height: var(--lh-h2);
+    letter-spacing: var(--tr-h2);
+  }
+  .t-h3 {
+    font-family: var(--f-display);
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    line-height: var(--lh-h3);
+    letter-spacing: var(--tr-h3);
+  }
+  .t-accent {
+    font-family: var(--f-accent);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+  .t-lead {
+    font-size: var(--fs-lead);
+    line-height: 1.58;
+    color: var(--c-ink2);
+  }
+  .t-label {
+    font-family: var(--f-mono);
+    font-size: var(--fs-micro);
+    font-weight: 500;
+    letter-spacing: var(--tr-label);
+    text-transform: uppercase;
+    color: var(--c-ink3);
+  }
+  .t-mono {
+    font-family: var(--f-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── ASCII architecture diagrams, preserved from source READMEs ── */
+  .rule-h {
+    height: 1px;
+    background: var(--c-rule);
+    width: 100%;
+  }
+
+  .ascii {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    line-height: 1.45;
+    white-space: pre;
+    color: var(--c-accent2);
+    overflow-x: auto;
+    tab-size: 2;
+  }
+
+  .link-a {
+    color: var(--c-accent2);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in oklab, var(--c-accent2) 40%, transparent);
+    transition: border-color 180ms var(--ease), color 180ms var(--ease);
+  }
+  .link-a:hover { border-color: var(--c-accent2); }
+
+  /* Pill button — the reference's nav/CTA language, rebuilt */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.7rem 1.4rem;
+    font-family: var(--f-body);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition: transform 220ms var(--ease), background-color 220ms var(--ease),
+                color 220ms var(--ease), border-color 220ms var(--ease);
+  }
+  .pill-solid {
+    background: var(--c-accent);
+    color: var(--c-onaccent);
+  }
+  .pill-solid:hover { transform: translateY(-2px); }
+  .pill-ghost {
+    border: 1px solid var(--c-rule2);
+    color: var(--c-ink);
+  }
+  .pill-ghost:hover {
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+    transform: translateY(-2px);
+  }
+}
+
+/* Deliberately unlayered: Tailwind v4 reorders custom rules inside @layer.
+   Visible by default — JS opts into the animation, so a script failure
+   degrades to "no animation", never to "no content". */
+.reveal { opacity: 1; transform: none; }
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+.js-reveal .reveal.is-in { opacity: 1; transform: none; }
+
+@keyframes pulse-signal {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+/* Boot sequence: the loss curve draws itself over the length of the run. */
+@keyframes boot-draw {
+  from { stroke-dashoffset: 1200; }
+  to { stroke-dashoffset: 0; }
+}
+/* Carousel dwell meter: the active pagination dot fills as autoplay counts down. */
+@keyframes cf-dwell {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js-reveal .reveal { opacity: 1; transform: none; }
+}
