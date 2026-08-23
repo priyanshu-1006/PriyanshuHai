@@ -36,6 +36,9 @@ export default function Contact() {
               {profile.email}
               <span aria-hidden="true">↗</span>
             </a>
+            {/* Opens in a tab to read. The separate download below saves it —
+                one control cannot do both, and people want each at different
+                moments. */}
             <a
               href={profile.resumeUrl}
               className="pill pill-ghost !px-6 !py-3.5"
@@ -43,6 +46,27 @@ export default function Contact() {
               rel="noreferrer noopener"
             >
               Résumé
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href={profile.resumeUrl}
+              download="Priyanshu-Chaurasia-Resume.pdf"
+              className="pill pill-ghost !px-6 !py-3.5"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M8 2v8m0 0L4.8 6.8M8 10l3.2-3.2M2.5 13h11" />
+              </svg>
+              Download PDF
             </a>
           </div>
 

@@ -91,11 +91,20 @@ export const timeline = [
     year: '2025',
     when: '21 Dec 2025',
     kind: 'win',
-    title: 'National Winner — IIT Bombay Techfest ’25',
+    title: 'National Winner — Upskill India Challenge',
     detail:
-      'Fifty minutes of evaluation on Cognito Learning Hub, with zero sleep behind it. The first competition I walked out of certain.',
+      'One of three events we reached the finals of at IIT Bombay Techfest ’25, and the one we won. Fifty minutes of evaluation on Cognito Learning Hub, with zero sleep behind it — the first competition I walked out of certain.',
     weight: 'primary',
     href: '/projects/cognito-learning-hub',
+  },
+  {
+    year: '2025',
+    when: 'Dec 2025',
+    kind: 'win',
+    title: 'Finalist — AWS Impact Hackathon and Jio Finagent Hackathon',
+    detail:
+      'The other two of the three IIT Bombay Techfest ’25 events we reached the finals of. FinAgent came out of the Jio track.',
+    href: '/projects/finagent-ai',
   },
   {
     year: '2025',

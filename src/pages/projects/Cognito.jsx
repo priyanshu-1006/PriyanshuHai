@@ -186,7 +186,7 @@ export default function Cognito() {
           </p>
 
           <p className="mt-8 inline-flex items-center gap-2 rounded-full border border-accent3/40 bg-accent3/10 px-4 py-2 font-mono text-[12px] text-accent3">
-            ★ National Winner · IIT Bombay Techfest ’25
+            ★ National Winner · Upskill India Challenge, IIT Bombay Techfest ’25
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -222,7 +222,7 @@ export default function Cognito() {
       <Band>
         <div className="grid gap-px overflow-hidden rounded-3xl border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
           {[
-            ['National Winner', 'IIT Bombay Techfest ’25'],
+            ['National Winner', 'Upskill India Challenge, Techfest ’25'],
             ['12', 'Microservices in the final architecture'],
             ['2–3 months', 'Build time before the finals'],
             ['4', 'Roles — student, teacher, moderator, admin'],

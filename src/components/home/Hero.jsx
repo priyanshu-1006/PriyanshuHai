@@ -97,6 +97,27 @@ export default function Hero() {
                 <span aria-hidden="true">→</span>
               </Link>
               <a href="#contact" className="pill pill-ghost">Get in touch</a>
+              {/* Recruiters land here first and want the PDF, not a tour. */}
+              <a
+                href={profile.resumeUrl}
+                download="Priyanshu-Chaurasia-Resume.pdf"
+                className="pill pill-ghost"
+              >
+                <svg
+                  viewBox="0 0 16 16"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M8 2v8m0 0L4.8 6.8M8 10l3.2-3.2M2.5 13h11" />
+                </svg>
+                Résumé
+              </a>
             </div>
           </div>
 

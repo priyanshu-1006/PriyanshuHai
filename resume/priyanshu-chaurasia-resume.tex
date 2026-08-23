@@ -1,0 +1,192 @@
+%==============================================================================
+%  Priyanshu Chaurasia --- Resume
+%
+%  Compiles with pdflatex. No XeLaTeX/LuaLaTeX, no fonts to install.
+%  Paste into Overleaf and press Recompile, or run locally:
+%      pdflatex priyanshu-chaurasia-resume.tex
+%
+%  ---- Built to survive an ATS -------------------------------------------------
+%  Single column. No tabular used for layout. No text inside graphics. Standard
+%  section headings (Education / Experience / Projects / Skills). Every date is
+%  pushed right with glue rather than a table cell, so a parser reading the file
+%  linearly still sees "role, organisation, dates" in that order.
+%
+%  ---- Length -----------------------------------------------------------------
+%  Written to fit ONE page. The content was length-checked against an A4 box in
+%  a browser (resume.html, same content, same margins) and lands with about two
+%  lines to spare in a font slightly wider than Charter --- so it should fit
+%  here with a little more room. If your first compile does spill onto a second
+%  page, pull ONE of the knobs below; do not cut content first.
+%==============================================================================
+
+\documentclass[a4paper,10pt]{article}
+
+%--- YOUR DETAILS --------------------------------------------------------------
+\newcommand{\myphone}{+91 63941 80796}
+\newcommand{\mycgpa}{7.33}
+
+%--- FIT KNOBS (only if it spills to page 2; try them in this order) ------------
+\newcommand{\tightness}{1.0}   % 0.97 shaves ~3% off every line's height
+% ...then, if still needed, widen the text block in the geometry line below
+% (0.5in margins instead of 0.55in), and only then cut a bullet.
+%-------------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}   % narrow, high-legibility serif; swap for [sfdefault]{roboto} if you want sans
+\usepackage[left=0.55in,right=0.55in,top=0.45in,bottom=0.45in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\definecolor{ink}{HTML}{111111}
+\definecolor{link}{HTML}{1A4B8C}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=link,
+  pdftitle={Priyanshu Chaurasia --- Resume},
+  pdfauthor={Priyanshu Chaurasia},
+  pdfsubject={Software Engineering},
+  pdfkeywords={Full Stack, Backend, TypeScript, React, Node.js, PostgreSQL, Prisma, AI, Machine Learning, PyTorch}
+}
+
+\color{ink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{\tightness}
+\raggedbottom
+\raggedright
+
+% Section heading: small caps over a hairline rule.
+\titleformat{\section}
+  {\normalsize\bfseries\scshape}{}{0em}{}[\vspace{-0.66em}\rule{\linewidth}{0.7pt}]
+\titlespacing*{\section}{0pt}{7pt}{3.5pt}
+
+% Tight bullet list.
+\newlist{bullets}{itemize}{1}
+\setlist[bullets]{leftmargin=1.05em, itemsep=1pt, parsep=0pt, topsep=1.5pt,
+                  partopsep=0pt, label=\textbullet}
+
+% Flush-right push that survives \raggedright.
+% \raggedright sets \rightskip to "0pt plus 1fil". A plain \hfill is the same
+% order of infinity, so the two would split the slack and the date would stop
+% halfway across the line. Second-order (fill) glue outranks \rightskip and
+% takes all of it, so the date sits flush right and body text stays ragged.
+\newcommand{\pushright}{\hskip 0pt plus 1fill\relax}
+
+% Experience entry: role, organisation, dates --- all on one line.
+\newcommand{\entry}[3]{%
+  \textbf{#1}, \textit{#2}\pushright\textbf{#3}%
+}
+
+% Project entry: name and one-line description, award pushed right.
+\newcommand{\project}[2]{%
+  #1\pushright\textit{#2}%
+}
+
+\begin{document}
+
+%==============================================================================
+% HEADER
+%==============================================================================
+\begin{center}
+  {\fontsize{18}{21}\selectfont\bfseries Priyanshu Chaurasia}\\[4pt]
+  {\small Full-Stack \& Backend Engineer \ \textbar\ \ Gorakhpur, Uttar Pradesh \ \textbar\ \ \myphone}\\[2pt]
+  {\small
+    \href{mailto:priyanshuchaurasiadlw@gmail.com}{priyanshuchaurasiadlw@gmail.com} \ \textbar\
+    \href{https://github.com/priyanshu-1006}{github.com/priyanshu-1006} \ \textbar\
+    \href{https://www.linkedin.com/in/priyanshu-chaurasia-326979335/}{linkedin.com/in/priyanshu-chaurasia} \ \textbar\
+    \href{https://mmmut.app}{mmmut.app}
+  }
+\end{center}
+\vspace{-2pt}
+
+%==============================================================================
+\section{Education}
+%==============================================================================
+\textbf{B.Tech, Computer Science \& Engineering} --- Madan Mohan Malaviya University of
+Technology, Gorakhpur \ \textbar\ \ \textit{CGPA \mycgpa/10}\pushright\textbf{2024 -- 2028}
+
+\vspace{2pt}
+\textbf{Sunbeam English School}, Varanasi --- Class XII (PCM) 80\%, Class X
+93\%\pushright\textbf{2021 -- 2023}
+
+%==============================================================================
+\section{Experience}
+%==============================================================================
+
+\entry{Chief Technology Officer}{Gryork Consultants Pvt Ltd --- DPIIT-registered, incubated at IIIT Allahabad}{Sep 2025 -- Present}
+\begin{bullets}
+  \item Designed the entire technical architecture for a bill-discounting marketplace connecting EPC contractors, sub-contractors and NBFCs; it won the company an \textbf{INR 2.5 lakh grant} from IIIT Allahabad.
+  \item Lead an engineering team of \textbf{9--10} across backend, frontend and product.
+  \item Built and ran \textit{Gryork Techpreneur 2026}, a four-week programme teaching agentic AI and full-stack development to \textbf{85+} students; established it as a revenue line at INR 1,200/registration.
+\end{bullets}
+
+\entry{Founder \& President}{Nexsus --- university-registered technical society, MMMUT}{Nov 2025 -- Present}
+\begin{bullets}
+  \item Founded and architected a campus platform replacing ten fragmented tools; registered with the university and approved by the Vice Chancellor in April 2026. \textbf{Lead a team of 37}; its counselling portal placed \textbf{200+ students} into MMMUT.
+  \item Built it end to end: \textbf{5 web portals, 2 React Native apps and 5 RAG-grounded AI assistants} on one Node.js backend with a 70+ model Prisma schema. \textbf{33k monthly page views}.
+  \item Wrote the constraint-satisfaction timetable solver the CSE department \textbf{runs in production}: \textbf{41 courses, 31 faculty, 1,955 weekly contact hours}, conflict-free across four B.Tech years, M.Tech and M.Sc.
+\end{bullets}
+
+\entry{Chief Technology Officer}{Washtro --- quick-laundry logistics}{2026 -- Present}
+\begin{bullets}
+  \item Architected garment-level chain of custody: a \textbf{12-stage no-skip pipeline} where every transition passes one guarded state machine, with an append-only audit log and integer-paise money.
+\end{bullets}
+
+\entry{Executive Member}{Google Developer Groups on Campus, MMMUT}{Jul 2025 -- Present}
+\begin{bullets}
+  \item Built the chapter web presence and its end-to-end induction system --- registration, evaluation, automated mail, multi-role access; \textbf{250+} students processed.
+\end{bullets}
+
+\entry{Full Stack Developer Intern}{Bharat Interns Pvt Ltd}{Jun 2025 -- Jul 2025}
+\begin{bullets}
+  \item Shipped BookEase, a MERN appointment-booking system, from brief to live deployment in four weeks.
+\end{bullets}
+
+%==============================================================================
+\section{Selected Projects}
+%==============================================================================
+
+\project{\textbf{Haazir} --- attendance verification \& timetabling}{Top 50 of 1,300+ teams, Hackatron '25, IIIT Gwalior}
+\begin{bullets}
+  \item Three-factor attendance, since any one signal can be defeated: rotating JWT-signed QR, \textbf{100\,m Haversine geo-fence}, and \textbf{512-D ArcFace} matching (RetinaFace, ResNet-50) at 0.50 cosine. Raw images never stored.
+  \item \textit{TypeScript, Node.js, Express, Prisma, PostgreSQL, React Native/Expo, PyTorch, FastAPI}
+\end{bullets}
+
+\project{\textbf{Cognito Learning Hub} --- live learning platform}{National Winner --- Upskill India Challenge, Techfest '25}
+\begin{bullets}
+  \item Led a team building a \textbf{12-microservice} platform --- WebRTC/MediaSoup video, Socket.IO state, Redis-backed Bull queues, four role hierarchies; won nationally after 50 minutes of architecture evaluation.
+  \item \textit{React, Node.js, Express, MongoDB Atlas, Redis, Socket.IO, WebRTC, MediaSoup}
+\end{bullets}
+
+\project{\textbf{FractureVision AI} --- radiograph fracture detection}{5th Place \& Special Mention, Xpecto '26, IIT Mandi}
+\begin{bullets}
+  \item Two-stage pipeline: a ViT-Base/16 classifier at \textbf{99.01\% accuracy} (0.9990 AUC-ROC) feeding a YOLOv10n localiser at \textbf{0.933 mAP@0.5} over ten fracture classes, \textbf{18.8\,ms} GPU inference, with Grad-CAM heatmaps.
+  \item \textit{PyTorch, timm, Ultralytics, Grad-CAM, FastAPI, React}
+\end{bullets}
+
+%==============================================================================
+\section{Achievements}
+%==============================================================================
+\begin{bullets}
+  \item \textbf{National Winner} --- Upskill India Challenge, IIT Bombay Techfest '25 \ \textbar\ \ \textbf{Top 50 of 1,300+ teams} --- Hackatron '25, IIIT Gwalior \ \textbar\ \ \textbf{5th Place \& Special Mention} --- Xpecto '26, IIT Mandi.
+  \item \textbf{Finalist} --- AWS Impact and Jio Finagent Hackathons (Techfest '25), Techkriti '26 (IIT Kanpur), Ethos '25 ML (IIT Guwahati); 10+ hackathons entered. \textbf{INR 2.5 lakh grant} from IIIT Allahabad on technical architecture.
+  \item \textbf{Design patent in preparation} on the attendance verification and timetable generation methods. \textbf{NTSE --- State Rank 17 (OBC)}, Class X. \textbf{1,247 GitHub contributions} across 219 active days; top contributor in 12 repositories.
+\end{bullets}
+
+%==============================================================================
+\section{Technical Skills}
+%==============================================================================
+\begin{tabbing}
+\hspace{5.2em}\=\kill
+\textbf{Languages}\> TypeScript, JavaScript, Python, Java, C++, SQL\\
+\textbf{Frontend}\>  React, Next.js, React Native/Expo, Tailwind CSS, Vite, Zustand, Radix UI\\
+\textbf{Backend}\>   Node.js, Express, NestJS, FastAPI, Prisma, REST, WebSocket, Socket.IO\\
+\textbf{Data \& Infra}\> PostgreSQL, MongoDB, Redis, Supabase, pgvector, Docker, Vercel, Turborepo, Git\\
+\textbf{AI / ML}\>   PyTorch, LangChain, LangGraph, RAG, Vision Transformers, YOLOv10, ArcFace, Grad-CAM
+\end{tabbing}
+
+\end{document}

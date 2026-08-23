@@ -151,7 +151,7 @@ society I founded and preside over.`,
 
   achievements: [
     {
-      title: 'National Winner — IIT Bombay Techfest ’25',
+      title: 'National Winner — Upskill India Challenge, IIT Bombay Techfest ’25',
       year: '2025',
       detail: 'Finalist in three separate hackathons at Techfest, and national winners in one of them. Cognito Learning Hub, the twelve-microservice platform we built, was two to three months of work.',
       weight: 'primary',

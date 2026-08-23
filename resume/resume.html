@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Priyanshu Chaurasia — Resume</title>
+<style>
+/* ─────────────────────────────────────────────────────────────────────────
+   Print-ready mirror of priyanshu-chaurasia-resume.tex.
+
+   Same content, same order, same one-page target. Open in a browser and use
+   Print → Save as PDF (A4, margins "None", "Background graphics" off) if you
+   would rather not compile the LaTeX.
+
+   The page box is exactly A4 at 96dpi with the .tex's own margins, so the
+   content that fits here is the content that fits there.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --ink: #111;
+  --muted: #333;
+  --rule: #999;
+  --link: #1a4b8c;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; background: #e9e9e9; }
+
+body {
+  font-family: 'Charter', 'Bitstream Charter', Georgia, 'Times New Roman', serif;
+  font-size: 9.5pt;
+  line-height: 1.20;
+  color: var(--ink);
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 0.45in 0.55in;
+  margin: 16px auto;
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(0,0,0,.18);
+}
+
+a { color: var(--link); text-decoration: none; }
+
+/* ── header ── */
+header { text-align: center; }
+h1 { font-size: 18pt; font-weight: 700; letter-spacing: .01em; margin: 0 0 2px; }
+.title { font-size: 9.5pt; margin: 0 0 3px; }
+.contact { font-size: 9pt; line-height: 1.45; margin: 0; }
+
+/* ── sections ── */
+h2 {
+  font-size: 10pt;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: .04em;
+  margin: 6px 0 0;
+  padding-bottom: 1px;
+  border-bottom: .9px solid var(--rule);
+}
+
+/* ── entries: heading left, date flush right ── */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.entry { margin-top: 3px; }
+.org { font-style: italic; }
+.where { font-style: italic; white-space: nowrap; }
+.when { font-weight: 700; white-space: nowrap; }
+
+ul { margin: 2px 0 0; padding-left: 15px; }
+li { margin: 1px 0; }
+li::marker { font-size: .85em; }
+
+.tech { font-style: italic; color: var(--muted); }
+
+/* ── skills ── */
+table.skills { width: 100%; border-collapse: collapse; margin-top: 3px; }
+table.skills th {
+  text-align: left;
+  font-weight: 700;
+  vertical-align: top;
+  white-space: nowrap;
+  padding: 1.5px 10px 1.5px 0;
+  width: 1%;
+}
+table.skills td { padding: 1.5px 0; vertical-align: top; }
+
+/* ── print ── */
+@page { size: A4; margin: 0; }
+@media print {
+  html, body { background: #fff; }
+  .page { margin: 0; box-shadow: none; width: auto; min-height: auto; }
+}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+
+<header>
+  <h1>Priyanshu Chaurasia</h1>
+  <p class="contact">
+    Full-Stack &amp; Backend Engineer &nbsp;|&nbsp; Gorakhpur, Uttar Pradesh &nbsp;|&nbsp; +91 63941 80796<br>
+    <a href="mailto:priyanshuchaurasiadlw@gmail.com">priyanshuchaurasiadlw@gmail.com</a> &nbsp;|&nbsp;
+    <a href="https://github.com/priyanshu-1006">github.com/priyanshu-1006</a> &nbsp;|&nbsp;
+    <a href="https://www.linkedin.com/in/priyanshu-chaurasia-326979335/">linkedin.com/in/priyanshu-chaurasia</a> &nbsp;|&nbsp;
+    <a href="https://mmmut.app">mmmut.app</a>
+  </p>
+</header>
+
+<h2>Education</h2>
+<div class="entry">
+  <div class="row"><span><strong>B.Tech, Computer Science &amp; Engineering</strong> — Madan Mohan Malaviya University of Technology, Gorakhpur &nbsp;|&nbsp; <span class="org">CGPA 7.33/10</span></span><span class="when">2024 – 2028</span></div>
+</div>
+<div class="entry">
+  <div class="row"><span><strong>Sunbeam English School</strong>, Varanasi — Class XII (PCM) 80%, Class X 93%</span><span class="when">2021 – 2023</span></div>
+</div>
+
+<h2>Experience</h2>
+
+<div class="entry">
+  <div class="row"><span><strong>Chief Technology Officer</strong>, <span class="org">Gryork Consultants Pvt Ltd — DPIIT-registered, incubated at IIIT Allahabad</span></span><span class="when">Sep 2025 – Present</span></div>
+  <ul>
+    <li>Designed the entire technical architecture for a bill-discounting marketplace connecting EPC contractors, sub-contractors and NBFCs; it won the company an <strong>INR 2.5 lakh grant</strong> from IIIT Allahabad.</li>
+    <li>Lead an engineering team of <strong>9–10</strong> across backend, frontend and product.</li>
+    <li>Built and ran <em>Gryork Techpreneur 2026</em>, a four-week programme teaching agentic AI and full-stack development to <strong>85+</strong> students; established it as a revenue line at INR 1,200/registration.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row"><span><strong>Founder &amp; President</strong>, <span class="org">Nexsus — university-registered technical society, MMMUT</span></span><span class="when">Nov 2025 – Present</span></div>
+  <ul>
+    <li>Founded and architected a campus platform replacing ten fragmented tools; registered with the university and approved by the Vice Chancellor in April 2026. <strong>Lead a team of 37</strong>; its counselling portal placed <strong>200+ students</strong> into MMMUT.</li>
+    <li>Built it end to end: <strong>5 web portals, 2 React Native apps and 5 RAG-grounded AI assistants</strong> on one Node.js backend with a 70+ model Prisma schema. <strong>33k monthly page views</strong>.</li>
+    <li>Wrote the constraint-satisfaction timetable solver the CSE department <strong>runs in production</strong>: <strong>41 courses, 31 faculty, 1,955 weekly contact hours</strong>, conflict-free across four B.Tech years, M.Tech and M.Sc.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row"><span><strong>Chief Technology Officer</strong>, <span class="org">Washtro — quick-laundry logistics</span></span><span class="when">2026 – Present</span></div>
+  <ul>
+    <li>Architected garment-level chain of custody: a <strong>12-stage no-skip pipeline</strong> where every transition passes one guarded state machine, with an append-only audit log and integer-paise money.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row"><span><strong>Executive Member</strong>, <span class="org">Google Developer Groups on Campus, MMMUT</span></span><span class="when">Jul 2025 – Present</span></div>
+  <ul>
+    <li>Built the chapter web presence and its end-to-end induction system — registration, evaluation, automated mail, multi-role access; <strong>250+</strong> students processed.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row"><span><strong>Full Stack Developer Intern</strong>, <span class="org">Bharat Interns Pvt Ltd</span></span><span class="when">Jun 2025 – Jul 2025</span></div>
+  <ul>
+    <li>Shipped BookEase, a MERN appointment-booking system, from brief to live deployment in four weeks.</li>
+  </ul>
+</div>
+
+<h2>Selected Projects</h2>
+
+<div class="entry">
+  <div class="row"><span><strong>Haazir</strong> — attendance verification &amp; timetabling</span><span class="where">Top 50 of 1,300+ teams, Hackatron '25, IIIT Gwalior</span></div>
+  <ul>
+    <li>Three-factor attendance, since any one signal can be defeated: rotating JWT-signed QR, <strong>100 m Haversine geo-fence</strong>, and <strong>512-D ArcFace</strong> matching (RetinaFace, ResNet-50) at 0.50 cosine. Raw images never stored.</li>
+    <li class="tech">TypeScript, Node.js, Express, Prisma, PostgreSQL, React Native/Expo, PyTorch, FastAPI</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row"><span><strong>Cognito Learning Hub</strong> — live learning platform</span><span class="where">National Winner — Upskill India Challenge, Techfest '25</span></div>
+  <ul>
+    <li>Led a team building a <strong>12-microservice</strong> platform — WebRTC/MediaSoup video, Socket.IO state, Redis-backed Bull queues, four role hierarchies; won nationally after 50 minutes of architecture evaluation.</li>
+    <li class="tech">React, Node.js, Express, MongoDB Atlas, Redis, Socket.IO, WebRTC, MediaSoup</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="row"><span><strong>FractureVision AI</strong> — radiograph fracture detection</span><span class="where">5th Place &amp; Special Mention, Xpecto '26, IIT Mandi</span></div>
+  <ul>
+    <li>Two-stage pipeline: a ViT-Base/16 classifier at <strong>99.01% accuracy</strong> (0.9990 AUC-ROC) feeding a YOLOv10n localiser at <strong>0.933 mAP@0.5</strong> over ten fracture classes, <strong>18.8 ms</strong> GPU inference, with Grad-CAM heatmaps.</li>
+    <li class="tech">PyTorch, timm, Ultralytics, Grad-CAM, FastAPI, React</li>
+  </ul>
+</div>
+
+<h2>Achievements</h2>
+<ul>
+  <li><strong>National Winner</strong> — Upskill India Challenge, IIT Bombay Techfest '25 &nbsp;|&nbsp; <strong>Top 50 of 1,300+ teams</strong> — Hackatron '25, IIIT Gwalior &nbsp;|&nbsp; <strong>5th Place &amp; Special Mention</strong> — Xpecto '26, IIT Mandi.</li>
+  <li><strong>Finalist</strong> — AWS Impact and Jio Finagent Hackathons (Techfest '25), Techkriti '26 (IIT Kanpur), Ethos '25 ML (IIT Guwahati); 10+ hackathons entered. <strong>INR 2.5 lakh grant</strong> from IIIT Allahabad on technical architecture.</li>
+  <li><strong>Design patent in preparation</strong> on the attendance verification and timetable generation methods. <strong>NTSE — State Rank 17 (OBC)</strong>, Class X. <strong>1,247 GitHub contributions</strong> across 219 active days; top contributor in 12 repositories.</li>
+</ul>
+
+<h2>Technical Skills</h2>
+<table class="skills">
+  <tr><th>Languages</th><td>TypeScript, JavaScript, Python, Java, C++, SQL</td></tr>
+  <tr><th>Frontend</th><td>React, Next.js, React Native/Expo, Tailwind CSS, Vite, Zustand, Radix UI</td></tr>
+  <tr><th>Backend</th><td>Node.js, Express, NestJS, FastAPI, Prisma, REST, WebSocket, Socket.IO</td></tr>
+  <tr><th>Data &amp; Infra</th><td>PostgreSQL, MongoDB, Redis, Supabase, pgvector, Docker, Vercel, Turborepo, Git</td></tr>
+  <tr><th>AI / ML</th><td>PyTorch, LangChain, LangGraph, RAG, Vision Transformers, YOLOv10, ArcFace, Grad-CAM</td></tr>
+</table>
+
+</div>
+</body>
+</html>
