@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T21:44:11.855Z",
+  "generatedAt": "2026-11-01T20:23:28.720Z",
   "partial": false,
   "user": {
     "login": "priyanshu-1006",
@@ -7,313 +7,33 @@
     "url": "https://github.com/priyanshu-1006",
     "avatar": "https://avatars.githubusercontent.com/u/220466360?v=4",
     "bio": "I am Pursuing Btech in Computer Science and Engineering from Madan Mohan Malviya University Of Technology, Gorakhpur",
-    "publicRepos": 20,
-    "followers": 5,
+    "publicRepos": 23,
+    "followers": 9,
     "following": 5,
     "createdAt": "2025-07-12T08:23:57Z"
   },
   "totals": {
-    "repos": 18,
-    "commits": 270,
-    "topContributorIn": 12,
+    "repos": 20,
+    "commits": 280,
+    "topContributorIn": 14,
     "stars": 3,
-    "externalRepos": 2,
-    "recentPushes": 2,
-    "activeDays": 2
+    "externalRepos": 3,
+    "recentPushes": 4,
+    "activeDays": 3
   },
   "calendar": {
-    "total": 1247,
-    "commits": 433,
-    "pullRequests": 1,
-    "issues": 0,
-    "reviews": 0,
-    "private": 795,
-    "activeDays": 219,
+    "total": 1100,
+    "commits": null,
+    "pullRequests": null,
+    "issues": null,
+    "reviews": null,
+    "private": null,
+    "activeDays": 220,
     "busiestDay": {
       "date": "2026-01-05",
       "contributionCount": 38
     },
     "days": [
-      {
-        "d": "2025-08-24",
-        "c": 0
-      },
-      {
-        "d": "2025-08-25",
-        "c": 0
-      },
-      {
-        "d": "2025-08-26",
-        "c": 0
-      },
-      {
-        "d": "2025-08-27",
-        "c": 0
-      },
-      {
-        "d": "2025-08-28",
-        "c": 0
-      },
-      {
-        "d": "2025-08-29",
-        "c": 0
-      },
-      {
-        "d": "2025-08-30",
-        "c": 2
-      },
-      {
-        "d": "2025-08-31",
-        "c": 3
-      },
-      {
-        "d": "2025-09-01",
-        "c": 0
-      },
-      {
-        "d": "2025-09-02",
-        "c": 23
-      },
-      {
-        "d": "2025-09-03",
-        "c": 3
-      },
-      {
-        "d": "2025-09-04",
-        "c": 1
-      },
-      {
-        "d": "2025-09-05",
-        "c": 4
-      },
-      {
-        "d": "2025-09-06",
-        "c": 1
-      },
-      {
-        "d": "2025-09-07",
-        "c": 0
-      },
-      {
-        "d": "2025-09-08",
-        "c": 0
-      },
-      {
-        "d": "2025-09-09",
-        "c": 0
-      },
-      {
-        "d": "2025-09-10",
-        "c": 0
-      },
-      {
-        "d": "2025-09-11",
-        "c": 0
-      },
-      {
-        "d": "2025-09-12",
-        "c": 0
-      },
-      {
-        "d": "2025-09-13",
-        "c": 0
-      },
-      {
-        "d": "2025-09-14",
-        "c": 1
-      },
-      {
-        "d": "2025-09-15",
-        "c": 3
-      },
-      {
-        "d": "2025-09-16",
-        "c": 0
-      },
-      {
-        "d": "2025-09-17",
-        "c": 0
-      },
-      {
-        "d": "2025-09-18",
-        "c": 1
-      },
-      {
-        "d": "2025-09-19",
-        "c": 1
-      },
-      {
-        "d": "2025-09-20",
-        "c": 0
-      },
-      {
-        "d": "2025-09-21",
-        "c": 2
-      },
-      {
-        "d": "2025-09-22",
-        "c": 0
-      },
-      {
-        "d": "2025-09-23",
-        "c": 0
-      },
-      {
-        "d": "2025-09-24",
-        "c": 1
-      },
-      {
-        "d": "2025-09-25",
-        "c": 0
-      },
-      {
-        "d": "2025-09-26",
-        "c": 2
-      },
-      {
-        "d": "2025-09-27",
-        "c": 0
-      },
-      {
-        "d": "2025-09-28",
-        "c": 11
-      },
-      {
-        "d": "2025-09-29",
-        "c": 4
-      },
-      {
-        "d": "2025-09-30",
-        "c": 4
-      },
-      {
-        "d": "2025-10-01",
-        "c": 9
-      },
-      {
-        "d": "2025-10-02",
-        "c": 1
-      },
-      {
-        "d": "2025-10-03",
-        "c": 5
-      },
-      {
-        "d": "2025-10-04",
-        "c": 7
-      },
-      {
-        "d": "2025-10-05",
-        "c": 2
-      },
-      {
-        "d": "2025-10-06",
-        "c": 3
-      },
-      {
-        "d": "2025-10-07",
-        "c": 7
-      },
-      {
-        "d": "2025-10-08",
-        "c": 2
-      },
-      {
-        "d": "2025-10-09",
-        "c": 3
-      },
-      {
-        "d": "2025-10-10",
-        "c": 11
-      },
-      {
-        "d": "2025-10-11",
-        "c": 29
-      },
-      {
-        "d": "2025-10-12",
-        "c": 5
-      },
-      {
-        "d": "2025-10-13",
-        "c": 0
-      },
-      {
-        "d": "2025-10-14",
-        "c": 0
-      },
-      {
-        "d": "2025-10-15",
-        "c": 3
-      },
-      {
-        "d": "2025-10-16",
-        "c": 16
-      },
-      {
-        "d": "2025-10-17",
-        "c": 6
-      },
-      {
-        "d": "2025-10-18",
-        "c": 9
-      },
-      {
-        "d": "2025-10-19",
-        "c": 6
-      },
-      {
-        "d": "2025-10-20",
-        "c": 5
-      },
-      {
-        "d": "2025-10-21",
-        "c": 10
-      },
-      {
-        "d": "2025-10-22",
-        "c": 13
-      },
-      {
-        "d": "2025-10-23",
-        "c": 10
-      },
-      {
-        "d": "2025-10-24",
-        "c": 12
-      },
-      {
-        "d": "2025-10-25",
-        "c": 0
-      },
-      {
-        "d": "2025-10-26",
-        "c": 4
-      },
-      {
-        "d": "2025-10-27",
-        "c": 0
-      },
-      {
-        "d": "2025-10-28",
-        "c": 2
-      },
-      {
-        "d": "2025-10-29",
-        "c": 0
-      },
-      {
-        "d": "2025-10-30",
-        "c": 4
-      },
-      {
-        "d": "2025-10-31",
-        "c": 4
-      },
-      {
-        "d": "2025-11-01",
-        "c": 2
-      },
       {
         "d": "2025-11-02",
         "c": 0
@@ -324,11 +44,11 @@
       },
       {
         "d": "2025-11-04",
-        "c": 0
+        "c": 1
       },
       {
         "d": "2025-11-05",
-        "c": 12
+        "c": 11
       },
       {
         "d": "2025-11-06",
@@ -384,11 +104,11 @@
       },
       {
         "d": "2025-11-19",
-        "c": 0
+        "c": 1
       },
       {
         "d": "2025-11-20",
-        "c": 12
+        "c": 11
       },
       {
         "d": "2025-11-21",
@@ -452,11 +172,11 @@
       },
       {
         "d": "2025-12-06",
-        "c": 6
+        "c": 7
       },
       {
         "d": "2025-12-07",
-        "c": 13
+        "c": 12
       },
       {
         "d": "2025-12-08",
@@ -600,11 +320,11 @@
       },
       {
         "d": "2026-01-12",
-        "c": 2
+        "c": 4
       },
       {
         "d": "2026-01-13",
-        "c": 4
+        "c": 2
       },
       {
         "d": "2026-01-14",
@@ -636,11 +356,11 @@
       },
       {
         "d": "2026-01-21",
-        "c": 0
+        "c": 1
       },
       {
         "d": "2026-01-22",
-        "c": 5
+        "c": 4
       },
       {
         "d": "2026-01-23",
@@ -820,11 +540,11 @@
       },
       {
         "d": "2026-03-08",
-        "c": 0
+        "c": 1
       },
       {
         "d": "2026-03-09",
-        "c": 5
+        "c": 4
       },
       {
         "d": "2026-03-10",
@@ -1036,11 +756,11 @@
       },
       {
         "d": "2026-05-01",
-        "c": 0
+        "c": 1
       },
       {
         "d": "2026-05-02",
-        "c": 5
+        "c": 4
       },
       {
         "d": "2026-05-03",
@@ -1248,11 +968,11 @@
       },
       {
         "d": "2026-06-23",
-        "c": 0
+        "c": 1
       },
       {
         "d": "2026-06-24",
-        "c": 2
+        "c": 1
       },
       {
         "d": "2026-06-25",
@@ -1488,22 +1208,304 @@
       },
       {
         "d": "2026-08-22",
-        "c": 0
+        "c": 1
       },
       {
         "d": "2026-08-23",
+        "c": 2
+      },
+      {
+        "d": "2026-08-24",
         "c": 0
+      },
+      {
+        "d": "2026-08-25",
+        "c": 0
+      },
+      {
+        "d": "2026-08-26",
+        "c": 0
+      },
+      {
+        "d": "2026-08-27",
+        "c": 1
+      },
+      {
+        "d": "2026-08-28",
+        "c": 2
+      },
+      {
+        "d": "2026-08-29",
+        "c": 0
+      },
+      {
+        "d": "2026-08-30",
+        "c": 0
+      },
+      {
+        "d": "2026-08-31",
+        "c": 0
+      },
+      {
+        "d": "2026-09-01",
+        "c": 0
+      },
+      {
+        "d": "2026-09-02",
+        "c": 0
+      },
+      {
+        "d": "2026-09-03",
+        "c": 0
+      },
+      {
+        "d": "2026-09-04",
+        "c": 0
+      },
+      {
+        "d": "2026-09-05",
+        "c": 0
+      },
+      {
+        "d": "2026-09-06",
+        "c": 1
+      },
+      {
+        "d": "2026-09-07",
+        "c": 3
+      },
+      {
+        "d": "2026-09-08",
+        "c": 2
+      },
+      {
+        "d": "2026-09-09",
+        "c": 4
+      },
+      {
+        "d": "2026-09-10",
+        "c": 7
+      },
+      {
+        "d": "2026-09-11",
+        "c": 4
+      },
+      {
+        "d": "2026-09-12",
+        "c": 0
+      },
+      {
+        "d": "2026-09-13",
+        "c": 0
+      },
+      {
+        "d": "2026-09-14",
+        "c": 4
+      },
+      {
+        "d": "2026-09-15",
+        "c": 2
+      },
+      {
+        "d": "2026-09-16",
+        "c": 0
+      },
+      {
+        "d": "2026-09-17",
+        "c": 1
+      },
+      {
+        "d": "2026-09-18",
+        "c": 1
+      },
+      {
+        "d": "2026-09-19",
+        "c": 4
+      },
+      {
+        "d": "2026-09-20",
+        "c": 5
+      },
+      {
+        "d": "2026-09-21",
+        "c": 3
+      },
+      {
+        "d": "2026-09-22",
+        "c": 1
+      },
+      {
+        "d": "2026-09-23",
+        "c": 0
+      },
+      {
+        "d": "2026-09-24",
+        "c": 0
+      },
+      {
+        "d": "2026-09-25",
+        "c": 3
+      },
+      {
+        "d": "2026-09-26",
+        "c": 5
+      },
+      {
+        "d": "2026-09-27",
+        "c": 5
+      },
+      {
+        "d": "2026-09-28",
+        "c": 2
+      },
+      {
+        "d": "2026-09-29",
+        "c": 2
+      },
+      {
+        "d": "2026-09-30",
+        "c": 2
+      },
+      {
+        "d": "2026-10-01",
+        "c": 0
+      },
+      {
+        "d": "2026-10-02",
+        "c": 0
+      },
+      {
+        "d": "2026-10-03",
+        "c": 0
+      },
+      {
+        "d": "2026-10-04",
+        "c": 4
+      },
+      {
+        "d": "2026-10-05",
+        "c": 0
+      },
+      {
+        "d": "2026-10-06",
+        "c": 0
+      },
+      {
+        "d": "2026-10-07",
+        "c": 0
+      },
+      {
+        "d": "2026-10-08",
+        "c": 0
+      },
+      {
+        "d": "2026-10-09",
+        "c": 0
+      },
+      {
+        "d": "2026-10-10",
+        "c": 2
+      },
+      {
+        "d": "2026-10-11",
+        "c": 1
+      },
+      {
+        "d": "2026-10-12",
+        "c": 0
+      },
+      {
+        "d": "2026-10-13",
+        "c": 0
+      },
+      {
+        "d": "2026-10-14",
+        "c": 0
+      },
+      {
+        "d": "2026-10-15",
+        "c": 2
+      },
+      {
+        "d": "2026-10-16",
+        "c": 0
+      },
+      {
+        "d": "2026-10-17",
+        "c": 0
+      },
+      {
+        "d": "2026-10-18",
+        "c": 0
+      },
+      {
+        "d": "2026-10-19",
+        "c": 1
+      },
+      {
+        "d": "2026-10-20",
+        "c": 5
+      },
+      {
+        "d": "2026-10-21",
+        "c": 0
+      },
+      {
+        "d": "2026-10-22",
+        "c": 0
+      },
+      {
+        "d": "2026-10-23",
+        "c": 9
+      },
+      {
+        "d": "2026-10-24",
+        "c": 4
+      },
+      {
+        "d": "2026-10-25",
+        "c": 4
+      },
+      {
+        "d": "2026-10-26",
+        "c": 0
+      },
+      {
+        "d": "2026-10-27",
+        "c": 6
+      },
+      {
+        "d": "2026-10-28",
+        "c": 1
+      },
+      {
+        "d": "2026-10-29",
+        "c": 1
+      },
+      {
+        "d": "2026-10-30",
+        "c": 2
+      },
+      {
+        "d": "2026-10-31",
+        "c": 2
+      },
+      {
+        "d": "2026-11-01",
+        "c": 1
       }
-    ]
+    ],
+    "source": "github-public-profile",
+    "fetchedAt": "2026-11-01T20:23:28.670Z"
   },
   "languages": [
     {
       "name": "JavaScript",
-      "commits": 110
+      "commits": 114
     },
     {
       "name": "TypeScript",
-      "commits": 61
+      "commits": 65
     },
     {
       "name": "C++",
@@ -1511,7 +1513,7 @@
     },
     {
       "name": "Jupyter Notebook",
-      "commits": 24
+      "commits": 26
     },
     {
       "name": "HTML",
@@ -1540,7 +1542,8 @@
       "rank": 2,
       "contributors": 5,
       "top": false,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:20.457Z"
     },
     {
       "name": "Haazir-Smart-Attendence-Management-System",
@@ -1559,7 +1562,8 @@
       "rank": 1,
       "contributors": 4,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:23.376Z"
     },
     {
       "name": "DSA",
@@ -1578,7 +1582,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:18.701Z"
     },
     {
       "name": "bookease-client",
@@ -1597,7 +1602,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:26.175Z"
     },
     {
       "name": "Generative-AI",
@@ -1608,15 +1614,16 @@
       "language": "Jupyter Notebook",
       "stars": 0,
       "forks": 0,
-      "pushedAt": "2026-07-22T20:28:30Z",
+      "pushedAt": "2026-10-24T10:17:29Z",
       "createdAt": "2026-02-27T07:58:44Z",
-      "commits": 24,
-      "totalCommits": 24,
+      "commits": 26,
+      "totalCommits": 26,
       "share": 1,
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:18.192Z"
     },
     {
       "name": "PrimeAI-2025",
@@ -1635,7 +1642,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:22.500Z"
     },
     {
       "name": "PathFinder-AI",
@@ -1654,7 +1662,8 @@
       "rank": 2,
       "contributors": 3,
       "top": false,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:25.161Z"
     },
     {
       "name": "Aurora-ForeCasting-Intelligence-Platform",
@@ -1673,7 +1682,8 @@
       "rank": 2,
       "contributors": 3,
       "top": false,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:20.919Z"
     },
     {
       "name": "bookease-server",
@@ -1692,7 +1702,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:26.538Z"
     },
     {
       "name": "FinAgent",
@@ -1711,7 +1722,8 @@
       "rank": 2,
       "contributors": 4,
       "top": false,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:22.073Z"
     },
     {
       "name": "Ai-Support-System",
@@ -1730,7 +1742,8 @@
       "rank": 2,
       "contributors": 2,
       "top": false,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:19.112Z"
     },
     {
       "name": "priyanshu-1006",
@@ -1749,7 +1762,48 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:24.141Z"
+    },
+    {
+      "name": "PriyanshuHai",
+      "full": "priyanshu-1006/PriyanshuHai",
+      "owner": "priyanshu-1006",
+      "url": "https://github.com/priyanshu-1006/PriyanshuHai",
+      "description": null,
+      "language": "JavaScript",
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-11-01T20:10:55Z",
+      "createdAt": "2026-08-22T22:06:26Z",
+      "commits": 4,
+      "totalCommits": 4,
+      "share": 1,
+      "rank": 1,
+      "contributors": 1,
+      "top": true,
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:17.280Z"
+    },
+    {
+      "name": "Little_Code",
+      "full": "priyanshu-1006/Little_Code",
+      "owner": "priyanshu-1006",
+      "url": "https://github.com/priyanshu-1006/Little_Code",
+      "description": null,
+      "language": "TypeScript",
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-10-31T23:23:30Z",
+      "createdAt": "2026-10-10T06:13:25Z",
+      "commits": 4,
+      "totalCommits": 4,
+      "share": 1,
+      "rank": 1,
+      "contributors": 1,
+      "top": true,
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:17.678Z"
     },
     {
       "name": "PrimeTrade.ai",
@@ -1768,7 +1822,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:19.520Z"
     },
     {
       "name": "Pramaan-AI",
@@ -1787,7 +1842,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:19.946Z"
     },
     {
       "name": "Immerse-2026",
@@ -1806,7 +1862,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:21.284Z"
     },
     {
       "name": "Job-Import-System",
@@ -1825,7 +1882,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:21.671Z"
     },
     {
       "name": "Library-Management-System-App",
@@ -1844,7 +1902,8 @@
       "rank": 1,
       "contributors": 1,
       "top": true,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:23.750Z"
     },
     {
       "name": "GDG_Website",
@@ -1863,7 +1922,8 @@
       "rank": 3,
       "contributors": 3,
       "top": false,
-      "external": false
+      "external": false,
+      "checkedAt": "2026-11-01T20:23:24.746Z"
     }
   ],
   "external": [
@@ -1873,8 +1933,18 @@
       "owner": "riteshydv05",
       "url": "https://github.com/riteshydv05/Grylink_New",
       "description": null,
-      "commits": 52,
+      "commits": 51,
       "lastCommit": "2026-07-08T01:18:12.000+05:30",
+      "external": true
+    },
+    {
+      "name": "Ananya_Portfolio",
+      "full": "ananya-in-tech/Ananya_Portfolio",
+      "owner": "ananya-in-tech",
+      "url": "https://github.com/ananya-in-tech/Ananya_Portfolio",
+      "description": null,
+      "commits": 2,
+      "lastCommit": "2026-09-08T23:43:10.000+05:30",
       "external": true
     },
     {
@@ -1890,34 +1960,52 @@
   ],
   "activity": [
     {
-      "date": "2026-07-30",
+      "date": "2026-10-10",
       "pushes": 1
     },
     {
-      "date": "2026-07-31",
+      "date": "2026-10-19",
+      "pushes": 2
+    },
+    {
+      "date": "2026-10-24",
       "pushes": 1
     }
   ],
   "recent": [
     {
+      "type": "PushEvent",
+      "repo": "priyanshu-1006/Generative-AI",
+      "at": "2026-10-24T10:17:30Z",
+      "ref": null,
+      "action": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "priyanshu-1006/Little_Code",
+      "at": "2026-10-19T18:54:39Z",
+      "ref": null,
+      "action": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "priyanshu-1006/Little_Code",
+      "at": "2026-10-19T07:55:25Z",
+      "ref": null,
+      "action": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "priyanshu-1006/Little_Code",
+      "at": "2026-10-10T18:57:53Z",
+      "ref": null,
+      "action": null
+    },
+    {
       "type": "CreateEvent",
-      "repo": "nitin99-cyber/esport",
-      "at": "2026-08-13T21:03:50Z",
+      "repo": "priyanshu-1006/Little_Code",
+      "at": "2026-10-10T06:46:22Z",
       "ref": "branch",
-      "action": null
-    },
-    {
-      "type": "PushEvent",
-      "repo": "priyanshu-1006/DSA",
-      "at": "2026-07-31T18:56:37Z",
-      "ref": null,
-      "action": null
-    },
-    {
-      "type": "PushEvent",
-      "repo": "priyanshu-1006/DSA",
-      "at": "2026-07-30T20:13:21Z",
-      "ref": null,
       "action": null
     }
   ]

@@ -134,6 +134,11 @@ the IIT Bombay Techfest win stays on 21 December 2025. Add future dates in
 GitHub preparation and the latest media audit are recorded in `docs/github-ready.md`.
 The checks workflow builds and tests the repository; it does not deploy it.
 
+The GitHub activity section refreshes through `.github/workflows/refresh-github.yml`
+at 11:17 AM IST, with a same-day guard and a single generated-data commit. See
+`docs/github-activity-setup.md` for activation, commit attribution and Vercel setup.
+No personal access token is required for the public contribution calendar.
+
 ## Images
 
 - Device frames `contain` rather than crop, because the screenshots are ~2.2:1

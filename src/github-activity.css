@@ -1,0 +1,125 @@
+.github-activity-section {
+  position: relative;
+}
+.github-activity-section .github-summary-stats {
+  margin-top: 28px;
+}
+.github-activity-section .github-calendar-card {
+  margin-top: 25px;
+  padding: 24px;
+}
+.github-calendar-card > div:first-child {
+  margin-bottom: 18px;
+}
+.github-snapshot-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 25px;
+  font: 10px/1.6 var(--f-mono);
+  color: var(--c-ink3);
+}
+.github-snapshot-status > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-accent);
+  background: color-mix(in srgb, var(--c-accent) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+  border-radius: 20px;
+  padding: 5px 11px;
+}
+.github-snapshot-status i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--c-accent) 35%, transparent);
+}
+.github-snapshot-status.is-stale > span {
+  color: var(--c-ink3);
+}
+.github-snapshot-status a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.github-calendar-scroll {
+  overflow-x: auto;
+  padding: 5px 3px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-rule2) transparent;
+}
+.github-calendar-inner {
+  min-width: 740px;
+}
+.github-calendar-weeks {
+  display: flex;
+  gap: 3px;
+}
+.github-calendar-week {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.github-calendar-day {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 2px;
+  border: 0;
+  padding: 0;
+  transition:
+    outline-color 0.15s,
+    box-shadow 0.15s;
+  cursor: pointer;
+}
+.github-calendar-day[aria-pressed='true'],
+.github-calendar-day:focus-visible {
+  outline: 1px solid var(--c-ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--c-accent) 15%, transparent);
+}
+.github-calendar-day.is-empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+.github-calendar-inspection {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 25px;
+  flex-wrap: wrap;
+  padding-top: 15px;
+  color: var(--c-ink2);
+  font: 11px/1.6 var(--f-mono);
+}
+.github-calendar-inspection strong {
+  color: var(--c-ink);
+  font-size: 14px;
+}
+.github-calendar-inspection > span:last-child {
+  font-size: 9px;
+  color: var(--c-ink3);
+}
+.github-repository-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 30px;
+  color: var(--c-ink3);
+  font: 11px var(--f-mono);
+  margin: 35px 0 -25px;
+}
+@media (max-width: 640px) {
+  .github-calendar-inner {
+    min-width: 650px;
+  }
+  .github-snapshot-status {
+    font-size: 9px;
+    gap: 7px 15px;
+  }
+  .github-calendar-inspection > span:last-child {
+    display: none;
+  }
+}

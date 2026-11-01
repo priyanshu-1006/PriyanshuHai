@@ -1,27 +1,45 @@
 /**
- * Snapshots public GitHub activity into src/data/github.json at build time.
+ * Refreshes the saved portfolio activity from GitHub, with no browser token.
+ * The GraphQL calendar is preferred when API access is available; otherwise
+ * exact counts come from GitHub's public contribution-calendar tooltips.
  *
- * Deliberately a build step rather than a client fetch. The unauthenticated
- * REST API allows 60 requests an hour *per IP* — on a live site that budget is
- * shared across every visitor, so the third person to open the page would see
- * an empty panel. Baking the data in means the site makes zero API calls, ships
- * no token, and renders identically for everyone.
- *
- *   node scripts/fetch-github.mjs
- *   GITHUB_TOKEN=ghp_xxx node scripts/fetch-github.mjs   # 5000/hr instead of 60
- *
- * The script never throws on a network or rate-limit failure: it keeps whatever
- * it managed to collect and leaves the previous snapshot in place otherwise, so
- * a flaky build machine cannot break the site.
+ * npm run sync:github             — refresh locally
+ * npm run sync:github -- --strict — fail rather than commit a stale calendar
+ * node scripts/fetch-github.mjs --check-due — daily workflow guard
  */
 
-import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs'
+import { writeFileSync, readFileSync, mkdirSync, appendFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { parsePublicCalendar } from './lib/github-calendar.mjs'
+import { refreshDue } from '../src/lib/githubActivity.js'
 
 const USER = process.env.GITHUB_USER || 'priyanshu-1006'
 const TOKEN = process.env.GITHUB_TOKEN || ''
-const OUT = resolve(dirname(fileURLToPath(import.meta.url)), '../src/data/github.json')
+const OUT = process.env.GITHUB_SNAPSHOT_PATH
+  ? resolve(process.env.GITHUB_SNAPSHOT_PATH)
+  : resolve(dirname(fileURLToPath(import.meta.url)), '../src/data/github.json')
+const STRICT = process.argv.includes('--strict')
+let previous = {}
+try {
+  previous = JSON.parse(readFileSync(OUT, 'utf8'))
+} catch {
+  /* First snapshot. */
+}
+
+if (process.argv.includes('--check-due')) {
+  const due = refreshDue(previous)
+  if (process.env.GITHUB_OUTPUT)
+    appendFileSync(process.env.GITHUB_OUTPUT, `refresh=${due}\n`)
+  console.log(
+    due
+      ? 'A new daily refresh is due.'
+      : 'Today’s snapshot is already saved; skipping a second commit.',
+  )
+  process.exit(0)
+}
+if (!/^[a-z\d][a-z\d-]{0,38}$/i.test(USER))
+  throw new Error('Invalid GitHub username.')
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -31,46 +49,61 @@ const headers = {
 }
 
 let budgetExhausted = false
+let partial = false
 
 async function api(path, { search = false } = {}) {
   if (budgetExhausted) return null
   const url = path.startsWith('http') ? path : `https://api.github.com${path}`
   try {
-    const res = await fetch(url, { headers })
+    const res = await fetch(url, {
+      headers,
+      signal: AbortSignal.timeout(15000),
+    })
     if (res.status === 403 || res.status === 429) {
       const remaining = res.headers.get('x-ratelimit-remaining')
       if (remaining === '0') {
-        console.warn(`  ! rate limit reached${search ? ' (search)' : ''} — keeping partial data`)
+        console.warn(
+          `  ! rate limit reached${search ? ' (search)' : ''} — keeping partial data`,
+        )
         if (!search) budgetExhausted = true
       }
+      partial = true
       return null
     }
     if (!res.ok) {
+      partial = true
       console.warn(`  ! ${res.status} ${path}`)
       return null
     }
     // 204 on an empty repository's contributor list — no body to parse.
-    if (res.status === 204) return null
+    if (res.status === 204) return []
     const text = await res.text()
     return text ? JSON.parse(text) : null
   } catch (err) {
+    partial = true
     console.warn(`  ! ${path}: ${err.message}`)
     return null
   }
 }
 
 /* ── Profile ─────────────────────────────────────────────────────────────── */
-console.log(`Fetching GitHub data for ${USER}${TOKEN ? ' (authenticated)' : ' (anonymous, 60/hr)'}`)
+console.log(
+  `Fetching GitHub data for ${USER}${TOKEN ? ' (authenticated)' : ' (anonymous, 60/hr)'}`,
+)
 const profile = await api(`/users/${USER}`)
 if (!profile) {
-  console.error('Could not reach the GitHub API. Leaving the existing snapshot alone.')
-  process.exit(0)
+  console.error(
+    'Could not reach the GitHub API. Leaving the existing snapshot alone.',
+  )
+  process.exit(STRICT ? 1 : 0)
 }
 
 /* ── Owned repositories ──────────────────────────────────────────────────── */
 const owned = []
 for (let page = 1; page <= 4; page++) {
-  const batch = await api(`/users/${USER}/repos?per_page=100&page=${page}&sort=pushed`)
+  const batch = await api(
+    `/users/${USER}/repos?per_page=100&page=${page}&sort=pushed`,
+  )
   if (!batch || batch.length === 0) break
   owned.push(...batch)
   if (batch.length < 100) break
@@ -86,15 +119,33 @@ const sourceRepos = owned
  * already sorted by most recently pushed, which is the order that matters if
  * the budget runs out partway through.                                       */
 const contributions = []
-for (const repo of sourceRepos) {
-  const list = await api(`/repos/${repo.full_name}/contributors?per_page=100&anon=0`)
-  if (!list || !Array.isArray(list)) continue
+const repositoryLimit = TOKEN ? sourceRepos.length : 45
+if (sourceRepos.length > repositoryLimit) partial = true
+for (const [index, repo] of sourceRepos.entries()) {
+  if (index >= repositoryLimit) {
+    const cached = previous.contributions?.find(
+      (item) => item.full === repo.full_name,
+    )
+    if (cached) contributions.push({ ...cached, cached: true })
+    continue
+  }
+  const list = await api(
+    `/repos/${repo.full_name}/contributors?per_page=100&anon=0`,
+  )
+  if (!list || !Array.isArray(list)) {
+    const cached = previous.contributions?.find(
+      (item) => item.full === repo.full_name,
+    )
+    if (cached) contributions.push({ ...cached, cached: true })
+    continue
+  }
 
   const total = list.reduce((a, c) => a + (c.contributions || 0), 0)
   const mine = list.find((c) => c.login?.toLowerCase() === USER.toLowerCase())
   if (!mine) continue
 
-  const rank = list.findIndex((c) => c.login?.toLowerCase() === USER.toLowerCase()) + 1
+  const rank =
+    list.findIndex((c) => c.login?.toLowerCase() === USER.toLowerCase()) + 1
   contributions.push({
     name: repo.name,
     full: repo.full_name,
@@ -113,6 +164,7 @@ for (const repo of sourceRepos) {
     contributors: list.length,
     top: rank === 1,
     external: repo.owner.login.toLowerCase() !== USER.toLowerCase(),
+    checkedAt: new Date().toISOString(),
   })
 }
 console.log(`  ${contributions.length} repositories with attributed commits`)
@@ -140,17 +192,21 @@ for (const item of found?.items || []) {
     external: true,
   })
 }
+if (!found)
+  for (const item of previous.external || [])
+    external.set(item.full, { ...item, cached: true })
 if (external.size) console.log(`  ${external.size} external repositories`)
 
 /* ── Recent public activity ──────────────────────────────────────────────── *
- * The events feed covers roughly the last 90 days. It is the only commit
- * history available without a token; the contribution graph itself is
- * GraphQL-only.                                                              */
+ * The public events feed is a limited recent activity window, not a full commit
+ * history. Calendar counts are fetched independently below.                   */
 const byDay = {}
 let pushes = 0
 const events = []
 for (let page = 1; page <= 3; page++) {
-  const batch = await api(`/users/${USER}/events/public?per_page=100&page=${page}`)
+  const batch = await api(
+    `/users/${USER}/events/public?per_page=100&page=${page}`,
+  )
   if (!batch || batch.length === 0) break
   events.push(...batch)
   if (batch.length < 100) break
@@ -163,7 +219,11 @@ for (const e of events) {
 }
 
 const recent = events
-  .filter((e) => ['PushEvent', 'CreateEvent', 'PullRequestEvent', 'ReleaseEvent'].includes(e.type))
+  .filter((e) =>
+    ['PushEvent', 'CreateEvent', 'PullRequestEvent', 'ReleaseEvent'].includes(
+      e.type,
+    ),
+  )
   .slice(0, 12)
   .map((e) => ({
     type: e.type,
@@ -176,10 +236,8 @@ const recent = events
   }))
 
 /* ── Contribution calendar ───────────────────────────────────────────────── *
- * The green-squares graph and the true contribution totals — including private
- * work, as a count without detail — exist only in GraphQL, which requires a
- * token. Without one this block is skipped and the panel falls back to the
- * REST-derived numbers, so the site builds either way.                        */
+ * GraphQL provides a richer activity breakdown when token permissions allow it.
+ * The public profile calendar remains available without a personal token.     */
 let calendar = null
 if (TOKEN) {
   const query = `
@@ -203,12 +261,17 @@ if (TOKEN) {
       method: 'POST',
       headers: { ...headers, 'Content-Type': 'application/json' },
       body: JSON.stringify({ query, variables: { login: USER } }),
+      signal: AbortSignal.timeout(15000),
     })
     const json = await res.json()
     const cc = json?.data?.user?.contributionsCollection
     if (cc) {
-      const days = cc.contributionCalendar.weeks.flatMap((w) => w.contributionDays)
+      const days = cc.contributionCalendar.weeks.flatMap(
+        (w) => w.contributionDays,
+      )
       calendar = {
+        source: 'github-graphql',
+        fetchedAt: new Date().toISOString(),
         total: cc.contributionCalendar.totalContributions,
         commits: cc.totalCommitContributions,
         pullRequests: cc.totalPullRequestContributions,
@@ -216,7 +279,11 @@ if (TOKEN) {
         reviews: cc.totalPullRequestReviewContributions,
         private: cc.restrictedContributionsCount,
         activeDays: days.filter((d) => d.contributionCount > 0).length,
-        busiestDay: days.reduce((a, d) => (d.contributionCount > (a?.contributionCount ?? -1) ? d : a), null),
+        busiestDay: days.reduce(
+          (a, d) =>
+            d.contributionCount > (a?.contributionCount ?? -1) ? d : a,
+          null,
+        ),
         days: days.map((d) => ({ d: d.date, c: d.contributionCount })),
       }
       console.log(
@@ -230,18 +297,55 @@ if (TOKEN) {
     console.warn(`  ! GraphQL: ${err.message}`)
   }
 } else {
-  console.log('  (no GITHUB_TOKEN — skipping the contribution calendar)')
+  console.log('  no API token — using GitHub’s public profile calendar')
+}
+
+if (!calendar) {
+  try {
+    const response = await fetch(
+      `https://github.com/users/${USER}/contributions`,
+      {
+        headers: {
+          'User-Agent': `${USER}-portfolio-sync`,
+          'Accept-Language': 'en-US',
+        },
+        signal: AbortSignal.timeout(20000),
+      },
+    )
+    if (!response.ok)
+      throw new Error(`Public calendar returned HTTP ${response.status}`)
+    calendar = parsePublicCalendar(await response.text())
+    console.log(
+      `  public calendar: ${calendar.total} contributions, ${calendar.activeDays} active days`,
+    )
+  } catch (error) {
+    console.warn(`  ! ${error.message}`)
+  }
+}
+if (!calendar && STRICT) {
+  console.error(
+    'No fresh calendar was available. Keeping the saved snapshot; no automated commit will be made.',
+  )
+  process.exit(1)
+}
+if (!calendar && previous.calendar) {
+  calendar = {
+    ...previous.calendar,
+    fetchedAt: previous.calendar.fetchedAt || previous.generatedAt,
+  }
+  partial = true
 }
 
 /* ── Totals ──────────────────────────────────────────────────────────────── */
 const languages = {}
 for (const c of contributions) {
-  if (c.language) languages[c.language] = (languages[c.language] || 0) + c.commits
+  if (c.language)
+    languages[c.language] = (languages[c.language] || 0) + c.commits
 }
 
 const snapshot = {
   generatedAt: new Date().toISOString(),
-  partial: budgetExhausted,
+  partial: partial || budgetExhausted,
   user: {
     login: profile.login,
     name: profile.name,
@@ -277,32 +381,9 @@ const snapshot = {
   recent,
 }
 
-/* Never replace a good snapshot with a worse one.
- *
- * A rate-limited run stops partway through the contributor loop, so it does not
- * come back empty — it comes back *short*. Comparing against zero let a partial
- * run of 5 repos overwrite a complete one of 18. Compare against what is
- * already on disk instead. */
-if (existsSync(OUT)) {
-  try {
-    const prev = JSON.parse(readFileSync(OUT, 'utf8'))
-    const prevCount = prev.contributions?.length || 0
-    if (!snapshot.calendar && prev.calendar) {
-      snapshot.calendar = prev.calendar
-      console.warn('  ! no calendar this run — carrying the previous one forward')
-    }
-    if (prevCount > snapshot.contributions.length) {
-      console.warn(
-        `  ! this run collected ${snapshot.contributions.length} repos but the existing ` +
-          `snapshot has ${prevCount} — keeping the existing one. Re-run when the rate ` +
-          `limit resets, or set GITHUB_TOKEN.`,
-      )
-      process.exit(0)
-    }
-  } catch {
-    /* unreadable snapshot — overwrite it */
-  }
-}
+// Counts may legitimately shrink when repositories become private or archived.
+// Failed per-repository requests retain their known data, marked as cached;
+// a successfully refreshed calendar must not remain stuck behind an old total.
 
 mkdirSync(dirname(OUT), { recursive: true })
 writeFileSync(OUT, `${JSON.stringify(snapshot, null, 2)}\n`)
@@ -312,5 +393,5 @@ console.log(
     `  ${snapshot.totals.commits} commits across ${snapshot.totals.repos} repos\n` +
     `  top contributor in ${snapshot.totals.topContributorIn}\n` +
     `  ${snapshot.totals.recentPushes} public pushes in the event window` +
-    (snapshot.partial ? '\n  (partial — rate limited)' : ''),
+    (snapshot.partial ? '\n  (partial — some repository details were unavailable)' : ''),
 )

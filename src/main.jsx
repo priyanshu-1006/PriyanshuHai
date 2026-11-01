@@ -9,6 +9,7 @@ import './xp.css'
 import './desktop-finish.css'
 import './showcase-finish.css'
 import './calendar.css'
+import './github-activity.css'
 
 // Opt into scroll-reveal only once JS is confirmed running. Without this class
 // the `.reveal` elements stay fully visible, so a script failure can never
