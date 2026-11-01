@@ -1,23 +1,30 @@
-import NexsusUniverse from './NexsusUniverse'
-import NexsusCounselling from './NexsusCounselling'
-import NexsusAssist from './NexsusAssist'
-import Cognito from './Cognito'
-import Gryork from './Gryork'
-import Washtro from './Washtro'
-import WashingBro from './WashingBro'
-import VigilantBhai from './VigilantBhai'
-import FractureVision from './FractureVision'
-import Haazir from './Haazir'
-import AuroraHai from './AuroraHai'
-import FinAgent from './FinAgent'
-import AnandPumps from './AnandPumps'
-import PathFinder from './PathFinder'
-import MediChain from './MediChain'
-import TechPreneur from './TechPreneur'
-import GdgMmmut from './GdgMmmut'
-import MmmutFdp from './MmmutFdp'
-import QuizWise from './QuizWise'
-import BookEase from './BookEase'
+import { lazy, Suspense } from 'react'
+
+const NexsusUniverse = lazy(() => import('./NexsusUniverse'))
+const NexsusCounselling = lazy(() => import('./NexsusCounselling'))
+const NexsusAssist = lazy(() => import('./NexsusAssist'))
+const Cognito = lazy(() => import('./Cognito'))
+const Gryork = lazy(() => import('./Gryork'))
+const Washtro = lazy(() => import('./Washtro'))
+const WashingBro = lazy(() => import('./WashingBro'))
+const VigilantBhai = lazy(() => import('./VigilantBhai'))
+const FractureVision = lazy(() => import('./FractureVision'))
+const Haazir = lazy(() => import('./Haazir'))
+const AuroraHai = lazy(() => import('./AuroraHai'))
+const FinAgent = lazy(() => import('./FinAgent'))
+const AnandPumps = lazy(() => import('./AnandPumps'))
+const PathFinder = lazy(() => import('./PathFinder'))
+const MediChain = lazy(() => import('./MediChain'))
+const TechPreneur = lazy(() => import('./TechPreneur'))
+const GdgMmmut = lazy(() => import('./GdgMmmut'))
+const MmmutFdp = lazy(() => import('./MmmutFdp'))
+const QuizWise = lazy(() => import('./QuizWise'))
+const BookEase = lazy(() => import('./BookEase'))
+const LittleCode = lazy(() => import('./LittleCode'))
+const LittleTerminal = lazy(() => import('./LittleTerminal'))
+const MmmutNotice = lazy(() => import('./MmmutNotice'))
+const ManakMitra = lazy(() => import('./ManakMitra'))
+const SatyaDwar = lazy(() => import('./SatyaDwar'))
 
 /**
  * Slug → bespoke page. Every project now has one.
@@ -30,6 +37,11 @@ import BookEase from './BookEase'
  * never appear to construct a component during render.
  */
 const PAGES = {
+  'little-code': <LittleCode />,
+  'little-terminal': <LittleTerminal />,
+  'mmmut-notice': <MmmutNotice />,
+  manakmitra: <ManakMitra />,
+  satyadwar: <SatyaDwar />,
   'nexsus-universe': <NexsusUniverse />,
   'nexsus-counselling': <NexsusCounselling />,
   'nexsus-assist': <NexsusAssist />,
@@ -52,5 +64,9 @@ const PAGES = {
   bookease: <BookEase />,
 }
 
-export const getBespokePage = (slug) => PAGES[slug] ?? null
+export const getBespokePage = (slug) => PAGES[slug] ? (
+  <Suspense fallback={<div className="shell pt-32 pb-20 text-ink2" role="status">Opening case study…</div>}>
+    {PAGES[slug]}
+  </Suspense>
+) : null
 export const hasBespokePage = (slug) => slug in PAGES

@@ -10,10 +10,11 @@ export const techGroups = [
     group: 'Languages',
     items: [
       { name: 'TypeScript', icon: 'TypeScript' },
+      { name: 'Rust', icon: 'Rust' },
       { name: 'JavaScript', icon: 'JavaScript' },
       { name: 'Python', icon: 'Python' },
       { name: 'Java', icon: 'Java' },
-      { name: 'C++', icon: 'C' },
+      { name: 'C++', icon: 'Cpp' },
       { name: 'Dart', icon: 'Dart' },
       { name: 'Solidity', icon: 'Solidity' },
     ],
@@ -46,12 +47,13 @@ export const techGroups = [
     group: 'Data',
     items: [
       { name: 'PostgreSQL', icon: 'PostgresSQL' },
+      { name: 'SQLite', icon: 'SQLite' },
       { name: 'MongoDB', icon: 'MongoDB' },
       { name: 'Redis', icon: 'Redis' },
       { name: 'MySQL', icon: 'MySQL' },
       { name: 'Firebase', icon: 'Firebase' },
-      { name: 'Prisma', icon: null },
-      { name: 'Supabase', icon: null },
+      { name: 'Prisma', icon: 'Prisma' },
+      { name: 'Supabase', icon: 'Supabase' },
     ],
   },
   {
@@ -62,7 +64,7 @@ export const techGroups = [
       { name: 'OpenCV', icon: 'OpenCV' },
       { name: 'Pandas', icon: 'Pandas' },
       { name: 'NumPy', icon: 'NumPy' },
-      { name: 'LangChain', icon: null },
+      { name: 'LangChain', icon: 'LangChain' },
     ],
   },
   {

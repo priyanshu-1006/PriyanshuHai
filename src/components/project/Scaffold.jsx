@@ -31,7 +31,7 @@ export function Eyebrow({ children, tone = 'accent' }) {
 export function BackLink() {
   return (
     <Link
-      to="/#projects"
+      to="/projects"
       className="t-mono inline-flex items-center gap-2 text-ink3 transition-colors hover:text-accent"
     >
       ← All projects

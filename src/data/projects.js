@@ -7,7 +7,10 @@
 //   videos  — [{ id, label }] YouTube IDs, embedded privacy-mode
 //   embed   — { url, height } click-to-load live iframe of the deployed app
 
+import { recentProjects } from './recentProjects.js'
+
 export const projects = [
+  ...recentProjects,
   // ────────────────────────────────────────────────────────────────
   {
     slug: 'nexsus-universe',
@@ -1219,7 +1222,7 @@ level of precision that building alone never did.`,
     title: 'GDG on Campus — MMMUT',
     blurb: 'The chapter’s web presence, plus an induction system that processed 250+ applicants end to end.',
     year: '2025',
-    role: 'Tech lead & builder',
+    role: 'Organiser & Campus Lead (Sep 2026 — Present)',
     category: 'Platform',
     featured: false,
     status: 'Live',

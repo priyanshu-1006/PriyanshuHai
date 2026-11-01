@@ -1,10 +1,12 @@
 @import 'tailwindcss';
+@import './fonts.css';
+@import './studio.css';
+@import './portfolio.css';
 
 /* ══════════════════════════════════════════════════════════════════
    DESIGN TOKENS
-   Palette is derived from the rooftop illustration: indigo night,
-   cyan and magenta neon. Light mode is a warm paper counterpart, not
-   an inversion — the two are designed separately.
+   Warm paper and evergreen ink connect the reading pages to the
+   personal computer. Dark mode uses a quiet forest palette.
    ══════════════════════════════════════════════════════════════════ */
 
 @theme {
@@ -30,7 +32,7 @@
 
 :root {
   /* ── Type families. Project pages may override --f-display / --f-body. ── */
-  --f-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --f-display: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
   --f-accent: 'Instrument Serif', ui-serif, Georgia, serif;
   --f-body: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
   --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
@@ -72,38 +74,37 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── LIGHT ── warm paper, ink violet, deepened accents for contrast ── */
+/* ── LIGHT ── warm paper and evergreen ink ── */
 :root,
 [data-theme='light'] {
-  --c-bg: #faf8f4;
-  --c-bg2: #f2efe8;
-  --c-bg3: #e7e2d8;
-  --c-ink: #16130f;
-  --c-ink2: #4a453e;
-  --c-ink3: #625c53;
-  --c-rule: #e2dcd2;
-  --c-rule2: #c6bfb2;
-  --c-accent: #815006;
-  --c-accent2: #2b6353;
-  --c-accent3: #a83f22;
+  --c-bg: #e8e4db;
+  --c-bg2: #f1eee5;
+  --c-bg3: #dedfce;
+  --c-ink: #29382e;
+  --c-ink2: #53604f;
+  --c-ink3: #5e6655;
+  --c-rule: #d1cdbf;
+  --c-rule2: #b4b8a2;
+  --c-accent: #3b6144;
+  --c-accent2: #456858;
+  --c-accent3: #8c583c;
   --c-onaccent: #ffffff;
 }
 
-/* ── DARK ── indigo night from the illustration ── */
-/* True black, warm neutrals. Amber leads, sage and coral support. */
+/* ── DARK ── forest, sage and warm copper ── */
 [data-theme='dark'] {
-  --c-bg: #000000;
-  --c-bg2: #0b0a09;
-  --c-bg3: #161513;
-  --c-ink: #f5f1ea;
-  --c-ink2: #aba49a;
-  --c-ink3: #8a837a;
-  --c-rule: #24221f;
-  --c-rule2: #3c3833;
-  --c-accent: #e9a03b;
-  --c-accent2: #7fbfa6;
-  --c-accent3: #e5714b;
-  --c-onaccent: #000000;
+  --c-bg: #171e1a;
+  --c-bg2: #202a23;
+  --c-bg3: #2b352c;
+  --c-ink: #f0ede2;
+  --c-ink2: #b7bfb0;
+  --c-ink3: #a0ac98;
+  --c-rule: #364334;
+  --c-rule2: #50604a;
+  --c-accent: #b7cda0;
+  --c-accent2: #a6cbb8;
+  --c-accent3: #d9ae8a;
+  --c-onaccent: #1c2a20;
 }
 
 @layer base {
@@ -132,7 +133,7 @@
 
   h1, h2, h3, h4 {
     font-family: var(--f-display);
-    font-weight: 800;
+    font-weight: 600;
   }
 
   ::selection {
@@ -169,28 +170,28 @@
   .t-display {
     font-family: var(--f-display);
     font-size: var(--fs-display);
-    font-weight: 900;
+    font-weight: 600;
     line-height: var(--lh-display);
     letter-spacing: var(--tr-display);
   }
   .t-hero {
     font-family: var(--f-display);
     font-size: var(--fs-hero);
-    font-weight: 800;
+    font-weight: 600;
     line-height: var(--lh-hero);
     letter-spacing: -0.032em;
   }
   .t-h1 {
     font-family: var(--f-display);
     font-size: var(--fs-h1);
-    font-weight: 800;
+    font-weight: 600;
     line-height: var(--lh-h1);
     letter-spacing: var(--tr-h1);
   }
   .t-h2 {
     font-family: var(--f-display);
     font-size: var(--fs-h2);
-    font-weight: 800;
+    font-weight: 600;
     line-height: var(--lh-h2);
     letter-spacing: var(--tr-h2);
   }

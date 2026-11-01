@@ -9,18 +9,38 @@
 
 export const base = {
   light: {
-    bg: '#faf8f4', bg2: '#f2efe8', bg3: '#e7e2d8',
-    ink: '#16130f', ink2: '#4a453e', ink3: '#625c53',
-    rule: '#e2dcd2', rule2: '#c6bfb2', onaccent: '#ffffff',
+    bg: '#e8e4db', bg2: '#f1eee5', bg3: '#dedfce',
+    ink: '#29382e', ink2: '#53604f', ink3: '#5e6655',
+    rule: '#d1cdbf', rule2: '#b4b8a2', onaccent: '#ffffff',
   },
   dark: {
-    bg: '#000000', bg2: '#0b0a09', bg3: '#161513',
-    ink: '#f5f1ea', ink2: '#aba49a', ink3: '#8a837a',
-    rule: '#24221f', rule2: '#3c3833', onaccent: '#000000',
+    bg: '#171e1a', bg2: '#202a23', bg3: '#2b352c',
+    ink: '#f0ede2', ink2: '#b7bfb0', ink3: '#a0ac98',
+    rule: '#364334', rule2: '#50604a', onaccent: '#1c2a20',
   },
 }
 
 export const projectThemes = {
+  'little-code': {
+    light: { bg: '#faf8ff', bg2: '#f1edfa', rule: '#dfd7ee', accent: '#6841ba', accent2: '#4e6574', accent3: '#8c3983' },
+    dark: { bg: '#0a0910', bg2: '#13101e', rule: '#30263e', accent: '#c4a4ff', accent2: '#9cc9e2', accent3: '#f0a6d4' },
+  },
+  'little-terminal': {
+    light: { bg: '#f3f9fa', bg2: '#e7f1f3', rule: '#cbdfe3', accent: '#126276', accent2: '#4f5a95', accent3: '#ad4637' },
+    dark: { bg: '#070d12', bg2: '#0d1822', rule: '#213342', accent: '#72d6e8', accent2: '#b7afff', accent3: '#f6aeb5' },
+  },
+  'mmmut-notice': {
+    light: { bg: '#f5f8fc', bg2: '#eaf0fa', rule: '#cfdbeb', accent: '#2459a6', accent2: '#166958', accent3: '#995b11' },
+    dark: { bg: '#080d18', bg2: '#0e192b', rule: '#243550', accent: '#9dbdff', accent2: '#95d7c2', accent3: '#efc888' },
+  },
+  manakmitra: {
+    light: { bg: '#faf7f1', bg2: '#f1e9df', rule: '#dfd2c3', accent: '#7b2637', accent2: '#526344', accent3: '#90621e' },
+    dark: { bg: '#130b0d', bg2: '#211316', rule: '#3e282c', accent: '#e9a0ae', accent2: '#b7ce9b', accent3: '#e7c28c' },
+  },
+  satyadwar: {
+    light: { bg: '#f6f8fb', bg2: '#e9eef6', rule: '#cdd7e6', accent: '#214f91', accent2: '#58653a', accent3: '#8b5a15' },
+    dark: { bg: '#080f1b', bg2: '#111e32', rule: '#283b54', accent: '#a5c6ff', accent2: '#c6d29e', accent3: '#eac88c' },
+  },
   // Campus constellation — deep space blue, signal cyan, warm star amber.
   'nexsus-universe': {
     display: { family: "'Space Grotesk'", css: 'Space+Grotesk:wght@500;600;700' },

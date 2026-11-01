@@ -38,7 +38,7 @@ export function TechRow({ tech, max = 6, size = 20 }) {
  * form is title, blurb and stack only. Each card borrows its own project's
  * accent so the grid previews the colour world each page opens into.
  */
-export default function ProjectCard({ project, feature = false }) {
+export default function ProjectCard({ project, feature = false, showCover = false }) {
   const ref = useReveal()
   const { mode } = useTheme()
   const accent = projectThemes[project.slug]?.[mode]?.accent || base[mode].ink
@@ -55,7 +55,7 @@ export default function ProjectCard({ project, feature = false }) {
         onMouseEnter={(e) => { e.currentTarget.style.borderColor = accent }}
         onMouseLeave={(e) => { e.currentTarget.style.borderColor = '' }}
       >
-        {feature && project.cover && (
+        {(feature || showCover) && project.cover && (
           <div className="relative aspect-[16/8] w-full overflow-hidden bg-black">
             <img
               src={project.cover}

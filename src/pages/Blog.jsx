@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import ParticleField from '../components/ParticleField'
+import AnimatedHeading from '../components/AnimatedHeading'
 import { publishedPosts } from '../data/posts'
 import { projects } from '../data/projects'
 import { projectThemes, base } from '../data/projectThemes'
 import { useTheme } from '../lib/themeContext'
 import { useReveal } from '../lib/useReveal'
+import { usePageTitle } from '../lib/usePageTitle'
 
 const ALL = 'All'
 
@@ -28,15 +29,22 @@ function PostCard({ post, feature = false }) {
         to={`/blog/${post.slug}`}
         className="group flex h-full flex-col rounded-3xl border border-rule bg-bg2 p-6 transition-all duration-400 hover:-translate-y-1 hover:shadow-2xl lg:p-7"
         style={{ transitionTimingFunction: 'var(--ease)' }}
-        onMouseEnter={(e) => { e.currentTarget.style.borderColor = accent }}
-        onMouseLeave={(e) => { e.currentTarget.style.borderColor = '' }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = accent
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = ''
+        }}
       >
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           {post.tags.map((t) => (
             <span
               key={t}
               className="rounded-full px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.12em]"
-              style={{ background: `color-mix(in oklab, ${accent} 16%, transparent)`, color: accent }}
+              style={{
+                background: `color-mix(in oklab, ${accent} 16%, transparent)`,
+                color: accent,
+              }}
             >
               {t}
             </span>
@@ -52,15 +60,15 @@ function PostCard({ post, feature = false }) {
           {post.title}
         </h2>
 
-        <p className={`mt-3 flex-1 leading-relaxed text-ink2 ${feature ? 'text-[15.5px]' : 'text-[14.5px]'}`}>
+        <p
+          className={`mt-3 flex-1 leading-relaxed text-ink2 ${feature ? 'text-[15.5px]' : 'text-[14.5px]'}`}
+        >
           {post.dek}
         </p>
 
         <div className="mt-5 flex items-center justify-between gap-4 border-t border-rule pt-4">
           <span className="t-mono text-ink3">{fmtDate(post.date)}</span>
-          {project && (
-            <span className="t-mono truncate text-ink3">on {project.title}</span>
-          )}
+          {project && <span className="t-mono truncate text-ink3">on {project.title}</span>}
           <span
             className="shrink-0 text-[15px] transition-transform duration-300 group-hover:translate-x-1"
             style={{ color: accent }}
@@ -75,6 +83,7 @@ function PostCard({ post, feature = false }) {
 }
 
 export default function Blog() {
+  usePageTitle('Writing')
   const ref = useReveal()
   const [tag, setTag] = useState(ALL)
 
@@ -84,33 +93,18 @@ export default function Blog() {
     return [[ALL, publishedPosts.length], ...[...counts.entries()].sort((a, b) => b[1] - a[1])]
   }, [])
 
-  const sorted = useMemo(
-    () => [...publishedPosts].sort((a, b) => (a.date < b.date ? 1 : -1)),
-    [],
-  )
+  const sorted = useMemo(() => [...publishedPosts].sort((a, b) => (a.date < b.date ? 1 : -1)), [])
   const shown = tag === ALL ? sorted : sorted.filter((p) => p.tags.includes(tag))
 
   return (
-    <main className="pt-28 md:pt-32">
-      {/* ── Hero, with the Waves shader ── */}
-      <header className="relative overflow-hidden pb-6">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-          <ParticleField
-            style={{
-              maskImage: 'radial-gradient(110% 100% at 50% 0%, #000 0%, rgba(0,0,0,0.6) 55%, transparent 92%)',
-              WebkitMaskImage: 'radial-gradient(110% 100% at 50% 0%, #000 0%, rgba(0,0,0,0.6) 55%, transparent 92%)',
-            }}
-          />
-        </div>
-
+    <div className="pt-28 md:pt-32">
+      <header className="writing-header relative overflow-hidden">
         <div className="shell relative">
-          <p className="t-label mb-4 flex items-center gap-3">
-            <span className="inline-block h-px w-7 bg-accent" />
-            Writing
-          </p>
-          <h1 className="t-hero max-w-3xl text-ink">
-            Notes from <span className="t-accent text-accent">shipping</span>.
-          </h1>
+          <div className="page-eyebrow">
+            <Link to="/">← Back to the computer</Link>
+            <span>Notes from the work</span>
+          </div>
+          <AnimatedHeading text="Thinking, out loud." accent="out loud." />
           <p className="t-lead mt-6 max-w-2xl">
             Decisions I had to actually defend — the architecture calls that paid off, the ones that
             did not, and the results I would rather have quietly dropped.
@@ -164,6 +158,6 @@ export default function Blog() {
           )}
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**
  * Click-to-load YouTube. The poster frame is a cheap image; the iframe (and
@@ -56,6 +56,7 @@ export function VideoEmbed({ id, label }) {
 /** Screenshot grid with a keyboard-navigable lightbox. */
 export function Gallery({ items, title }) {
   const [open, setOpen] = useState(null)
+  const dialog = useRef(null)
 
   const close = useCallback(() => setOpen(null), [])
   const step = useCallback(
@@ -65,10 +66,24 @@ export function Gallery({ items, title }) {
 
   useEffect(() => {
     if (open === null) return
+    const previousFocus = document.activeElement
+    dialog.current?.querySelector('button')?.focus()
     const onKey = (e) => {
       if (e.key === 'Escape') close()
       if (e.key === 'ArrowRight') step(1)
       if (e.key === 'ArrowLeft') step(-1)
+      if (e.key === 'Tab') {
+        const buttons = [...(dialog.current?.querySelectorAll('button') || [])]
+        const first = buttons[0]
+        const last = buttons[buttons.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last?.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first?.focus()
+        }
+      }
     }
     document.addEventListener('keydown', onKey)
     const prev = document.body.style.overflow
@@ -76,6 +91,7 @@ export function Gallery({ items, title }) {
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = prev
+      previousFocus?.focus?.()
     }
   }, [open, close, step])
 
@@ -113,6 +129,7 @@ export function Gallery({ items, title }) {
 
       {open !== null && (
         <div
+          ref={dialog}
           className="fixed inset-0 z-[100] flex flex-col bg-bg/97 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"

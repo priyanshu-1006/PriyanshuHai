@@ -1,0 +1,9 @@
+# Builder’s evening
+
+Generated using the built-in image_gen tool. Selected output copied into this repository as `public/computer/builders-evening.webp` (188,888 bytes). The source PNG remains in the generated-image library. The WebP changes compression only.
+
+Available in the desktop **Start → Appearance → Builder’s evening**. Existing Bliss and other wallpapers are retained. The quiet left half keeps desktop labels readable; the riverfront and maker’s desk provide a personal connection to Varanasi and the portfolio’s retro computer.
+
+## Final prompt
+
+Use case: stylized-concept. Asset type: wide desktop wallpaper for Priyanshu Chaurasia's personal retro Windows XP-inspired portfolio OS. Create a beautiful original panoramic 16:9 wallpaper called Builder's evening. A contemplative illustrated Indian riverside at blue hour, inspired by the layered sandstone ghats and rooftops of Varanasi, seen from a quiet elevated terrace. A tiny personal maker's desk with a beige CRT computer, notebook and warm desk lamp sits on the far right, overlooking the flowing river and distant hazy city. Story: a curious engineer at home between his city and the things he builds. Nostalgic early-2000s desktop wallpaper polish, painterly digital illustration with refined soft grain, atmospheric depth, soft silhouettes, restrained indigo, slate blue and muted warm gold. Composition: generous low-detail dark blue negative space across the LEFT 40 percent for white desktop icon labels; most architectural detail and the desk concentrated in the RIGHT half; soft open sky in the upper half. Calm landscape, no people, no UI, no floating symbols, no text, no letters, no watermark, no logos. Not a screenshot. Avoid oversaturated neon, cyberpunk, busy foreground, hard gradients or generic futuristic imagery.

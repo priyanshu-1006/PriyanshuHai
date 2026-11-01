@@ -9,16 +9,18 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # production bundle into dist/
 npm run lint
+node --test tests/*.test.mjs
 ```
 
 ## Where the content lives
 
-All copy is data, not markup. You never need to touch a component to update the site.
+Core profile and project content is data-driven. The desktop applications and page layouts live in components.
 
 | File | What it holds |
 |---|---|
-| `src/data/profile.js` | Name, bio, contact, skills, education, experience, achievements, hero schematic nodes |
+| `src/data/profile.js` | Name, bio, contact, skills, education, experience and achievements |
 | `src/data/projects.js` | Every project and its full case study |
+| `src/data/recentProjects.js` | Five recent products, their evidence boundaries and screenshot galleries |
 | `docs/project-readmes/` | Source READMEs the case studies were written from |
 
 ### Adding a project
@@ -70,21 +72,19 @@ the theme before first paint, so there is no flash.
 - A fluid type scale (`--fs-*`), tracking (`--tr-*`) and leading (`--lh-*`) drive
   the `.t-display` / `.t-h1` / `.t-h2` / `.t-h3` / `.t-lead` / `.t-label` roles
 
-**Typography**: Archivo (display, 900 at hero scale with -0.045em tracking),
-Instrument Sans (body), IBM Plex Mono (labels, metrics, diagrams). Project pages
-may swap the display face.
+**Typography**: Instrument Sans for display and reading, Instrument Serif for expressive accents,
+and IBM Plex Mono for labels and terminal content. Fonts are hosted locally, with licenses in
+`public/fonts`. Headings use restrained weights and accessible entrance animations.
 
-Every colour pairing passes WCAG AA in both themes.
+Shared text and control tokens support clear contrast in both themes.
 
 ### Per-project themes
 
-`src/data/projectThemes.js` gives each project its own palette and display
-typeface. `<ProjectTheme slug={slug} />` applies it to `<html>` while that page
-is mounted and restores the shell palette on unmount; the Google Font is fetched
-lazily the first time that page opens.
+`src/data/projectThemes.js` supplies product accents. `<ProjectTheme slug={slug} />` applies
+those accents inside the shared paper/forest reading palette and restores the shell on unmount.
+Typography stays consistent throughout the portfolio.
 
-To retheme a project, edit its entry — override as much or as little of `base`
-as you want.
+To retheme a project, edit its accent entries. Shared reading surfaces remain consistent.
 
 ## Components
 
@@ -93,7 +93,7 @@ as you want.
 | `components/Device.jsx` | `MacBook`, `Phone`, `DevicePair` frames. Hold a screenshot, or a live site rendered at desktop width and CSS-scaled to fit |
 | `components/Carousel.jsx` | Auto-advancing slide track. Every slide stays mounted, so a loaded iframe survives sliding away. Pauses on hover, focus and hidden tabs; disabled under reduced motion |
 | `components/Media.jsx` | `Gallery` (lightbox, keyboard-navigable) and `VideoEmbed` (poster first, iframe only on click) |
-| `components/ProjectTheme.jsx` | Applies a project's palette + font for the life of its page |
+| `components/ProjectTheme.jsx` | Applies product accents inside the shared reading palette |
 
 ## Bespoke project pages
 
@@ -112,7 +112,17 @@ const PAGES = {
 Anything not registered falls back to the generic case-study template in
 `ProjectDetail.jsx`, so the site is never broken mid-migration.
 
-**All 19 projects have one.** The larger case studies define their own layout primitives; the seven lighter ones share `src/components/project/Scaffold.jsx`.
+**All 25 projects have one.** The larger case studies define their own layout primitives; lighter ones share `src/components/project/Scaffold.jsx`. The five recent additions use `src/components/project/CaseStudy.jsx` with individual product sections and per-project themes. Case studies load on demand.
+
+The homepage uses the supplied 3D computer as the entrance to Priyanshu OS. Scroll into the
+monitor or use Enter computer, then explore desktop applications and project windows.
+`/projects` is the dedicated screenshot showcase and searchable archive; `/overview` is the
+direct reading route. See `docs/computer-experience.md` for controls, assets and validation.
+
+The first homepage visit includes a replayable startup with optional original sounds. Right-click
+the scene or desktop for display, accessibility and shortcut controls. The floating portfolio
+guide is a local expert system with 22 saved answers and connected questions. Its editable input/output
+library is `src/data/assistantKnowledge.js`; the contract is in `docs/expert-guide-contract.md`.
 
 ## Images
 

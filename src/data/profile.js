@@ -2,14 +2,17 @@ export const profile = {
   name: 'Priyanshu Chaurasia',
   initials: 'PC',
   tagline: 'I build the systems institutions run on.',
-  role: 'CTO × 2 · Society founder · 3rd-year CSE',
+  role: 'CTO × 2 · Nexsus founder · GDGoC Organiser & Campus Lead',
 
   bio: `I'm a third-year Computer Science student at MMMUT, Gorakhpur, and I spend most of my
 time architecting platforms that other people depend on — a bill-discounting marketplace
 moving real money, a campus super-app replacing ten fragmented tools, a chain-of-custody
 system tracking individual garments through a laundry chain. I tend to start at the
 architecture diagram and work outward. Two of those systems now run companies; one runs a
-society I founded and preside over.`,
+society I founded and preside over.
+
+I also build developer tools, including Little Code and Little Terminal, and serve as
+GDGoC Organiser and Campus Lead at MMMUT since September 2026.`,
 
   location: 'Gorakhpur · Varanasi, Uttar Pradesh',
   availability: 'Open to internships and SDE roles',
@@ -18,6 +21,7 @@ society I founded and preside over.`,
   resumeUrl: '/resume.pdf',
 
   socials: {
+    instagram: 'https://www.instagram.com/_priyanshu.10_/',
     github: 'https://github.com/priyanshu-1006',
     linkedin: 'https://www.linkedin.com/in/priyanshu-chaurasia-326979335/',
   },
@@ -31,7 +35,7 @@ society I founded and preside over.`,
   ],
 
   skills: [
-    { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'Java', 'C++', 'SQL'] },
+    { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'Rust', 'Java', 'C++', 'SQL'] },
     { group: 'Frontend', items: ['React', 'Next.js', 'React Native / Expo', 'Tailwind CSS', 'Vite', 'Framer Motion', 'Zustand', 'Radix UI'] },
     { group: 'Backend', items: ['Node.js', 'Express', 'NestJS', 'FastAPI', 'Prisma', 'Sequelize', 'REST', 'WebSocket'] },
     { group: 'Data', items: ['PostgreSQL', 'MongoDB', 'Supabase', 'Redis', 'pgvector', 'IndexedDB'] },
@@ -108,12 +112,13 @@ society I founded and preside over.`,
       ],
     },
     {
-      role: 'Executive Member',
+      role: 'Organiser & Campus Lead',
       org: 'Google Developer Groups on Campus, MMMUT',
-      period: 'Jul 2025 — Present',
+      period: 'Sep 2026 — Present',
       tag: 'LEAD',
       link: 'https://gdg.mmmut.app',
       points: [
+        'GDGoC Organiser and Campus Lead since September 2026; previously an Executive Member from July 2025 to August 2026.',
         'Designed and built the chapter’s entire web presence at gdg.mmmut.app.',
         'Built the Induction Drive system end to end — registrations, evaluation workflow, automated mailing and multi-role access. Over 250 students registered through it.',
       ],

@@ -1,152 +1,180 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { profile } from '../../data/profile'
-import { projectThemes } from '../../data/projectThemes'
-import { useTheme } from '../../lib/themeContext'
-import ParticleField from '../ParticleField'
+import { projects } from '../../data/projects'
 
-/**
- * Editorial hero.
- *
- * The illustration ships on pure black and pure white, matched to the two
- * themes — so it gets no frame, no border and no scrim. The figure emerges
- * straight out of the page background, which only works because the asset
- * backgrounds are exactly the theme backgrounds.
- */
-
-const ORGS = [
-  { role: 'CTO', org: 'Gryork', theme: 'gryork', href: 'https://www.gryork.com' },
-  { role: 'CTO', org: 'Washtro', theme: 'washtro', href: 'https://www.washtro.com' },
-  { role: 'President', org: 'Nexsus', theme: 'nexsus-universe', href: 'https://mmmut.app' },
+const SYSTEMS = [
+  {
+    slug: 'nexsus-universe',
+    label: 'Campus',
+    title: 'One campus. Connected.',
+    note: 'Five portals, two mobile apps and a department timetable on one backend.',
+    proof: '37 people / one society',
+    icon: 'N',
+    x: 22,
+    y: 25,
+  },
+  {
+    slug: 'little-code',
+    label: 'Developer tools',
+    title: 'Build the tools I want to use.',
+    note: 'A standalone coding companion with context, native diffs and supervised agents.',
+    proof: 'Ask → Plan → Edit → Agent',
+    icon: '⌘',
+    x: 76,
+    y: 25,
+  },
+  {
+    slug: 'gryork',
+    label: 'Fintech',
+    title: 'Architecture with real stakes.',
+    note: 'A bill-discounting marketplace connecting infrastructure contractors and lenders.',
+    proof: '₹2.5 lakh architecture grant',
+    icon: 'G',
+    x: 22,
+    y: 75,
+  },
+  {
+    slug: 'manakmitra',
+    label: 'Applied AI',
+    title: 'Answers that carry evidence.',
+    note: 'Indian Standards discovery and certification decisions with official sources attached.',
+    proof: 'SIH 2026 / cited compliance',
+    icon: 'M',
+    x: 76,
+    y: 75,
+  },
 ]
 
 export default function Hero() {
-  const { mode } = useTheme()
-  const [first, ...rest] = profile.name.split(' ')
-  const last = rest.join(' ')
-  const portrait = mode === 'light' ? '/Me-light.png' : '/Me-dark.png'
-
+  const [active, setActive] = useState(0)
+  const system = SYSTEMS[active]
+  const project = projects.find((p) => p.slug === system.slug)
   return (
-    <section className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36">
-      {/* particle field — quiet, no hard edges */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-        <ParticleField
-          color={mode === 'light' ? '154, 98, 8' : '233, 160, 59'}
-          density={mode === 'light' ? 0.00007 : 0.00011}
-          style={{
-            maskImage: 'radial-gradient(120% 100% at 50% 0%, #000 0%, rgba(0,0,0,0.65) 55%, transparent 92%)',
-            WebkitMaskImage: 'radial-gradient(120% 100% at 50% 0%, #000 0%, rgba(0,0,0,0.65) 55%, transparent 92%)',
-          }}
-        />
-      </div>
-
-      <div className="shell relative">
-        <div className="grid items-center gap-8 lg:grid-cols-[1fr_380px] lg:gap-12">
-          <div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-rule bg-bg2 px-3.5 py-1.5">
-                <span
-                  className="h-1.5 w-1.5 rounded-full bg-accent"
-                  style={{ animation: 'pulse-signal 2.4s ease-in-out infinite' }}
-                />
-                <span className="t-mono text-ink2">{profile.availability}</span>
-              </span>
-              <span className="t-label">{profile.role}</span>
-            </div>
-
-            <h1 className="t-display mt-6 text-ink" aria-label={profile.name}>
-              <span aria-hidden="true" className="block">{first}</span>
-              <span aria-hidden="true" className="t-accent block text-accent">{last}</span>
-            </h1>
-
-            <p className="t-lead mt-7 max-w-xl">
-              {profile.tagline}{' '}
-              <span className="text-ink">
-                Two startups run on architecture I designed. A university runs its timetable on
-                a platform I built.
-              </span>
+    <section className="studio-hero">
+      <div className="shell">
+        <div className="studio-topline">
+          <span>Priyanshu Chaurasia / Engineer & builder</span>
+          <span className="studio-location">
+            Gorakhpur, India <span aria-hidden="true">↗</span>
+          </span>
+        </div>
+        <div className="studio-layout">
+          <div className="studio-copy">
+            <p className="studio-eyebrow">
+              <span className="status-dot" />
+              Independent thinking. Shared impact.
             </p>
-
-            <ul className="mt-8 grid max-w-xl grid-cols-3 gap-2.5">
-              {ORGS.map((o) => {
-                const accent = projectThemes[o.theme]?.[mode]?.accent || 'var(--c-accent)'
-                return (
-                  <li key={o.org}>
-                    <a
-                      href={o.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="block rounded-2xl border border-rule bg-bg2 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5"
-                      style={{ transitionTimingFunction: 'var(--ease)' }}
-                      onMouseEnter={(e) => { e.currentTarget.style.borderColor = accent }}
-                      onMouseLeave={(e) => { e.currentTarget.style.borderColor = '' }}
-                    >
-                      <span className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: accent }} />
-                        <span className="truncate text-[13.5px] font-semibold text-ink">{o.role}</span>
-                      </span>
-                      <span className="mt-1 block truncate font-mono text-[11px] text-ink3">{o.org}</span>
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link to="/projects" className="pill pill-solid">
-                See the work
-                <span aria-hidden="true">→</span>
-              </Link>
-              <a href="#contact" className="pill pill-ghost">Get in touch</a>
-              {/* Recruiters land here first and want the PDF, not a tour. */}
+            <h1 aria-label="I build the systems people rely on.">
+              I build the
+              <br />
+              <span className="studio-serif">systems</span>
+              <br />
+              people rely on<span className="studio-period">.</span>
+            </h1>
+            <p className="studio-description">
+              Full-stack engineer. CTO at two startups. Founder of Nexsus. Turning complicated
+              problems into software that earns its place in the real world.
+            </p>
+            <div className="studio-actions">
+              <a href="#work" className="pill pill-solid">
+                Explore my work <span aria-hidden="true">↘</span>
+              </a>
               <a
                 href={profile.resumeUrl}
                 download="Priyanshu-Chaurasia-Resume.pdf"
-                className="pill pill-ghost"
+                className="studio-resume"
               >
-                <svg
-                  viewBox="0 0 16 16"
-                  width="14"
-                  height="14"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.7"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M8 2v8m0 0L4.8 6.8M8 10l3.2-3.2M2.5 13h11" />
-                </svg>
-                Résumé
+                Download résumé <span aria-hidden="true">↓</span>
               </a>
             </div>
+            <p className="studio-availability">
+              <span className="status-dot" />
+              {profile.availability}
+            </p>
           </div>
-
-          {/* No frame: the asset background is the page background. */}
-          <div className="order-first mx-auto w-full max-w-[300px] lg:order-none lg:max-w-none">
-            <img
-              key={portrait}
-              src={portrait}
-              alt={`${profile.name}, illustrated at his desk`}
-              width={1129}
-              height={1411}
-              fetchPriority="high"
-              className="w-full select-none"
-              draggable="false"
-            />
+          <div className="system-desk">
+            <div className="desk-title">
+              <span className="t-label">The systems desk</span>
+              <span className="desk-index">0{active + 1} / 04</span>
+            </div>
+            <div className="system-map" role="group" aria-label="Explore areas of my work">
+              <svg viewBox="0 0 500 280" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M110 70H250V140M380 70H250V140M110 210H250V140M380 210H250V140" />
+                <circle cx="250" cy="140" r="27" />
+              </svg>
+              <div className="map-core" aria-hidden="true">
+                PC<span>build()</span>
+              </div>
+              {SYSTEMS.map((s, i) => (
+                <button
+                  className={`map-node ${active === i ? 'is-active' : ''}`}
+                  key={s.slug}
+                  type="button"
+                  aria-pressed={active === i}
+                  onClick={() => setActive(i)}
+                  style={{ left: `${s.x}%`, top: `${s.y}%` }}
+                >
+                  <span className="map-node-symbol" aria-hidden="true">
+                    {s.icon}
+                  </span>
+                  <span>{s.label}</span>
+                </button>
+              ))}
+              <span className="map-coordinate" aria-hidden="true">
+                IDEA → ARCHITECTURE → PEOPLE
+              </span>
+            </div>
+            <div className="desk-project" aria-live="polite">
+              <div className="desk-project-copy">
+                <p className="t-label">{project.title}</p>
+                <h2>{system.title}</h2>
+                <p>{system.note}</p>
+              </div>
+              <Link
+                to={`/projects/${system.slug}`}
+                className="desk-project-image"
+                aria-label={`Read the ${project.title} case study`}
+              >
+                <img
+                  key={project.cover}
+                  src={project.cover}
+                  alt={`${project.title} interface`}
+                  width="700"
+                  height="430"
+                />
+                <span aria-hidden="true">↗</span>
+              </Link>
+              <div className="desk-footer">
+                <span>{system.proof}</span>
+                <Link to={`/projects/${system.slug}`}>Open case study ↗</Link>
+              </div>
+            </div>
           </div>
         </div>
-
-        <dl className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
-          {profile.signals.map((s) => (
-            <div key={s.label} className="bg-bg2 p-5 lg:p-6">
-              <dt className="font-display text-3xl font-black tracking-tight text-accent lg:text-4xl">
-                {s.value}
-              </dt>
-              <dd className="mt-2.5 text-[13.5px] leading-snug text-ink2">{s.label}</dd>
-              <dd className="t-mono mt-1.5 text-ink3">{s.ref}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className="studio-roles">
+          <p>
+            Currently
+            <br />
+            <span>building & leading</span>
+          </p>
+          <Link to="/projects/gryork">
+            <strong>CTO</strong>
+            <span>Gryork</span>
+          </Link>
+          <Link to="/projects/washtro">
+            <strong>CTO</strong>
+            <span>Washtro</span>
+          </Link>
+          <Link to="/projects/nexsus-universe">
+            <strong>Founder & President</strong>
+            <span>Nexsus</span>
+          </Link>
+          <Link to="/projects/gdg-mmmut">
+            <strong>Organiser & Campus Lead</strong>
+            <span>GDGoC · Since Sep 2026</span>
+          </Link>
+        </div>
       </div>
     </section>
   )

@@ -33,7 +33,8 @@ export default function GdgMmmut() {
             <BrandMark brand="gdg" size={56} />
             <div>
               <p className="t-mono text-ink3">Google Developer Groups on Campus, MMMUT</p>
-              <p className="t-mono text-ink3">2025 · Tech lead &amp; builder</p>
+              <p className="t-mono text-ink3">Organiser &amp; Campus Lead · September 2026 — Present</p>
+              <p className="t-mono mt-1 text-ink3">Previously Executive Member · July 2025 — August 2026</p>
             </div>
           </div>
 

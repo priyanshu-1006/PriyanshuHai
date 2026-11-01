@@ -18,6 +18,15 @@ export const KINDS = {
 }
 
 export const timeline = [
+  {
+    year: '2026',
+    when: 'Sep 2026',
+    kind: 'role',
+    title: 'Organiser & Campus Lead — GDGoC, MMMUT',
+    detail: 'Stepped into the campus leadership role after serving as an Executive Member since July 2025.',
+    href: '/projects/gdg-mmmut',
+    weight: 'primary',
+  },
   // ── 2026 ──────────────────────────────────────────────────────────────────
   {
     year: '2026',

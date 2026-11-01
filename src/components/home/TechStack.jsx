@@ -1,34 +1,18 @@
 import { techGroups, marqueeIcons, iconUrl } from '../../data/techStack'
 import { useReveal } from '../../lib/useReveal'
-
-/** Monogram fallback so a tool with no SVG still sits correctly in the grid. */
-function Monogram({ name }) {
-  return (
-    <span className="grid h-full w-full place-items-center rounded-lg bg-accent/12 font-display text-[13px] font-bold text-accent">
-      {name.slice(0, 2)}
-    </span>
-  )
-}
+import SkillIcon from '../SkillIcon'
 
 function TechChip({ item }) {
-  const url = iconUrl(item.icon)
   return (
     <li
       className="group flex items-center gap-2.5 rounded-xl border border-rule bg-bg2 px-3 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-rule2 hover:shadow-lg"
       style={{ transitionTimingFunction: 'var(--ease)' }}
     >
       <span className="h-6 w-6 shrink-0">
-        {url ? (
-          <img
-            src={url}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-110"
-          />
-        ) : (
-          <Monogram name={item.name} />
-        )}
+        <SkillIcon
+          skill={item}
+          className="tech-chip-icon transition-transform duration-300 group-hover:scale-110"
+        />
       </span>
       <span className="truncate text-[13.5px] font-medium text-ink2 transition-colors group-hover:text-ink">
         {item.name}
@@ -44,8 +28,10 @@ function Marquee() {
     <div
       className="relative overflow-hidden py-6"
       style={{
-        maskImage: 'linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)',
+        maskImage:
+          'linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)',
+        WebkitMaskImage:
+          'linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)',
       }}
       aria-hidden="true"
     >
@@ -83,8 +69,8 @@ export default function TechStack() {
             What I reach <span className="t-accent text-accent">for</span>.
           </h2>
           <p className="t-lead mt-5 max-w-2xl">
-            Grouped by layer, because that&apos;s how I think about a system before I think about a
-            language.
+            Grouped by layer, because that&apos;s how I think about a system
+            before I think about a language.
           </p>
         </div>
 
@@ -104,7 +90,9 @@ function StackGroup({ group }) {
   const ref = useReveal()
   return (
     <div ref={ref} className="reveal">
-      <h3 className="t-label mb-4 border-b border-rule pb-2.5">{group.group}</h3>
+      <h3 className="t-label mb-4 border-b border-rule pb-2.5">
+        {group.group}
+      </h3>
       <ul className="grid grid-cols-2 gap-2">
         {group.items.map((item) => (
           <TechChip key={item.name} item={item} />

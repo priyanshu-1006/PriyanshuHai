@@ -38,7 +38,7 @@ const STAGES = [
   {
     key: 'ingest',
     label: 'preprocessing',
-    line: 'ingesting 20 projects · 5 years · 41 courses',
+    line: 'ingesting systems · tools · campus infrastructure',
     tech: ['Python', 'Pandas', 'NumPy'],
     ms: 900,
   },

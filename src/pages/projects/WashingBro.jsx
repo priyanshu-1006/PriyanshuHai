@@ -165,7 +165,7 @@ export default function WashingBro() {
           }}
         />
         <div className="shell relative">
-          <Link to="/#projects" className="t-mono inline-flex items-center gap-2 text-ink3 transition-colors hover:text-accent">
+          <Link to="/projects" className="t-mono inline-flex items-center gap-2 text-ink3 transition-colors hover:text-accent">
             ← All projects
           </Link>
 

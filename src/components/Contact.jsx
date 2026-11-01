@@ -6,7 +6,7 @@ export default function Contact() {
   const year = new Date().getFullYear()
 
   return (
-    <footer id="contact" className="relative scroll-mt-24 overflow-hidden pt-20 md:pt-28">
+    <footer id="contact" className="site-contact relative scroll-mt-24 overflow-hidden pt-20 md:pt-28">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[60vh]"

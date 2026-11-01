@@ -30,8 +30,8 @@ export default function Nav() {
   )
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
-  const onHome = pathname === '/'
-  const href = (h) => (onHome ? h : `/${h}`)
+  const onOverview = pathname === '/overview'
+  const href = (h) => (onOverview ? h : `/overview${h}`)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32)
@@ -43,10 +43,8 @@ export default function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 pt-3 sm:pt-5">
       <div className="shell">
         <nav
-          className={`flex items-center justify-between gap-3 rounded-full border px-2.5 py-2 transition-all duration-500 ${
-            scrolled || open
-              ? 'border-rule bg-bg2/85 shadow-lg backdrop-blur-xl'
-              : 'border-transparent bg-transparent'
+          className={`portfolio-nav flex items-center justify-between gap-3 border px-2.5 py-2 transition-all duration-500 ${
+            scrolled || open ? 'border-rule bg-bg2/85 shadow-lg backdrop-blur-xl' : ''
           }`}
           style={{ transitionTimingFunction: 'var(--ease)' }}
         >
@@ -55,21 +53,15 @@ export default function Nav() {
             onClick={() => setOpen(false)}
             className="group flex shrink-0 items-center gap-2.5 pl-1.5"
           >
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-accent font-mono text-[11px] font-semibold text-onaccent">
-              {profile.initials}
+            <span className="relative block h-8 w-8 overflow-hidden rounded-full bg-[#e7e2d6]">
+              <img
+                src="/Me-light.png"
+                alt=""
+                className="absolute -left-3 -top-1.5 w-14 max-w-none"
+              />
             </span>
-            {/* Wordmark as a call site. The accent lands on the argument, which
-                is the part that is actually his name. */}
-            <span
-              className="hidden font-mono text-[13px] tracking-tight text-ink3 sm:block"
-              aria-label={profile.name}
-            >
-              <span className="text-ink2">model</span>
-              <span className="text-ink3">.</span>
-              <span className="text-ink2 transition-colors group-hover:text-accent">load</span>
-              <span className="text-ink3">(&quot;</span>
-              <span className="font-semibold text-ink">{profile.name.split(' ')[0]}</span>
-              <span className="text-ink3">&quot;)</span>
+            <span className="text-[11px] font-semibold tracking-tight text-ink sm:text-[13px]">
+              {profile.name}
             </span>
           </Link>
 
@@ -120,7 +112,10 @@ export default function Nav() {
             </a>
             <ThemeToggle />
 
-            <a href={href('#contact')} className="pill pill-solid ml-1 hidden !py-2 !text-sm lg:inline-flex">
+            <a
+              href={href('#contact')}
+              className="pill pill-solid ml-1 hidden !py-2 !text-sm lg:inline-flex"
+            >
               Let&apos;s talk
               <span aria-hidden="true">↗</span>
             </a>
@@ -132,7 +127,15 @@ export default function Nav() {
               aria-label={open ? 'Close menu' : 'Open menu'}
               className="grid h-9 w-9 place-items-center rounded-full border border-rule text-ink2 transition-colors hover:border-accent hover:text-accent md:hidden"
             >
-              <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+              <svg
+                viewBox="0 0 16 16"
+                width="15"
+                height="15"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              >
                 {open ? <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" /> : <path d="M2 5h12M2 11h12" />}
               </svg>
             </button>
