@@ -58,8 +58,9 @@ assets, public product links, full desktop project readers, calendar date jumps,
 Escape behaviour, readable tray controls, phone/tablet layouts and absence of
 horizontal page overflow. Screenshots are in `docs/qa/`.
 
-`.github/workflows/portfolio-checks.yml` runs install, tests, release-file checks
-and build on future pushes and pull requests. It contains no deployment step.
+The local Codex automation replaces the hosted Actions workflows. It refreshes
+and validates the single generated data file in a separate clone before publishing.
+See `github-activity-setup.md` for the current schedule and setup.
 The build retains the existing warning about the large Three.js and main chunks;
 the computer scene and individual case studies are loaded separately.
 

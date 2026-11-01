@@ -1,5 +1,7 @@
 # Portfolio - Priyanshu Chaurasia
 
+[Visit the live portfolio](https://priyanshu-hai.vercel.app/)
+
 React + Vite + Tailwind v4 + React Router. Deploys to Vercel as-is.
 
 ## Run it
@@ -24,6 +26,8 @@ Core profile and project content is data-driven. The desktop applications and pa
 | `src/data/recentProjects.js` | Five recent products, their evidence boundaries and screenshot galleries |
 | `src/data/projectOrder.js` | Shared project priority for the showcase, desktop, and next-project links |
 | `src/data/calendarEvents.js` | Annual birthdays and dated milestones in the taskbar calendar |
+| `src/data/github.json` | Saved contribution calendar, repository details and recent public commit history |
+| `scripts/refresh-github-local.mjs` | Validated daily data publisher using a separate local checkout |
 | `docs/project-readmes/` | Source READMEs the case studies were written from |
 
 ### Adding a project
@@ -128,16 +132,42 @@ guide is a local expert system with 22 saved answers and connected questions. It
 library is `src/data/assistantKnowledge.js`; the contract is in `docs/expert-guide-contract.md`.
 
 Click the taskbar date/time to open the live IST calendar. Birthdays recur yearly;
-the IIT Bombay Techfest win stays on 21 December 2025. Add future dates in
-`src/data/calendarEvents.js`, omitting `year` only for recurring events.
+the IIT Bombay Techfest win stays on 21 December 2025. Under the calendar, the
+GitHub build log shows the contribution graph and a table of public commits.
+Select a date or choose Latest; rows include IST times, messages, repositories
+and real commit links. Add personal dates in `src/data/calendarEvents.js`,
+omitting `year` only for recurring events.
 
-GitHub preparation and the latest media audit are recorded in `docs/github-ready.md`.
-The checks workflow builds and tests the repository; it does not deploy it.
+The table covers up to 100 recently indexed public commits. The yearly graph
+can also include anonymised private activity shared on the GitHub profile.
 
-The GitHub activity section refreshes through `.github/workflows/refresh-github.yml`
-at 11:17 AM IST, with a same-day guard and a single generated-data commit. See
-`docs/github-activity-setup.md` for activation, commit attribution and Vercel setup.
-No personal access token is required for the public contribution calendar.
+![Calendar with GitHub commit history](docs/qa/calendar-commit-history-desktop.jpg)
+
+## Daily GitHub updates without GitHub Actions
+
+A local Codex automation runs at **11:17 AM IST**. Keep the computer online,
+Codex running and this project available. It uses your existing Git login.
+
+```bash
+npm run refresh:local     # Check the complete job without committing or pushing
+npm run refresh:publish   # Publish one data-only update when due
+```
+
+The runner works in `.automation/github-refresh`, a separate ignored clone. It
+checks the daily guard, refreshes GitHub data and recent public commit history,
+runs tests and a production build, then commits only `src/data/github.json`.
+It never stages or commits unfinished work in your normal portfolio checkout.
+The status is recorded in `.automation/last-run.json`.
+
+The app's Scheduled view manages **Refresh portfolio GitHub activity**.
+The Actions workflows were removed; push these source changes once to remove
+those workflows remotely and publish the calendar update. Vercel's Git
+integration should keep deploying `main`. No personal token is required for the
+public calendar; the job cannot run while the computer/app is unavailable.
+
+See `docs/github-activity-setup.md` for the complete setup, retry behaviour,
+optional deployment hook, time zones and commit attribution. Project media and
+release notes are in `docs/github-ready.md`.
 
 ## Images
 

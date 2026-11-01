@@ -13,6 +13,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parsePublicCalendar } from './lib/github-calendar.mjs'
 import { refreshDue } from '../src/lib/githubActivity.js'
+import { normalizeCommitHistory } from './lib/github-history.mjs'
 
 const USER = process.env.GITHUB_USER || 'priyanshu-1006'
 const TOKEN = process.env.GITHUB_TOKEN || ''
@@ -52,7 +53,8 @@ let budgetExhausted = false
 let partial = false
 
 async function api(path, { search = false } = {}) {
-  if (budgetExhausted) return null
+  // Commit search has a separate rate limit from the REST core endpoints.
+  if (budgetExhausted && !search) return null
   const url = path.startsWith('http') ? path : `https://api.github.com${path}`
   try {
     const res = await fetch(url, {
@@ -90,7 +92,25 @@ async function api(path, { search = false } = {}) {
 console.log(
   `Fetching GitHub data for ${USER}${TOKEN ? ' (authenticated)' : ' (anonymous, 60/hr)'}`,
 )
-const profile = await api(`/users/${USER}`)
+let profile = await api(`/users/${USER}`)
+if (!profile && previous.user?.login?.toLowerCase() === USER.toLowerCase()) {
+  const saved = previous.user
+  profile = {
+    login: saved.login,
+    name: saved.name,
+    html_url: saved.url,
+    avatar_url: saved.avatar,
+    bio: saved.bio,
+    public_repos: saved.publicRepos,
+    followers: saved.followers,
+    following: saved.following,
+    created_at: saved.createdAt,
+  }
+  partial = true
+  console.warn(
+    '  ! using the last saved public profile while the REST API is unavailable',
+  )
+}
 if (!profile) {
   console.error(
     'Could not reach the GitHub API. Leaving the existing snapshot alone.',
@@ -100,11 +120,16 @@ if (!profile) {
 
 /* ── Owned repositories ──────────────────────────────────────────────────── */
 const owned = []
+let ownedComplete = true
 for (let page = 1; page <= 4; page++) {
   const batch = await api(
     `/users/${USER}/repos?per_page=100&page=${page}&sort=pushed`,
   )
-  if (!batch || batch.length === 0) break
+  if (!batch) {
+    ownedComplete = false
+    break
+  }
+  if (batch.length === 0) break
   owned.push(...batch)
   if (batch.length < 100) break
 }
@@ -113,6 +138,11 @@ console.log(`  ${owned.length} repositories`)
 const sourceRepos = owned
   .filter((r) => !r.fork && !r.archived)
   .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
+
+const found = await api(
+  `/search/commits?q=author:${USER}&per_page=100&sort=author-date&order=desc`,
+  { search: true },
+)
 
 /* ── Contributor breakdown ───────────────────────────────────────────────── *
  * One request per repo, so this is where the anonymous budget goes. Repos are
@@ -167,16 +197,17 @@ for (const [index, repo] of sourceRepos.entries()) {
     checkedAt: new Date().toISOString(),
   })
 }
+if (!ownedComplete) {
+  const known = new Set(contributions.map((repo) => repo.full))
+  for (const repo of previous.contributions || [])
+    if (!known.has(repo.full)) contributions.push({ ...repo, cached: true })
+}
 console.log(`  ${contributions.length} repositories with attributed commits`)
 
 /* ── External contributions ──────────────────────────────────────────────── *
  * Repos he committed to but does not own do not appear in /users/:u/repos.
  * The commit search is the only public way to surface them.                  */
 const external = new Map()
-const found = await api(
-  `/search/commits?q=author:${USER}&per_page=100&sort=author-date&order=desc`,
-  { search: true },
-)
 for (const item of found?.items || []) {
   const r = item.repository
   if (!r || r.owner?.login?.toLowerCase() === USER.toLowerCase()) continue
@@ -217,23 +248,33 @@ for (const e of events) {
   pushes += 1
   byDay[day] = (byDay[day] || 0) + 1
 }
+if (!events.length && budgetExhausted) {
+  for (const day of previous.activity || []) byDay[day.date] = day.pushes
+  pushes = previous.totals?.recentPushes || 0
+}
 
-const recent = events
-  .filter((e) =>
-    ['PushEvent', 'CreateEvent', 'PullRequestEvent', 'ReleaseEvent'].includes(
-      e.type,
-    ),
-  )
-  .slice(0, 12)
-  .map((e) => ({
-    type: e.type,
-    repo: e.repo.name,
-    at: e.created_at,
-    // `payload.commits` and `payload.size` are both stripped from the public
-    // feed now, so there is no honest per-event commit count to record.
-    ref: e.payload?.ref_type || null,
-    action: e.payload?.action || null,
-  }))
+const recent =
+  !events.length && budgetExhausted
+    ? previous.recent || []
+    : events
+        .filter((e) =>
+          [
+            'PushEvent',
+            'CreateEvent',
+            'PullRequestEvent',
+            'ReleaseEvent',
+          ].includes(e.type),
+        )
+        .slice(0, 12)
+        .map((e) => ({
+          type: e.type,
+          repo: e.repo.name,
+          at: e.created_at,
+          // `payload.commits` and `payload.size` are both stripped from the public
+          // feed now, so there is no honest per-event commit count to record.
+          ref: e.payload?.ref_type || null,
+          action: e.payload?.action || null,
+        }))
 
 /* ── Contribution calendar ───────────────────────────────────────────────── *
  * GraphQL provides a richer activity breakdown when token permissions allow it.
@@ -328,6 +369,12 @@ if (!calendar && STRICT) {
   )
   process.exit(1)
 }
+if (!found && !Array.isArray(previous.history?.commits) && STRICT) {
+  console.error(
+    'No initial public commit history was available. Keeping the saved snapshot; no automated commit will be made.',
+  )
+  process.exit(1)
+}
 if (!calendar && previous.calendar) {
   calendar = {
     ...previous.calendar,
@@ -370,6 +417,16 @@ const snapshot = {
     activeDays: Object.keys(byDay).length,
   },
   calendar,
+  history: found
+    ? {
+        source: 'github-public-commit-search',
+        fetchedAt: new Date().toISOString(),
+        totalIndexed: found.total_count ?? null,
+        sampled: (found.total_count || 0) > (found.items?.length || 0),
+        incomplete: Boolean(found.incomplete_results),
+        commits: normalizeCommitHistory(found.items),
+      }
+    : { ...(previous.history || {}), incomplete: true },
   languages: Object.entries(languages)
     .sort((a, b) => b[1] - a[1])
     .map(([name, commits]) => ({ name, commits })),
@@ -393,5 +450,7 @@ console.log(
     `  ${snapshot.totals.commits} commits across ${snapshot.totals.repos} repos\n` +
     `  top contributor in ${snapshot.totals.topContributorIn}\n` +
     `  ${snapshot.totals.recentPushes} public pushes in the event window` +
-    (snapshot.partial ? '\n  (partial — some repository details were unavailable)' : ''),
+    (snapshot.partial
+      ? '\n  (partial — some repository details were unavailable)'
+      : ''),
 )

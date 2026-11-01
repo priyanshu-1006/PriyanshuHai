@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   calendarEvents,
   calendarMonth,
@@ -6,6 +6,9 @@ import {
   indiaDateParts,
 } from '../../data/calendarEvents'
 import SystemIcon from './SystemIcon'
+import CalendarActivity from './CalendarActivity'
+import gh from '../../data/github.json'
+import { calendarDayKey, indexCommitHistory } from '../../lib/githubActivity'
 
 const monthLabel = (year, month) =>
   new Date(Date.UTC(year, month - 1, 1)).toLocaleDateString('en-GB', {
@@ -32,6 +35,8 @@ export default function ClockCalendar() {
   const toggle = useRef(null)
   const heading = useRef(null)
   const body = useRef(null)
+  const commitIndex = useMemo(() => indexCommitHistory(gh.history?.commits), [])
+  const selectedCommits = commitIndex.get(calendarDayKey(selected)) || []
   const selectedEvents = eventsForDay(
     selected.year,
     selected.month,
@@ -192,10 +197,12 @@ export default function ClockCalendar() {
                     day === today.day &&
                     selected.month === today.month &&
                     selected.year === today.year
+                  const commits =
+                    commitIndex.get(calendarDayKey({ ...selected, day })) || []
                   return (
                     <button
                       key={day}
-                      aria-label={`${day} ${monthLabel(selected.year, selected.month)}${events.length ? `: ${events.map((event) => event.title).join(', ')}` : ''}`}
+                      aria-label={`${day} ${monthLabel(selected.year, selected.month)}${events.length ? `: ${events.map((event) => event.title).join(', ')}` : ''}${commits.length ? ` · ${commits.length} public commit${commits.length === 1 ? '' : 's'}` : ''}`}
                       aria-pressed={selected.day === day}
                       aria-current={isToday ? 'date' : undefined}
                       className={`${isToday ? 'is-today' : ''} ${events.length ? 'has-event' : ''}`}
@@ -203,6 +210,7 @@ export default function ClockCalendar() {
                     >
                       {day}
                       {events.length > 0 && <i className={events[0].kind} />}
+                      {commits.length > 0 && <i className="commit" />}
                     </button>
                   )
                 },
@@ -220,9 +228,31 @@ export default function ClockCalendar() {
                   </div>
                 ))
               ) : (
-                <p>A little space for the next good memory.</p>
+                <p>
+                  {selectedCommits.length
+                    ? `${selectedCommits.length} public commit${selectedCommits.length === 1 ? '' : 's'} logged on this day.`
+                    : 'A little space for the next good memory.'}
+                </p>
               )}
+              <button
+                className="os-calendar-open-history"
+                onClick={() => {
+                  const panel = body.current
+                  const history = panel?.querySelector('.os-calendar-activity')
+                  if (panel && history)
+                    panel.scrollTop +=
+                      history.getBoundingClientRect().top -
+                      panel.getBoundingClientRect().top -
+                      12
+                }}
+              >
+                Explore the build log ↓
+              </button>
             </div>
+            <CalendarActivity
+              key={calendarDayKey(selected)}
+              selected={selected}
+            />
             <div className="os-calendar-memories">
               <h3>
                 Dates to remember <span>{calendarEvents.length}</span>

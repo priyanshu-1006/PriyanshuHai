@@ -74,7 +74,7 @@ body:has(.os-desktop.is-open .os-calendar-panel) .experience-utility-dock {
   z-index: 600;
   right: 8px;
   bottom: 49px;
-  width: 354px;
+  width: 410px;
   max-width: calc(100vw - 16px);
   max-height: calc(100svh - 104px);
   display: flex;
@@ -86,7 +86,7 @@ body:has(.os-desktop.is-open .os-calendar-panel) .experience-utility-dock {
   box-shadow:
     0 16px 50px #0007,
     2px 2px 0 #ffffff40 inset;
-  overflow: hidden;
+  overflow: clip;
   font:
     11px/1.5 Tahoma,
     sans-serif;
@@ -94,6 +94,8 @@ body:has(.os-desktop.is-open .os-calendar-panel) .experience-utility-dock {
   transform-origin: bottom right;
 }
 .os-calendar-titlebar {
+  flex-shrink: 0;
+  min-height: 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -120,6 +122,7 @@ body:has(.os-desktop.is-open .os-calendar-panel) .experience-utility-dock {
   padding: 3px;
 }
 .os-calendar-body {
+  min-height: 0;
   padding: 17px;
   overflow: auto;
   overscroll-behavior: contain;
@@ -137,6 +140,7 @@ body:has(.os-desktop.is-open .os-calendar-panel) .experience-utility-dock {
   gap: 2px;
 }
 .os-desktop .os-calendar-panel small {
+  display: block;
   font-size: 9px;
   opacity: 1;
   margin: 0;

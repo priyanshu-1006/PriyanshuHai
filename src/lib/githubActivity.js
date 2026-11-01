@@ -55,3 +55,30 @@ export function snapshotStatus(snapshot, now = new Date()) {
   const age = (now.getTime() - new Date(updatedAt).getTime()) / DAY
   return { updatedAt, stale: !Number.isFinite(age) || age > 2 }
 }
+
+export function calendarDayKey({ year, month, day }) {
+  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+}
+
+export function indexCommitHistory(commits = []) {
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Kolkata',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  })
+  const index = new Map()
+  for (const commit of [...commits].sort(
+    (a, b) => Date.parse(b.authoredAt) - Date.parse(a.authoredAt),
+  )) {
+    const date = new Date(commit.authoredAt)
+    if (!Number.isFinite(date.getTime())) continue
+    const parts = Object.fromEntries(
+      formatter.formatToParts(date).map(({ type, value }) => [type, value]),
+    )
+    const key = `${parts.year}-${parts.month}-${parts.day}`
+    if (!index.has(key)) index.set(key, [])
+    index.get(key).push(commit)
+  }
+  return index
+}

@@ -10,7 +10,9 @@
     "check:release": "node scripts/check-release.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "sync:github": "node scripts/fetch-github.mjs"
+    "sync:github": "node scripts/fetch-github.mjs",
+    "refresh:local": "node --env-file-if-exists=.env.local scripts/refresh-github-local.mjs",
+    "refresh:publish": "node --env-file-if-exists=.env.local scripts/refresh-github-local.mjs --publish"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
