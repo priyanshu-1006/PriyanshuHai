@@ -4,11 +4,14 @@ import DesktopIcon from './DesktopIcon'
 import DesktopApps, { APPS, getApp } from './DesktopApps'
 import { useExperience } from '../../lib/experienceContext'
 import SystemIcon from './SystemIcon'
+import ClockCalendar from './ClockCalendar'
 
 function initialWallpaper() {
   try {
     const value = localStorage.getItem('priyanshu-os:wallpaper:v2')
-    return ['forest', 'blue', 'sand', 'bliss', 'personal'].includes(value) ? value : 'bliss'
+    return ['forest', 'blue', 'sand', 'bliss', 'personal'].includes(value)
+      ? value
+      : 'bliss'
   } catch {
     return 'bliss'
   }
@@ -31,7 +34,6 @@ export default function DesktopOS({ active, onExit }) {
   const [startOpen, setStartOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [wallpaper, setWallpaper] = useState(initialWallpaper)
-  const [clock, setClock] = useState(new Date())
   const workspace = useRef(null)
   const zIndex = useRef(10)
   const started = useRef(false)
@@ -49,7 +51,9 @@ export default function DesktopOS({ active, onExit }) {
       setWindows((current) => {
         const existing = current.find((w) => w.id === id)
         if (existing)
-          return current.map((w) => (w.id === id ? { ...w, minimized: false, z: order } : w))
+          return current.map((w) =>
+            w.id === id ? { ...w, minimized: false, z: order } : w,
+          )
         const area = workspace.current
         const width = area?.clientWidth || window.innerWidth
         const height = area?.clientHeight || window.innerHeight - 80
@@ -62,7 +66,10 @@ export default function DesktopOS({ active, onExit }) {
           {
             ...app,
             z: order,
-            x: Math.min(Math.max(20, (width - w) / 2 + cascade), width - w - 12),
+            x: Math.min(
+              Math.max(20, (width - w) / 2 + cascade),
+              width - w - 12,
+            ),
             y: Math.min(28 + cascade, Math.max(12, height - h - 12)),
             width: w,
             height: h,
@@ -96,10 +103,6 @@ export default function DesktopOS({ active, onExit }) {
     }
   }, [active, launchRequest, openApp, setLaunchRequest])
   useEffect(() => {
-    const timer = setInterval(() => setClock(new Date()), 30000)
-    return () => clearInterval(timer)
-  }, [])
-  useEffect(() => {
     if (startOpen) search.current?.focus()
   }, [startOpen])
   useEffect(() => {
@@ -111,7 +114,10 @@ export default function DesktopOS({ active, onExit }) {
           ...w,
           width: Math.min(w.width, width - 24),
           height: Math.min(w.height, height - 24),
-          x: Math.max(8, Math.min(w.x, width - Math.min(w.width, width - 24) - 8)),
+          x: Math.max(
+            8,
+            Math.min(w.x, width - Math.min(w.width, width - 24) - 8),
+          ),
           y: Math.max(8, Math.min(w.y, height - 60)),
           maximized: width < 640 ? true : w.maximized,
         })),
@@ -125,7 +131,9 @@ export default function DesktopOS({ active, onExit }) {
     const order = ++zIndex.current
     setActiveId(id)
     setWindows((current) =>
-      current.map((w) => (w.id === id ? { ...w, z: order, minimized: false } : w)),
+      current.map((w) =>
+        w.id === id ? { ...w, z: order, minimized: false } : w,
+      ),
     )
   }
   const close = (id) => {
@@ -133,14 +141,20 @@ export default function DesktopOS({ active, onExit }) {
     setWindows((current) => current.filter((w) => w.id !== id))
     if (activeId === id)
       setActiveId(
-        windows.filter((w) => w.id !== id && !w.minimized).sort((a, b) => b.z - a.z)[0]?.id || null,
+        windows
+          .filter((w) => w.id !== id && !w.minimized)
+          .sort((a, b) => b.z - a.z)[0]?.id || null,
       )
   }
   const minimize = (id) => {
-    setWindows((current) => current.map((w) => (w.id === id ? { ...w, minimized: true } : w)))
+    setWindows((current) =>
+      current.map((w) => (w.id === id ? { ...w, minimized: true } : w)),
+    )
     if (activeId === id)
       setActiveId(
-        windows.filter((w) => w.id !== id && !w.minimized).sort((a, b) => b.z - a.z)[0]?.id || null,
+        windows
+          .filter((w) => w.id !== id && !w.minimized)
+          .sort((a, b) => b.z - a.z)[0]?.id || null,
       )
   }
   const maximize = (id) => {
@@ -150,7 +164,9 @@ export default function DesktopOS({ active, onExit }) {
     )
   }
   const updatePosition = (id, x, y) =>
-    setWindows((current) => current.map((w) => (w.id === id ? { ...w, x, y } : w)))
+    setWindows((current) =>
+      current.map((w) => (w.id === id ? { ...w, x, y } : w)),
+    )
   const showDesktop = () => {
     const visible = windows.filter((w) => !w.minimized)
     if (visible.length) {
@@ -160,9 +176,14 @@ export default function DesktopOS({ active, onExit }) {
       desktop.current?.focus({ preventScroll: true })
     } else {
       const ids = desktopSnapshot.current
-      const restored = windows.filter((w) => !ids || ids.includes(w.id)).sort((a, b) => b.z - a.z)
+      const restored = windows
+        .filter((w) => !ids || ids.includes(w.id))
+        .sort((a, b) => b.z - a.z)
       setWindows((current) =>
-        current.map((w) => ({ ...w, minimized: ids ? !ids.includes(w.id) : false })),
+        current.map((w) => ({
+          ...w,
+          minimized: ids ? !ids.includes(w.id) : false,
+        })),
       )
       setActiveId(restored[0]?.id || null)
       desktopSnapshot.current = null
@@ -228,7 +249,10 @@ export default function DesktopOS({ active, onExit }) {
         ref={workspace}
         onContextMenu={(event) => {
           if (event.target.closest('.os-window,input,textarea,a')) return
-          openContextMenu(event, event.target.closest('[data-app-id]')?.dataset.appId)
+          openContextMenu(
+            event,
+            event.target.closest('[data-app-id]')?.dataset.appId,
+          )
         }}
         onPointerDown={(e) => {
           if (e.target === e.currentTarget) setStartOpen(false)
@@ -247,7 +271,9 @@ export default function DesktopOS({ active, onExit }) {
           <small>PRIYANSHU CHAURASIA / PERSONAL COMPUTER</small>
         </div>
         <div className="os-desktop-icons" aria-label="Desktop applications">
-          {APPS.filter((app) => !['welcome', 'settings', 'credits'].includes(app.id)).map((app) => (
+          {APPS.filter(
+            (app) => !['welcome', 'settings', 'credits'].includes(app.id),
+          ).map((app) => (
             <button
               key={app.id}
               data-app-id={app.id}
@@ -255,13 +281,20 @@ export default function DesktopOS({ active, onExit }) {
               onClick={() => openApp(app.id)}
               title={app.subtitle}
             >
-              <DesktopIcon kind={app.icon} asset={app.asset} project={app.projectSlug} />
+              <DesktopIcon
+                kind={app.icon}
+                asset={app.asset}
+                project={app.projectSlug}
+              />
               <span>{app.title}</span>
             </button>
           ))}
         </div>
         {!windows.some((w) => !w.minimized) && (
-          <button className="os-welcome-note" onClick={() => openApp('welcome')}>
+          <button
+            className="os-welcome-note"
+            onClick={() => openApp('welcome')}
+          >
             <span>hello.txt</span>
             <strong>
               Make yourself
@@ -322,7 +355,12 @@ export default function DesktopOS({ active, onExit }) {
             <div className="os-start-apps">
               {filteredApps.map((app) => (
                 <button key={app.id} onClick={() => openApp(app.id)}>
-                  <DesktopIcon kind={app.icon} asset={app.asset} project={app.projectSlug} small />
+                  <DesktopIcon
+                    kind={app.icon}
+                    asset={app.asset}
+                    project={app.projectSlug}
+                    small
+                  />
                   <span>
                     <strong>{app.title}</strong>
                     <small>{app.subtitle}</small>
@@ -360,7 +398,12 @@ export default function DesktopOS({ active, onExit }) {
               }}
               aria-label={`${w.minimized ? 'Restore' : 'Switch to'} ${w.title}`}
             >
-              <DesktopIcon kind={w.icon} asset={w.asset} project={w.projectSlug} small />
+              <DesktopIcon
+                kind={w.icon}
+                asset={w.asset}
+                project={w.projectSlug}
+                small
+              />
               <span>{w.title}</span>
             </button>
           ))}
@@ -376,25 +419,24 @@ export default function DesktopOS({ active, onExit }) {
           </button>
           <button
             className="os-quick-control"
-            aria-label={preferences.sound ? 'Mute desktop sounds' : 'Enable desktop sounds'}
+            aria-label={
+              preferences.sound
+                ? 'Mute desktop sounds'
+                : 'Enable desktop sounds'
+            }
             aria-pressed={preferences.sound}
             onClick={toggleSound}
             data-ui-sound="none"
           >
             <SystemIcon name={preferences.sound ? 'sound' : 'mute'} />
           </button>
-          <span className="os-network-indicator" aria-label="Portfolio is local to your browser">
+          <span
+            className="os-network-indicator"
+            aria-label="Portfolio is local to your browser"
+          >
             ◦
           </span>
-          <time dateTime={clock.toISOString()}>
-            {clock.toLocaleTimeString('en-IN', {
-              timeZone: 'Asia/Kolkata',
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: false,
-            })}
-            <small>IST</small>
-          </time>
+          {active && <ClockCalendar />}
         </div>
       </footer>
     </div>
@@ -415,13 +457,23 @@ function DesktopWindow({
   const drag = useRef(null)
   const element = useRef(null)
   useEffect(() => {
-    if (active && !w.minimized && !element.current?.contains(document.activeElement))
+    if (
+      active &&
+      !w.minimized &&
+      !element.current?.contains(document.activeElement)
+    )
       element.current?.focus({ preventScroll: true })
   }, [active, w.minimized])
   const down = (event) => {
-    if (event.target.closest('button') || w.maximized || event.button !== 0) return
+    if (event.target.closest('button') || w.maximized || event.button !== 0)
+      return
     onFocus()
-    drag.current = { x: event.clientX, y: event.clientY, initialX: w.x, initialY: w.y }
+    drag.current = {
+      x: event.clientX,
+      y: event.clientY,
+      initialX: w.x,
+      initialY: w.y,
+    }
     event.currentTarget.setPointerCapture(event.pointerId)
   }
   const move = (event) => {
@@ -430,11 +482,17 @@ function DesktopWindow({
     const height = workspace.current?.clientHeight || window.innerHeight
     const x = Math.max(
       0,
-      Math.min(width - w.width, drag.current.initialX + event.clientX - drag.current.x),
+      Math.min(
+        width - w.width,
+        drag.current.initialX + event.clientX - drag.current.x,
+      ),
     )
     const y = Math.max(
       0,
-      Math.min(height - 45, drag.current.initialY + event.clientY - drag.current.y),
+      Math.min(
+        height - 45,
+        drag.current.initialY + event.clientY - drag.current.y,
+      ),
     )
     onMove(x, y)
   }
@@ -474,7 +532,12 @@ function DesktopWindow({
         }}
       >
         <div className="os-window-title">
-          <DesktopIcon kind={w.icon} asset={w.asset} project={w.projectSlug} small />
+          <DesktopIcon
+            kind={w.icon}
+            asset={w.asset}
+            project={w.projectSlug}
+            small
+          />
           <span>{w.title}</span>
         </div>
         <div className="os-window-controls">

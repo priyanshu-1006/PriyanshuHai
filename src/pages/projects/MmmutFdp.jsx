@@ -85,11 +85,7 @@ export default function MmmutFdp() {
         </div>
       </Band>
 
-      <NextProject
-        to="/projects/bookease"
-        title="BookEase"
-        blurb="The first thing I ever shipped to a real URL under someone else's deadline."
-      />
+      <NextProject slug="mmmut-fdp" />
     </article>
   )
 }

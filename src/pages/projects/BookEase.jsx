@@ -80,11 +80,7 @@ export default function BookEase() {
         </p>
       </Retrospect>
 
-      <NextProject
-        to="/projects/nexsus-universe"
-        title="Nexsus"
-        blurb="Ten fragmented campus tools, replaced by one backend with many faces."
-      />
+      <NextProject slug="bookease" />
     </article>
   )
 }

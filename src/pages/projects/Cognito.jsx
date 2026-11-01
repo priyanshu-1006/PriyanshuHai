@@ -1,3 +1,4 @@
+import ProjectNext from '../../components/project/ProjectNext'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProjectTheme from '../../components/ProjectTheme'
@@ -8,7 +9,7 @@ import { getProject } from '../../data/projects'
 
 const project = getProject('cognito-learning-hub')
 
-/* Nine services behind a gateway. The `why` column is the whole argument —
+/* Selected service boundaries behind a gateway. The `why` column is the whole argument —
    microservices in a hackathon are indefensible unless the workloads differ. */
 const SERVICES = [
   { name: 'API Gateway', port: 3000, load: 'routing', why: 'Owns routing, rate limiting, CORS and JWT verification so no downstream service re-implements auth.', keep: true },
@@ -240,11 +241,13 @@ export default function Cognito() {
       {/* ══ SERVICE MESH — signature ══ */}
       <Band className="border-y border-rule bg-bg2/40">
         <Eyebrow>The architecture argument</Eyebrow>
-        <h2 className="t-h1 max-w-2xl text-ink">Nine services. Not all of them earned it.</h2>
+        <h2 className="t-h1 max-w-2xl text-ink">The boundaries that mattered.</h2>
         <p className="t-lead mt-5 max-w-2xl">
-          Quiz generation is CPU-and-API bound. Live sessions are socket-bound and stateful.
-          Gamification is write-heavy and eventually consistent. Video is a different transport
-          problem entirely. Those four differences justify a split — the rest were symmetry.
+          Quiz generation is CPU-and-API bound. Live sessions are socket-bound
+          and stateful. Gamification is write-heavy and eventually consistent.
+          Video is a different transport problem entirely. This walkthrough
+          focuses on nine service boundaries from the final architecture. Those
+          workload differences justify a split — the rest were symmetry.
         </p>
         <ServiceMesh />
       </Band>
@@ -343,28 +346,7 @@ export default function Cognito() {
       </Band>
 
       {/* ══ NEXT ══ */}
-      <div className="shell pb-10">
-        <Link
-          to="/projects/washing-bro"
-          className="group block rounded-2xl border border-rule bg-bg2 p-7 transition-colors hover:border-accent/50"
-        >
-          <span className="t-label">Next project</span>
-          <div className="mt-3 flex items-center justify-between gap-4">
-            <span className="t-h2 text-ink transition-colors group-hover:text-accent">
-              Washing Bro
-            </span>
-            <span
-              className="shrink-0 text-xl text-ink3 transition-transform duration-300 group-hover:translate-x-1"
-              aria-hidden="true"
-            >
-              →
-            </span>
-          </div>
-          <p className="mt-2 max-w-xl text-[15px] text-ink2">
-            Campus laundry — four web surfaces, a Flutter app and a FIFO wallet ledger.
-          </p>
-        </Link>
-      </div>
+      <ProjectNext slug={project.slug} />
     </article>
   )
 }

@@ -236,7 +236,7 @@ export default function ComputerScene({
     })
     key.shadow.bias = -0.001
     key.shadow.normalBias = 0.02
-    key.shadow.radius = 12
+    key.shadow.radius = 8
     key.shadow.blurSamples = 12
     scene.add(key)
     const fill = new THREE.DirectionalLight('#dce8ea', 0.8)
@@ -244,7 +244,7 @@ export default function ComputerScene({
     scene.add(fill)
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(200, 200),
-      new THREE.ShadowMaterial({ opacity: 0.11 }),
+      new THREE.ShadowMaterial({ opacity: 0.26 }),
     )
     floor.rotation.x = -Math.PI / 2
     floor.position.y = -0.015
@@ -256,8 +256,8 @@ export default function ComputerScene({
     shadowCanvas.width = shadowCanvas.height = 128
     const shadowContext = shadowCanvas.getContext('2d')
     const gradient = shadowContext.createRadialGradient(64, 64, 0, 64, 64, 64)
-    gradient.addColorStop(0, 'rgba(49, 38, 26, 0.45)')
-    gradient.addColorStop(0.4, 'rgba(49, 38, 26, 0.22)')
+    gradient.addColorStop(0, 'rgba(32, 29, 27, 0.64)')
+    gradient.addColorStop(0.4, 'rgba(32, 29, 27, 0.34)')
     gradient.addColorStop(1, 'rgba(49, 38, 26, 0)')
     shadowContext.fillStyle = gradient
     shadowContext.fillRect(0, 0, 128, 128)
@@ -478,7 +478,9 @@ export default function ComputerScene({
       const blend = first || motionReduced ? 1 : 1 - Math.exp(-dt * 5)
       orbit += (targetOrbit - orbit) * blend
       const narrow = width / height < 1
-      const radius = narrow ? Math.max(12.8, 9.7 / camera.aspect) : 10.3
+      // The wider desktop framing can move closer; portrait screens need enough
+      // horizontal field of view to retain the tower, keyboard, and mouse.
+      const radius = Math.max(9.1, 12 / camera.aspect)
       const angle = 0.16 + orbit - entrance * 0.85
       homeCamera.set(
         Math.sin(angle) * radius,

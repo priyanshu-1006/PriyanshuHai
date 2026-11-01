@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { recentProjects } from '../../data/recentProjects'
+import { projects } from '../../data/projects'
 import ProjectTheme from '../ProjectTheme'
 import { Gallery } from '../Media'
 import ProjectIcon from '../ProjectIcon'
 
 export default function CaseStudy({ slug, children }) {
-  const p = recentProjects.find((item) => item.slug === slug)
-  const next = recentProjects[(recentProjects.indexOf(p) + 1) % recentProjects.length]
+  const p = projects.find((item) => item.slug === slug)
+  const next = projects[(projects.indexOf(p) + 1) % projects.length]
   useEffect(() => {
     const previousTitle = document.title
     const description = document.querySelector('meta[name="description"]')
@@ -34,7 +34,10 @@ export default function CaseStudy({ slug, children }) {
             {p.year} / {p.status}
           </span>
         </div>
-        <p className="case-name project-title-with-icon"><ProjectIcon slug={p.slug} />{p.title}</p>
+        <p className="case-name project-title-with-icon">
+          <ProjectIcon slug={p.slug} />
+          {p.title}
+        </p>
         <h1 aria-label={p.headline.replace('\n', ' ')}>
           {p.headline.split('\n').map((line, i) => (
             <span key={line} className={i ? 'text-accent' : ''}>
@@ -55,7 +58,12 @@ export default function CaseStudy({ slug, children }) {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                {label === 'github' ? 'View source' : 'Visit project'} ↗
+                {label === 'github'
+                  ? 'View source'
+                  : label === 'live'
+                    ? 'Visit website'
+                    : 'Visit project'}{' '}
+                ↗
               </a>
             ))}
           </div>
@@ -73,7 +81,9 @@ export default function CaseStudy({ slug, children }) {
             fetchPriority="high"
           />
           <figcaption>
-            {p.gallery[0]?.caption || 'Workflow illustration based on the source implementation'}
+            {p.coverCaption ||
+              p.gallery[0]?.caption ||
+              'Workflow illustration based on the source implementation'}
           </figcaption>
         </figure>
         <dl className="case-stats">
@@ -87,7 +97,8 @@ export default function CaseStudy({ slug, children }) {
       </header>
       <section className="shell case-section case-problem">
         <p className="t-label">01 / The problem</p>
-        <h2>{p.problem}</h2>
+        <h2>Why this needed to exist.</h2>
+        <p className="case-problem-description">{p.problem}</p>
       </section>
       {children}
       <section className="shell case-section">

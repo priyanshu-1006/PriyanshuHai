@@ -9,7 +9,8 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # production bundle into dist/
 npm run lint
-node --test tests/*.test.mjs
+npm test
+npm run check:release
 ```
 
 ## Where the content lives
@@ -21,6 +22,8 @@ Core profile and project content is data-driven. The desktop applications and pa
 | `src/data/profile.js` | Name, bio, contact, skills, education, experience and achievements |
 | `src/data/projects.js` | Every project and its full case study |
 | `src/data/recentProjects.js` | Five recent products, their evidence boundaries and screenshot galleries |
+| `src/data/projectOrder.js` | Shared project priority for the showcase, desktop, and next-project links |
+| `src/data/calendarEvents.js` | Annual birthdays and dated milestones in the taskbar calendar |
 | `docs/project-readmes/` | Source READMEs the case studies were written from |
 
 ### Adding a project
@@ -61,9 +64,10 @@ Put images in `public/projects/<slug>/` and reference them as
 
 ## Design system
 
-Two fully-designed themes (not an inversion) that follow the visitor's OS by
-default, with a toggle that persists. An inline script in `index.html` resolves
-the theme before first paint, so there is no flash.
+The overview, project showcase, individual case studies and writing support both
+neutral light and true black dark palettes. The navigation toggle persists the
+choice; the device preference is used until a choice is saved. The homepage room has its own three
+appearance choices; the XP desktop retains its graphite chrome and classic controls.
 
 **Tokens** live at the top of `src/index.css`:
 
@@ -76,15 +80,14 @@ the theme before first paint, so there is no flash.
 and IBM Plex Mono for labels and terminal content. Fonts are hosted locally, with licenses in
 `public/fonts`. Headings use restrained weights and accessible entrance animations.
 
-Shared text and control tokens support clear contrast in both themes.
+Shared text and control tokens keep both reading themes consistent.
 
 ### Per-project themes
 
-`src/data/projectThemes.js` supplies product accents. `<ProjectTheme slug={slug} />` applies
-those accents inside the shared paper/forest reading palette and restores the shell on unmount.
-Typography stays consistent throughout the portfolio.
-
-To retheme a project, edit its accent entries. Shared reading surfaces remain consistent.
+`src/data/projectThemes.js` supplies the shared neutral light/dark palettes and retains
+project typography metadata. `<ProjectTheme slug={slug} />` applies the selected palette
+on project pages and restores the shell on unmount. Brand logos and product
+screenshots retain their original colours. Dark uses black surfaces; light uses neutral whites without a green tint.
 
 ## Components
 
@@ -93,11 +96,11 @@ To retheme a project, edit its accent entries. Shared reading surfaces remain co
 | `components/Device.jsx` | `MacBook`, `Phone`, `DevicePair` frames. Hold a screenshot, or a live site rendered at desktop width and CSS-scaled to fit |
 | `components/Carousel.jsx` | Auto-advancing slide track. Every slide stays mounted, so a loaded iframe survives sliding away. Pauses on hover, focus and hidden tabs; disabled under reduced motion |
 | `components/Media.jsx` | `Gallery` (lightbox, keyboard-navigable) and `VideoEmbed` (poster first, iframe only on click) |
-| `components/ProjectTheme.jsx` | Applies product accents inside the shared reading palette |
+| `components/ProjectTheme.jsx` | Applies the selected light/dark reading palette |
 
 ## Bespoke project pages
 
-Each project can have its own page with its own layout, not just its own colours.
+Each project has its own page and product-specific layout within the shared palette.
 
 1. Create `src/pages/projects/YourProject.jsx` — a self-contained component
 2. Register it in `src/pages/projects/index.jsx`
@@ -112,7 +115,7 @@ const PAGES = {
 Anything not registered falls back to the generic case-study template in
 `ProjectDetail.jsx`, so the site is never broken mid-migration.
 
-**All 25 projects have one.** The larger case studies define their own layout primitives; lighter ones share `src/components/project/Scaffold.jsx`. The five recent additions use `src/components/project/CaseStudy.jsx` with individual product sections and per-project themes. Case studies load on demand.
+**All 25 projects have one.** The larger case studies define their own layout primitives; lighter ones share `src/components/project/Scaffold.jsx`. The five recent additions use `src/components/project/CaseStudy.jsx` with individual product sections. Case studies load on demand.
 
 The homepage uses the supplied 3D computer as the entrance to Priyanshu OS. Scroll into the
 monitor or use Enter computer, then explore desktop applications and project windows.
@@ -123,6 +126,13 @@ The first homepage visit includes a replayable startup with optional original so
 the scene or desktop for display, accessibility and shortcut controls. The floating portfolio
 guide is a local expert system with 22 saved answers and connected questions. Its editable input/output
 library is `src/data/assistantKnowledge.js`; the contract is in `docs/expert-guide-contract.md`.
+
+Click the taskbar date/time to open the live IST calendar. Birthdays recur yearly;
+the IIT Bombay Techfest win stays on 21 December 2025. Add future dates in
+`src/data/calendarEvents.js`, omitting `year` only for recurring events.
+
+GitHub preparation and the latest media audit are recorded in `docs/github-ready.md`.
+The checks workflow builds and tests the repository; it does not deploy it.
 
 ## Images
 

@@ -1,4 +1,7 @@
-const shot = (slug, name, caption) => ({ src: `/projects/${slug}/${name}.webp`, caption })
+const shot = (slug, name, caption) => ({
+  src: `/projects/${slug}/${name}.webp`,
+  caption,
+})
 
 // Facts and release boundaries taken from the supplied project READMEs and evidence hub.
 export const recentProjects = [
@@ -15,8 +18,19 @@ export const recentProjects = [
     headline: 'An editor with an agent.\nAnd a review button.',
     intro:
       'A standalone Electron / Code-OSS application that brings repository context, AI conversations, native diffs and project tools into one workspace. The central design decision: the host owns permissions, and every proposed edit is reviewable.',
-    tech: ['TypeScript', 'Electron', 'Code-OSS', 'React', 'Groq', 'Ollama', 'MCP'],
-    links: { github: 'https://github.com/priyanshu-1006/Little_Code' },
+    tech: [
+      'TypeScript',
+      'Electron',
+      'Code-OSS',
+      'React',
+      'Groq',
+      'Ollama',
+      'MCP',
+    ],
+    links: {
+      live: 'https://little-code.vercel.app/',
+      github: 'https://github.com/priyanshu-1006/Little_Code',
+    },
     cover: '/projects/little-code/workspace-home.webp',
     results: [
       { metric: '4', label: 'Modes: Ask, Plan, Edit, Agent' },
@@ -50,8 +64,16 @@ export const recentProjects = [
       'Groq / Ollama · approved MCP',
     ],
     gallery: [
-      shot('little-code', 'workspace-home', 'Little Home and the integrated Agent panel'),
-      shot('little-code', 'notebook-review', 'Notebook changes presented for native review'),
+      shot(
+        'little-code',
+        'workspace-home',
+        'Little Home and the integrated Agent panel',
+      ),
+      shot(
+        'little-code',
+        'notebook-review',
+        'Notebook changes presented for native review',
+      ),
       shot('little-code', 'document-review', 'Document workflow in the editor'),
       shot('little-code', 'project-memory', 'Project-scoped memory'),
       shot('little-code', 'mcp-connection', 'MCP connection configuration'),
@@ -68,15 +90,19 @@ export const recentProjects = [
     year: '2026',
     role: 'Creator & developer',
     status: 'Development preview',
-    featured: false,
+    featured: true,
     blurb:
       'A native Rust terminal with GPU rendering, real ConPTY sessions, split workspaces, service orchestration and reviewed AI actions.',
     headline: 'The shell is real.\nSo is the control.',
     intro:
       'Built from a Rust terminal core up through a wgpu renderer and native window layer. Little Terminal brings command blocks, workspace services, Git inspection and explicit AI review into the same terminal.',
     tech: ['Rust', 'wgpu', 'winit', 'ConPTY', 'Tokio', 'SQLite', 'AccessKit'],
-    links: { github: 'https://github.com/priyanshu-1006/Little_Terminal' },
-    cover: '/projects/little-terminal/tabs.webp',
+    links: {
+      live: 'https://little-terminal.vercel.app/',
+      github: 'https://github.com/priyanshu-1006/Little_Terminal',
+    },
+    cover: '/projects/little-terminal/product-overview.webp',
+    coverCaption: 'Little Terminal product showcase — preview.4',
     results: [
       { metric: 'Rust', label: 'Native application foundation' },
       { metric: 'GPU', label: 'wgpu rendering' },
@@ -109,16 +135,59 @@ export const recentProjects = [
       'Platform adapter → ConPTY → real shells',
     ],
     gallery: [
+      shot(
+        'little-terminal',
+        'product-overview',
+        'The new Little Terminal product showcase',
+      ),
+      shot(
+        'little-terminal',
+        'native-tools-and-theme',
+        'Native tools, shell output and theme controls',
+      ),
+      shot(
+        'little-terminal',
+        'workspace-services-ready',
+        'Managed workspace services and readiness state',
+      ),
+      shot(
+        'little-terminal',
+        'ai-request-review',
+        'The exact AI request, reviewed before sending',
+      ),
+      shot(
+        'little-terminal',
+        'local-tool-result-not-sent',
+        'A local tool result remains local until reviewed',
+      ),
+      shot(
+        'little-terminal',
+        'history-and-private-pane',
+        'History controls and a private terminal pane',
+      ),
       shot('little-terminal', 'tabs', 'Native terminal sessions and tabs'),
-      shot('little-terminal', 'workspace-dashboard', 'Workspace service dashboard'),
-      shot('little-terminal', 'services-ready', 'Service readiness in the native app'),
-      shot('little-terminal', 'ai-compose-review', 'AI request and context review'),
+      shot(
+        'little-terminal',
+        'workspace-dashboard',
+        'Workspace service dashboard',
+      ),
+      shot(
+        'little-terminal',
+        'services-ready',
+        'Service readiness in the native app',
+      ),
+      shot(
+        'little-terminal',
+        'ai-compose-review',
+        'AI request and context review',
+      ),
       shot('little-terminal', 'git-changes', 'Git changes inspector'),
       shot('little-terminal', 'hub', 'Native Tools hub'),
     ],
     boundary:
       'The current packages are unsigned development previews. Windows is the primary target; local Linux WSLg acceptance is recorded, while broad daily-use/public-beta acceptance and native macOS acceptance remain open. AI showcase captures use an owned local fixture.',
-    sourceNote: 'Little_Terminal/README.md · docs/PRODUCT_FEATURES.md · showcase curated captures',
+    sourceNote:
+      'Little_Terminal/README.md · docs/PRODUCT_FEATURES.md · showcase curated captures',
   },
   {
     slug: 'mmmut-notice',
@@ -181,7 +250,8 @@ export const recentProjects = [
     ],
     boundary:
       'A functional local prototype. Production deployment, customer isolation, billing and operational security work remain. WhatsApp Channel posting is manual. The screenshots show the original application rendered with its synthetic test fixture, not live university notices.',
-    sourceNote: 'MMMUT_Notice/README.md · mmmut_notice workflow, web and integration modules',
+    sourceNote:
+      'MMMUT_Notice/README.md · mmmut_notice workflow, web and integration modules',
   },
   {
     slug: 'manakmitra',
@@ -211,7 +281,9 @@ export const recentProjects = [
       live: 'https://manakmitra.me',
       github: 'https://github.com/ananya10kumari19-art/ManakMitra',
     },
-    cover: '/projects/manakmitra/standards.webp',
+    cover: '/projects/manakmitra/hero.webp',
+    coverCaption:
+      'ManakMitra homepage — sourced standards and BIS-service discovery',
     results: [
       { metric: '22,981', label: 'Standards in the documented register' },
       { metric: '431', label: 'Recognised laboratories indexed' },
@@ -244,10 +316,28 @@ export const recentProjects = [
       'PostgreSQL / pgvector · Redis / BullMQ',
     ],
     gallery: [
-      shot('manakmitra', 'standards', 'Find My Standard — product description and constraints'),
+      shot('manakmitra', 'hero', 'The ManakMitra product homepage'),
+      shot(
+        'manakmitra',
+        'partner-api',
+        'Partner integration walkthrough — demo flow',
+      ),
+      shot(
+        'manakmitra',
+        'standards',
+        'Find My Standard — product description and constraints',
+      ),
       shot('manakmitra', 'certification', 'Certification Advisor and roadmap'),
-      shot('manakmitra', 'laboratories', 'Laboratory Finder — standard, place and test'),
-      shot('manakmitra', 'hallmarking', 'Hallmarking guide and sourced questions'),
+      shot(
+        'manakmitra',
+        'laboratories',
+        'Laboratory Finder — standard, place and test',
+      ),
+      shot(
+        'manakmitra',
+        'hallmarking',
+        'Hallmarking guide and sourced questions',
+      ),
     ],
     boundary:
       'An independent prototype, not a BIS or Government of India service. Recorded 500-question results report 96.5% Recall@5 and 46s P95 latency; these are a dated evaluation, not a live guarantee. Product-label OCR is not proof of product authenticity. The evidence hub states that the scheduled watchlist sweep is disabled on the free-tier deployment.',
@@ -279,7 +369,9 @@ export const recentProjects = [
       'Docker',
     ],
     links: {},
-    cover: '/projects/satyadwar/after2-officers-dashboard-1280.webp',
+    cover: '/projects/satyadwar/hero.webp',
+    coverCaption:
+      'SatyaDwar product introduction — illustrated checkpoint workflow',
     results: [
       { metric: 'Offline', label: 'Installable Windows checkpoint node' },
       { metric: '7', label: 'ML service groups' },
@@ -312,10 +404,27 @@ export const recentProjects = [
       'Local evidence + audit chain → sync outbox',
     ],
     gallery: [
-      shot('satyadwar', 'after2-officers-dashboard-1280', 'Officer workstation — shift overview'),
+      shot(
+        'satyadwar',
+        'hero',
+        'SatyaDwar homepage and checkpoint workflow illustration',
+      ),
+      shot(
+        'satyadwar',
+        'after2-officers-dashboard-1280',
+        'Officer workstation — shift overview',
+      ),
       shot('satyadwar', 'screening-capture', 'Guided document capture'),
-      shot('satyadwar', 'screening-analysis', 'Screening analysis and evidence'),
-      shot('satyadwar', 'after2-investigators-audit-trail-1280', 'Investigator audit trail'),
+      shot(
+        'satyadwar',
+        'screening-analysis',
+        'Screening analysis and evidence',
+      ),
+      shot(
+        'satyadwar',
+        'after2-investigators-audit-trail-1280',
+        'Investigator audit trail',
+      ),
       shot(
         'satyadwar',
         'after2-admin-model-registry-1280',

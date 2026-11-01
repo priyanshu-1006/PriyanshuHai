@@ -2,13 +2,13 @@ import { useState } from 'react'
 import CaseStudy, { StudySection } from '../../components/project/CaseStudy'
 
 const VIEWS = [
-  ['Sessions', 'tabs', 'Native sessions, tabs and split-pane ownership.'],
+  ['Sessions', 'native-tools-and-theme', 'Native tools, shell output and theme controls.'],
   [
     'Services',
-    'workspace-dashboard',
+    'workspace-services-ready',
     'A workspace dashboard for managed services and their state.',
   ],
-  ['AI review', 'ai-compose-review', 'Inspect the request before context leaves the terminal.'],
+  ['AI review', 'ai-request-review', 'Inspect the request before context leaves the terminal.'],
 ]
 export default function LittleTerminal() {
   const [active, setActive] = useState(0)

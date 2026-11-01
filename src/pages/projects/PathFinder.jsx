@@ -190,11 +190,7 @@ export default function PathFinder() {
         </div>
       </Band>
 
-      <NextProject
-        to="/projects/medichain-ai"
-        title="MediChain AI"
-        blurb="Federated learning across hospitals, with provenance on-chain."
-      />
+      <NextProject slug={project.slug} />
     </article>
   )
 }

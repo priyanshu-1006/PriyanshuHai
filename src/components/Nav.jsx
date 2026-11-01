@@ -13,7 +13,13 @@ const LINKS = [
 
 function Icon({ path, size = 15 }) {
   return (
-    <svg viewBox="0 0 16 16" width={size} height={size} fill="currentColor" aria-hidden="true">
+    <svg
+      viewBox="0 0 16 16"
+      width={size}
+      height={size}
+      fill="currentColor"
+      aria-hidden="true"
+    >
       <path d={path} />
     </svg>
   )
@@ -44,7 +50,9 @@ export default function Nav() {
       <div className="shell">
         <nav
           className={`portfolio-nav flex items-center justify-between gap-3 border px-2.5 py-2 transition-all duration-500 ${
-            scrolled || open ? 'border-rule bg-bg2/85 shadow-lg backdrop-blur-xl' : ''
+            scrolled || open
+              ? 'border-rule bg-bg2/85 shadow-lg backdrop-blur-xl'
+              : ''
           }`}
           style={{ transitionTimingFunction: 'var(--ease)' }}
         >
@@ -136,7 +144,11 @@ export default function Nav() {
                 strokeWidth="1.6"
                 strokeLinecap="round"
               >
-                {open ? <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" /> : <path d="M2 5h12M2 11h12" />}
+                {open ? (
+                  <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+                ) : (
+                  <path d="M2 5h12M2 11h12" />
+                )}
               </svg>
             </button>
           </div>

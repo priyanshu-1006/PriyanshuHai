@@ -25,7 +25,10 @@ function ScrollManager() {
     if (hash) {
       const el = document.querySelector(hash)
       if (el) {
-        el.scrollIntoView({ behavior: motion.current ? 'instant' : 'smooth', block: 'start' })
+        el.scrollIntoView({
+          behavior: motion.current ? 'instant' : 'smooth',
+          block: 'start',
+        })
         return
       }
     }
@@ -42,10 +45,17 @@ export default function App() {
   return (
     <>
       <div
-        className={onComputer ? 'computer-page' : 'portfolio-pages'}
+        className={
+          onComputer
+            ? 'computer-page'
+            : `portfolio-pages ${pathname === '/projects' ? 'project-index-page' : ''}`
+        }
         inert={!!settingsPanel || bootVisible}
       >
-        <a className="portfolio-skip-link" href={onComputer ? '/overview' : '#main-content'}>
+        <a
+          className="portfolio-skip-link"
+          href={onComputer ? '/overview' : '#main-content'}
+        >
           Skip to reading content
         </a>
         <ScrollManager />

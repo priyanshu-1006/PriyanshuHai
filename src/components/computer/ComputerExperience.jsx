@@ -157,6 +157,10 @@ export default function ComputerExperience() {
             openContextMenu(event)
         }}
       >
+        <div className="computer-room-effects" aria-hidden="true">
+          <i />
+          <i />
+        </div>
         <header className="computer-header">
           <Link to="/" className="computer-wordmark">
             <span className="computer-portrait">

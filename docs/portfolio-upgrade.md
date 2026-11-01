@@ -2,7 +2,7 @@
 
 ## Direction
 
-The final homepage direction is the user-selected 3D computer and desktop OS, inspired by Henry Heffernan. The supplied GLB, XP wallpaper and Priyanshu OS logo form the entrance. Warm paper, evergreen controls and shared locally hosted typography continue through the showcase, case studies, writing and overview. See `computer-experience.md` for the final interaction design.
+The final homepage direction is the user-selected 3D computer and desktop OS, inspired by Henry Heffernan. The supplied GLB, XP wallpaper and Priyanshu OS logo form the entrance. The showcase, case studies, writing and overview share neutral light and black dark exhibition palettes and locally hosted typography. See `computer-experience.md` for the final interaction design and `github-ready.md` for the latest media and release checks.
 
 Reference research: [Brittany Chiang](https://brittanychiang.com/) for a clear work/experience hierarchy, and [Adham Dannaway](https://www.adhamdannaway.com/) for a distinctive personal introduction and direct access to work. These inform the hierarchy; no template or source code was copied.
 

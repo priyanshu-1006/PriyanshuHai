@@ -1,5 +1,11 @@
 export default function SystemIcon({ name, className = '' }) {
   const paths = {
+    calendar: (
+      <>
+        <rect x="3" y="5" width="18" height="16" rx="2" />
+        <path d="M7 3v4m10-4v4M3 10h18m-13 4h1m3 0h1m3 0h1m-9 4h1m3 0h1" />
+      </>
+    ),
     home: (
       <>
         <path d="m3 11 9-8 9 8M6 10v11h12V10M10 21v-7h4v7" />

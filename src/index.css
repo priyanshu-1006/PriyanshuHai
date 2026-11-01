@@ -74,37 +74,37 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── LIGHT ── warm paper and evergreen ink ── */
+/* Neutral light surfaces; the dark counterpart is black rather than green. */
 :root,
 [data-theme='light'] {
-  --c-bg: #e8e4db;
-  --c-bg2: #f1eee5;
-  --c-bg3: #dedfce;
-  --c-ink: #29382e;
-  --c-ink2: #53604f;
-  --c-ink3: #5e6655;
-  --c-rule: #d1cdbf;
-  --c-rule2: #b4b8a2;
-  --c-accent: #3b6144;
-  --c-accent2: #456858;
-  --c-accent3: #8c583c;
+  color-scheme: light;
+  --c-bg: #fafafa;
+  --c-bg2: #ffffff;
+  --c-bg3: #ededf2;
+  --c-ink: #19191f;
+  --c-ink2: #53535f;
+  --c-ink3: #6c6c79;
+  --c-rule: #dcdce4;
+  --c-rule2: #bcbcc9;
+  --c-accent: #414663;
+  --c-accent2: #5b607c;
+  --c-accent3: #666174;
   --c-onaccent: #ffffff;
 }
-
-/* ── DARK ── forest, sage and warm copper ── */
 [data-theme='dark'] {
-  --c-bg: #171e1a;
-  --c-bg2: #202a23;
-  --c-bg3: #2b352c;
-  --c-ink: #f0ede2;
-  --c-ink2: #b7bfb0;
-  --c-ink3: #a0ac98;
-  --c-rule: #364334;
-  --c-rule2: #50604a;
-  --c-accent: #b7cda0;
-  --c-accent2: #a6cbb8;
-  --c-accent3: #d9ae8a;
-  --c-onaccent: #1c2a20;
+  color-scheme: dark;
+  --c-bg: #000000;
+  --c-bg2: #0b0b0e;
+  --c-bg3: #16161c;
+  --c-ink: #f4f4f7;
+  --c-ink2: #b7b7c1;
+  --c-ink3: #92929f;
+  --c-rule: #292931;
+  --c-rule2: #484854;
+  --c-accent: #d2d8ef;
+  --c-accent2: #b5b9cc;
+  --c-accent3: #aaa9bb;
+  --c-onaccent: #101014;
 }
 
 @layer base {

@@ -105,11 +105,7 @@ export default function TechPreneur() {
         </p>
       </Retrospect>
 
-      <NextProject
-        to="/projects/gdg-mmmut"
-        title="GDG on Campus — MMMUT"
-        blurb="An induction system that processed 250+ applicants end to end."
-      />
+      <NextProject slug={project.slug} />
     </article>
   )
 }

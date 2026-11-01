@@ -234,11 +234,7 @@ export default function MediChain() {
         </div>
       </Band>
 
-      <NextProject
-        to="/projects/gryork-techpreneur"
-        title="Gryork Techpreneur 2026"
-        blurb="A four-week industrial programme I built the platform for and taught."
-      />
+      <NextProject slug={project.slug} />
     </article>
   )
 }

@@ -206,11 +206,7 @@ export default function QuizWise() {
         </p>
       </Retrospect>
 
-      <NextProject
-        to="/projects/haazir"
-        title="Haazir"
-        blurb="The same question, asked about attendance: one photo, hundreds of faces, no roll call."
-      />
+      <NextProject slug="quizwise-ai" />
     </article>
   )
 }

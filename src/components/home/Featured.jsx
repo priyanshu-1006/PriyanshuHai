@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { projects } from '../../data/projects'
 
-const SELECTION = ['nexsus-universe', 'little-code', 'manakmitra', 'little-terminal']
-const RECENT = ['mmmut-notice', 'satyadwar']
+const SELECTION = ['little-code', 'little-terminal', 'nexsus-universe', 'cognito-learning-hub']
+const RECENT = ['fracturevision-ai', 'nexsus-assist']
 
 export default function Featured() {
   return (

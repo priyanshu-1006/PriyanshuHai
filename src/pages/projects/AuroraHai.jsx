@@ -1,3 +1,4 @@
+import ProjectNext from '../../components/project/ProjectNext'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProjectTheme from '../../components/ProjectTheme'
@@ -183,7 +184,7 @@ export default function AuroraHai() {
           </p>
 
           <div className="mt-14">
-            <BrowserFrame src="/Aurora/Dashboard.jpeg" alt="AuroraHai dashboard" label="aurorahai · dashboard" aspect="1599 / 804" />
+            <BrowserFrame src={project.cover} alt="AuroraHai 3D aurora forecast map" label="aurorahai · 3D forecast map" aspect="1599 / 804" />
           </div>
         </div>
       </header>
@@ -293,18 +294,7 @@ export default function AuroraHai() {
       </Band>
 
       {/* ══ NEXT ══ */}
-      <div className="shell pb-10 pt-6">
-        <Link to="/projects/washing-bro" className="group block rounded-2xl border border-rule bg-bg2 p-7 transition-colors hover:border-accent/50">
-          <span className="t-label">Next project</span>
-          <div className="mt-3 flex items-center justify-between gap-4">
-            <span className="t-h2 text-ink transition-colors group-hover:text-accent">Washing Bro</span>
-            <span className="shrink-0 text-xl text-ink3 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
-          </div>
-          <p className="mt-2 max-w-xl text-[15px] text-ink2">
-            Campus laundry — four surfaces, a Flutter app and a FIFO wallet ledger.
-          </p>
-        </Link>
-      </div>
+      <ProjectNext slug={project.slug} />
     </article>
   )
 }

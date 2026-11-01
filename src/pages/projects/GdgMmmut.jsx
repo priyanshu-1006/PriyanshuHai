@@ -125,11 +125,7 @@ export default function GdgMmmut() {
         </p>
       </Retrospect>
 
-      <NextProject
-        to="/projects/mmmut-fdp"
-        title="MMMUT Faculty Development Programme"
-        blurb="My code on the university's official domain."
-      />
+      <NextProject slug="gdg-mmmut" />
     </article>
   )
 }

@@ -8,6 +8,7 @@ import ProjectIcon from '../ProjectIcon'
 import ConnectionsBrowser from './ConnectionsBrowser'
 import RoomThemePicker from './RoomThemePicker'
 import SystemInfo from './SystemInfo'
+import ProjectStory from './ProjectStory'
 import { useExperience } from '../../lib/experienceContext'
 
 export const APPS = [
@@ -294,7 +295,7 @@ function ProjectReader({ slug, onOpen }) {
           <ProjectIcon slug={p.slug} />
           <h2>{p.title}</h2>
         </div>
-        <p className="os-reader-intro">{p.blurb}</p>
+        <p className="os-reader-intro">{p.intro || p.blurb}</p>
         <dl className="os-reader-facts">
           <div>
             <dt>My role</dt>
@@ -334,13 +335,24 @@ function ProjectReader({ slug, onOpen }) {
               target="_blank"
               rel="noreferrer noopener"
             >
-              Live project ↗
+              Visit website ↗
+            </a>
+          )}
+          {p.links?.github && (
+            <a
+              className="os-button"
+              href={p.links.github}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              View source ↗
             </a>
           )}
           <button className="os-text-button" onClick={() => onOpen('projects')}>
             All projects
           </button>
         </div>
+        <ProjectStory project={p} />
       </div>
     </div>
   )

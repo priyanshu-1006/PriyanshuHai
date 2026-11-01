@@ -1,0 +1,489 @@
+/* Shared exhibition surfaces follow the visitor's light/dark choice. */
+.portfolio-pages {
+  position: relative;
+  background: var(--c-bg);
+  min-height: 100svh;
+}
+.portfolio-pages::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 600px at 65% 0,
+    #a8b1de12,
+    transparent 75%
+  );
+}
+.portfolio-pages .portfolio-nav {
+  box-shadow:
+    inset 0 1px #ffffff12,
+    0 8px 35px #00000014;
+}
+.case-problem .case-problem-description {
+  max-width: 820px;
+  margin-top: 24px;
+  color: var(--c-ink2);
+  font: 400 clamp(16px, 1.6vw, 20px)/1.8 var(--f-body);
+}
+.computer-room-effects {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: calc(1 - var(--computer-progress, 0));
+}
+.computer-room-effects::before {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 140%;
+  left: -15%;
+  top: -30%;
+  transform: rotate(-28deg);
+  background: repeating-linear-gradient(
+    90deg,
+    #ffffff12 0,
+    #ffffff12 80px,
+    transparent 80px,
+    transparent 160px
+  );
+  mask-image: radial-gradient(ellipse at 20% 20%, #000, transparent 65%);
+}
+.computer-room-effects > i {
+  position: absolute;
+  width: 65vw;
+  height: 60vh;
+  border-radius: 50%;
+  left: -20%;
+  top: -25%;
+  background: radial-gradient(ellipse, #ffffff52, transparent 70%);
+  filter: blur(25px);
+  animation: room-daylight 18s ease-in-out infinite alternate;
+}
+.computer-room-effects > i:last-child {
+  left: auto;
+  top: auto;
+  right: -25%;
+  bottom: -30%;
+  background: radial-gradient(ellipse, #7587a323, transparent 70%);
+  animation-delay: -9s;
+}
+@keyframes room-daylight {
+  to {
+    transform: translate(8vw, 8vh) scale(1.15);
+  }
+}
+@media (min-width: 641px) and (max-width: 1000px) {
+  .computer-entry .computer-enter {
+    gap: 10px;
+    padding: 16px 14px;
+  }
+  .computer-entry .computer-enter-symbol {
+    width: 30px;
+    height: 30px;
+  }
+  .computer-entry .computer-enter-copy strong {
+    font-size: 17px;
+    white-space: nowrap;
+  }
+  .computer-entry .computer-enter-copy small {
+    font-size: 6px;
+  }
+  .computer-entry .computer-enter-arrow {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .computer-room-effects > i {
+    animation: none;
+  }
+}
+html[data-motion='reduced'] .computer-room-effects > i {
+  animation: none;
+}
+/* The project index includes its own faint grid. */
+.project-index-page {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  min-height: 100vh;
+  position: relative;
+}
+.project-showcase {
+  isolation: isolate;
+  position: relative;
+  background: var(--c-bg);
+  overflow: hidden;
+}
+.project-showcase:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 24% at 80% 3%, #7e8bc015, transparent 75%),
+    radial-gradient(ellipse 50% 15% at 5% 28%, #a58cc70b, transparent 80%),
+    linear-gradient(
+      color-mix(in srgb, var(--c-ink) 3%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--c-ink) 3%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    auto,
+    auto,
+    80px 80px,
+    80px 80px;
+  mask-image: linear-gradient(#000, transparent 85%);
+}
+.showcase-intro .animated-heading {
+  position: relative;
+}
+.showcase-intro .animated-heading em {
+  color: var(--c-accent);
+  text-shadow: 0 0 45px #b9c0ec22;
+}
+.showcase-spotlight-frame {
+  background: var(--c-bg2);
+  box-shadow:
+    0 25px 80px #00000012,
+    inset 0 1px #ffffff0c;
+  border-color: var(--c-rule2);
+}
+.showcase-frame-bar {
+  background: linear-gradient(var(--c-bg3), var(--c-bg2));
+  color: var(--c-ink3);
+}
+.showcase-project-picker {
+  max-height: 600px;
+  overflow: auto;
+  scrollbar-color: var(--c-rule2) var(--c-bg2);
+}
+.showcase-project-picker button {
+  padding: 11px 10px;
+  min-height: 51px;
+  border-radius: 5px;
+  gap: 10px;
+}
+.showcase-project-picker button > span:nth-child(2) {
+  font-size: 13px;
+}
+.showcase-project-picker small {
+  font-size: 9px;
+}
+.showcase-project-picker button[aria-pressed='true'] {
+  background: linear-gradient(110deg, var(--c-bg3), var(--c-bg2));
+  border-color: var(--c-rule2);
+  box-shadow: inset 2px 0 var(--c-accent);
+}
+.showcase-preview-image,
+.showcase-card-image {
+  background: var(--c-bg3);
+}
+.showcase-preview-image img,
+.showcase-card-image > img {
+  object-fit: contain;
+  object-position: center;
+}
+.showcase-preview-image > span {
+  background: #16161eeb;
+  color: #f2f2f8;
+  border-color: #73738466;
+  backdrop-filter: blur(12px);
+}
+.showcase-card {
+  border-color: var(--c-rule);
+  background: var(--c-bg2);
+  box-shadow: inset 0 1px #ffffff08;
+  transition:
+    transform 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+.showcase-card:hover {
+  border-color: var(--c-ink3);
+  box-shadow: 0 0 35px #b7bfea0c;
+  transform: translateY(-4px);
+}
+.showcase-card-bar {
+  background: var(--c-bg3);
+  color: var(--c-ink3);
+}
+.showcase-card-copy > div > span {
+  color: var(--c-ink2);
+  border-color: var(--c-rule);
+  background: var(--c-bg3);
+}
+.showcase-search,
+.showcase-category select {
+  background: var(--c-bg2);
+  color: var(--c-ink);
+  border-color: var(--c-rule2);
+}
+.showcase-tools input::placeholder {
+  color: var(--c-ink3);
+}
+.showcase-category select {
+  color-scheme: inherit;
+}
+.project-index-page .portfolio-nav {
+  background: color-mix(in srgb, var(--c-bg2) 94%, transparent);
+  border-color: var(--c-rule2);
+  box-shadow: 0 5px 25px #00000014;
+}
+.project-index-page ::selection {
+  background: var(--c-accent);
+  color: var(--c-onaccent);
+}
+/* A clearer personal signature without changing the hero composition. */
+.computer-identity {
+  font-size: clamp(23px, 2.4vw, 34px);
+  font-weight: 850;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+.computer-identity small {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+/* Full case-study evidence, in a readable desktop window. */
+.os-reader-cover {
+  background: #e7ebf1;
+  border-color: #c4cedb;
+}
+.os-reader-cover img {
+  background: #f5f7fa;
+  border-color: #c5ceda;
+}
+.os-reader-copy h2 {
+  color: #283e58;
+}
+.os-reader-facts {
+  border-color: #d3dce8;
+}
+.os-reader-facts dt {
+  color: #77869b;
+}
+.os-reader-facts dd {
+  color: #50647d;
+}
+.os-project-card:hover {
+  background: #e4eaf2;
+  border-color: #bccadd;
+}
+.os-project-card > div {
+  background: #e8edf4;
+  border-color: #c8d2df;
+}
+.os-project-card .os-project-card-description {
+  color: #4b607a;
+}
+.os-project-card .os-project-card-status {
+  color: #4b607a;
+  border-color: #d4ddea;
+}
+.os-desktop .os-project-card .os-project-card-description {
+  font-size: 13px;
+  line-height: 1.65;
+  -webkit-line-clamp: 3;
+}
+.os-desktop .os-reader-intro {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #384b61;
+  max-width: 760px;
+}
+.os-reader-story {
+  margin-top: 28px;
+}
+.os-reader-story > section {
+  padding: 28px 0;
+  border-top: 1px solid #d9e0e9;
+}
+.os-reader-story h3 {
+  font-size: 21px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #283e58;
+  letter-spacing: -0.025em;
+  margin: 7px 0 15px;
+}
+.os-reader-story p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #56667a;
+  margin: 10px 0;
+  white-space: pre-line;
+}
+.os-reader-feature-list {
+  display: grid;
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.os-reader-feature-list > li {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #e5eaf1;
+  padding-bottom: 16px;
+}
+.os-reader-feature-list > li > span {
+  font: 11px var(--f-mono);
+  color: #8b99ac;
+  padding-top: 3px;
+}
+.os-reader-feature-list h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #344c68;
+}
+.os-reader-feature-list p {
+  margin: 5px 0 0;
+}
+.os-reader-challenge {
+  background: #f3f6fa;
+  border-left: 2px solid #8a9db6;
+  padding: 8px 15px;
+  margin: 13px 0;
+}
+.os-reader-architecture {
+  border: 1px solid #cdd7e4;
+  background: #f5f7fa;
+  margin: 16px 0;
+}
+.os-reader-architecture > summary {
+  padding: 12px 15px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #425b7b;
+  font-weight: 600;
+}
+.os-reader-architecture > summary > span {
+  float: right;
+}
+.os-reader-architecture img {
+  width: 100%;
+  height: auto;
+  padding: 12px;
+  background: white;
+}
+.os-reader-architecture pre {
+  white-space: pre;
+  overflow: auto;
+  padding: 15px;
+  font: 10px/1.5 var(--f-mono);
+  color: #52657d;
+  max-height: 360px;
+}
+.os-reader-architecture ol {
+  padding: 0 30px 18px;
+  color: #4d6480;
+  font-size: 13px;
+  line-height: 2;
+}
+.os-reader-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+.os-reader-gallery figure {
+  margin: 0;
+  border: 1px solid #d1dbe7;
+  background: #f3f6f9;
+  overflow: hidden;
+}
+.os-reader-gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: #e7ecf3;
+}
+.os-reader-gallery figcaption {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #718299;
+  padding: 9px 11px;
+}
+.os-reader-story .os-reader-boundary {
+  padding: 18px;
+  background: #f0f3f8;
+  border: 1px solid #ccd7e6;
+}
+.os-reader-boundary h3 {
+  font-size: 15px;
+}
+.os-reader-boundary p {
+  font-size: 12px;
+}
+@media (max-width: 700px) {
+  .showcase-project-picker {
+    max-height: none;
+  }
+  .showcase-project-picker button {
+    padding: 12px;
+    min-height: 48px;
+  }
+  .showcase-preview-copy {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .showcase-card-copy > div {
+    align-items: flex-start;
+  }
+  .showcase-card-copy > div > span {
+    font-size: 8px;
+  }
+  .os-reader-story h3 {
+    font-size: 19px;
+  }
+  .os-desktop .os-reader-intro {
+    font-size: 15px;
+  }
+  .os-reader-gallery {
+    grid-template-columns: 1fr;
+  }
+  .computer-identity {
+    font-size: 20px;
+  }
+  .computer-identity small {
+    font-size: 9px;
+  }
+}
+@media (max-width: 420px) {
+  .computer-intro h1 em {
+    white-space: normal;
+    font-size: 0.86em;
+    line-height: 1.05;
+    display: block;
+  }
+  .computer-header {
+    gap: 12px;
+  }
+  .computer-wordmark {
+    min-width: 0;
+    flex: 1;
+  }
+  .computer-identity {
+    min-width: 0;
+    font-size: 19px;
+  }
+  .computer-identity small {
+    font-size: 8px;
+  }
+  .showcase-card-copy footer {
+    flex-wrap: wrap;
+  }
+}
+html[data-motion='reduced'] .showcase-card:hover {
+  transform: none;
+}

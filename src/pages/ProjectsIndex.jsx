@@ -6,9 +6,12 @@ import { projects } from '../data/projects'
 import { useReveal } from '../lib/useReveal'
 import { usePageTitle } from '../lib/usePageTitle'
 import ProjectIcon from '../components/ProjectIcon'
+import { PROJECT_PRIORITY } from '../data/projectOrder'
 
-const SPOTLIGHTS = ['little-code', 'little-terminal', 'mmmut-notice', 'manakmitra', 'satyadwar']
-const spotlightProjects = SPOTLIGHTS.map((slug) => projects.find((p) => p.slug === slug))
+const SPOTLIGHTS = PROJECT_PRIORITY
+const spotlightProjects = SPOTLIGHTS.map((slug) =>
+  projects.find((p) => p.slug === slug),
+)
 
 function ShowcaseCard({ project, index }) {
   const ref = useReveal()
@@ -69,7 +72,10 @@ export default function ProjectsIndex() {
   const [filter, setFilter] = useState('All')
   const [query, setQuery] = useState('')
   const active = spotlightProjects.find((p) => p.slug === selected)
-  const categories = useMemo(() => ['All', ...new Set(projects.map((p) => p.category))], [])
+  const categories = useMemo(
+    () => ['All', ...new Set(projects.map((p) => p.category))],
+    [],
+  )
   const shown = projects.filter((p) => {
     const matchesQuery = `${p.title} ${p.blurb} ${p.tech.join(' ')}`
       .toLowerCase()
@@ -87,16 +93,20 @@ export default function ProjectsIndex() {
           <AnimatedHeading text="Ideas, made real." accent="made real." />
           <div>
             <p>
-              Developer tools, campus infrastructure, and products built to be used. A few recent
-              favourites, then the whole collection.
+              Developer tools first. Then campus platforms, learning systems,
+              applied AI and the products behind real operations.
             </p>
             <a href="#collection" className="paper-link">
-              Explore all {projects.length} projects <span aria-hidden="true">↓</span>
+              Explore all {projects.length} projects{' '}
+              <span aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
       </header>
-      <section className="shell showcase-spotlight" aria-label="Recent project showcase">
+      <section
+        className="shell showcase-spotlight"
+        aria-label="Recent project showcase"
+      >
         <div className="showcase-spotlight-frame">
           <div className="showcase-frame-bar">
             <span className="window-lights" aria-hidden="true">
@@ -104,18 +114,24 @@ export default function ProjectsIndex() {
               <i />
               <i />
             </span>
-            <span>Recently on my desktop</span>
-            <span>0{SPOTLIGHTS.indexOf(selected) + 1} / 05</span>
+            <span>My selected work, in order</span>
+            <span>
+              {String(SPOTLIGHTS.indexOf(selected) + 1).padStart(2, '0')} /{' '}
+              {SPOTLIGHTS.length}
+            </span>
           </div>
           <div className="showcase-spotlight-grid">
-            <div className="showcase-project-picker" aria-label="Choose a project preview">
+            <div
+              className="showcase-project-picker"
+              aria-label="Choose a project preview"
+            >
               {spotlightProjects.map((p, i) => (
                 <button
                   key={p.slug}
                   aria-pressed={selected === p.slug}
                   onClick={() => setSelected(p.slug)}
                 >
-                  <span>0{i + 1}</span>
+                  <span>{String(i + 1).padStart(2, '0')}</span>
                   <span>
                     {p.title}
                     <small>{p.category}</small>
@@ -125,7 +141,10 @@ export default function ProjectsIndex() {
               ))}
             </div>
             <div key={active.slug} className="showcase-preview">
-              <Link to={`/projects/${active.slug}`} className="showcase-preview-image">
+              <Link
+                to={`/projects/${active.slug}`}
+                className="showcase-preview-image"
+              >
                 <img
                   src={active.cover}
                   alt={`${active.title} product interface`}
@@ -187,7 +206,11 @@ export default function ProjectsIndex() {
         </div>
         <ul className="showcase-grid">
           {shown.map((p) => (
-            <ShowcaseCard key={p.slug} project={p} index={projects.indexOf(p)} />
+            <ShowcaseCard
+              key={p.slug}
+              project={p}
+              index={projects.indexOf(p)}
+            />
           ))}
         </ul>
         {!shown.length && (

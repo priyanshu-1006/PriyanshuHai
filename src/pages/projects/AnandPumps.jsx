@@ -181,11 +181,7 @@ export default function AnandPumps() {
         </div>
       </Band>
 
-      <NextProject
-        to="/projects/pathfinder-ai"
-        title="PathFinder AI"
-        blurb="Career advice that becomes a roadmap you can tick off, not a paragraph you close."
-      />
+      <NextProject slug={project.slug} />
     </article>
   )
 }

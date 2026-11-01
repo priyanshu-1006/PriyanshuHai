@@ -8,8 +8,9 @@
 //   embed   — { url, height } click-to-load live iframe of the deployed app
 
 import { recentProjects } from './recentProjects.js'
+import { orderProjects } from './projectOrder.js'
 
-export const projects = [
+const projectCatalog = [
   ...recentProjects,
   // ────────────────────────────────────────────────────────────────
   {
@@ -247,7 +248,7 @@ CPU-and-API bound, live sessions are socket-bound and stateful, gamification is 
 eventually consistent, and video is a completely separate transport problem. Splitting them meant
 each could scale and fail independently.
 
-Nine services sit behind an Express API gateway that handles routing, rate limiting, CORS and
+The product's services sit behind an Express API gateway that handles routing, rate limiting, CORS and
 authentication centrally. MongoDB Atlas and Redis Cloud are shared; Bull queues absorb the work
 that does not need to happen inside a request — achievement checks, stats reconciliation.`,
 
@@ -277,7 +278,7 @@ that does not need to happen inside a request — achievement checks, stats reco
               └──────────┘         └──────────┘`,
 
     howItWorks: [
-      { step: 'Gateway', detail: 'A single Express entry point proxies to nine services, and owns rate limiting, CORS and JWT verification so no downstream service has to.' },
+      { step: 'Gateway', detail: 'A single Express entry point routes requests to the product services and owns rate limiting, CORS and JWT verification so no downstream service has to.' },
       { step: 'AI quiz generation', detail: 'Google Gemini generates quizzes from a topic or from an uploaded PDF, TXT or DOCX, with configurable difficulty and question count. A separate AI tutor answers questions in context.' },
       { step: 'Live and duel modes', detail: 'Socket.IO drives synchronised multiplayer sessions with live leaderboards, plus one-versus-one duels with quick matchmaking and real-time scoring.' },
       { step: 'Video rooms', detail: 'A MediaSoup SFU handles multi-participant WebRTC video with screen sharing, isolated in its own service so a video failure cannot take down quizzes.' },
@@ -286,8 +287,8 @@ that does not need to happen inside a request — achievement checks, stats reco
 
     challenges: [
       {
-        challenge: 'Nine services, one hackathon deadline. Cross-service auth and consistent error handling normally eat the entire budget.',
-        solution: 'Authentication was centralised at the gateway and never re-implemented downstream — services trust a verified header. A shared package held common utilities so nine codebases did not drift into nine conventions.',
+        challenge: 'Multiple services, one hackathon deadline. Cross-service auth and consistent error handling normally eat the entire budget.',
+        solution: 'Authentication was centralised at the gateway and never re-implemented downstream — services trust a verified header. A shared package held common utilities so the codebases did not drift into separate conventions.',
       },
       {
         challenge: 'Live quiz sessions have to stay synchronised across clients with wildly different latency, or the leaderboard becomes a lie.',
@@ -884,7 +885,7 @@ turned away.`,
     award: 'Built for Orion Astrathon, IIT Mandi',
     tech: ['Python', 'FastAPI', 'Pydantic V2', 'React', 'TypeScript', 'Vite', 'MapLibre GL', 'Zustand', 'Recharts', 'WebSocket'],
     links: {},
-    cover: '/Aurora/Dashboard.jpeg',
+    cover: '/Aurora/Aurora-Map-3d.jpeg',
     architectureImage: '/Architectures/Aurora-Architecture.png',
     videos: [{ id: '5hM1HlytzB8', label: 'Platform demo' }],
     gallery: [
@@ -1363,5 +1364,6 @@ shipped to a real URL under someone else's deadline, and the discipline of that 
   },
 ]
 
+export const projects = orderProjects(projectCatalog)
 export const getProject = (slug) => projects.find((p) => p.slug === slug)
 export const featuredProjects = projects.filter((p) => p.featured)

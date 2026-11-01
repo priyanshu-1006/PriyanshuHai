@@ -1,9 +1,9 @@
 import { useLayoutEffect } from 'react'
-import { base, getProjectTheme } from '../data/projectThemes'
+import { base } from '../data/projectThemes'
 import { useTheme } from '../lib/themeContext'
 
 /**
- * Applies the shared reading palette with project-specific accent colours,
+ * Applies the shared light or dark reading palette,
  * then restores the shell when leaving the page.
  *
  * Variables go on <html> rather than a wrapper because `body` owns the page
@@ -12,17 +12,9 @@ import { useTheme } from '../lib/themeContext'
  */
 export default function ProjectTheme({ slug }) {
   const { mode } = useTheme()
-
   useLayoutEffect(() => {
-    const theme = getProjectTheme(slug)
-    if (!theme) return
-
     const root = document.documentElement
-    // Brand accents belong to the project; paper, type and chrome belong to the portfolio.
-    const accents = Object.fromEntries(
-      Object.entries(theme[mode] || {}).filter(([key]) => key.startsWith('accent')),
-    )
-    const vars = { ...base[mode], ...accents }
+    const vars = base[mode]
     const previous = {}
 
     for (const [key, value] of Object.entries(vars)) {

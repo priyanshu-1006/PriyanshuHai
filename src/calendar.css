@@ -1,0 +1,379 @@
+/* Graphite XP shell, silver calendar, and readable tray controls. */
+body:has(.os-desktop.is-open .os-calendar-panel) .experience-utility-dock {
+  visibility: hidden;
+  pointer-events: none;
+}
+.os-desktop .os-clock .os-quick-control {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  color: #21344d;
+  background: linear-gradient(#fff, #e4e8ee);
+  border: 1px solid #aebac9;
+  border-radius: 4px;
+  box-shadow:
+    inset 1px 1px #fff,
+    1px 1px 2px #0004;
+}
+.os-desktop .os-clock .os-quick-control:hover {
+  background: linear-gradient(#fff, #d6e6fc);
+  border-color: #d6e7ff;
+}
+.os-desktop .os-clock .os-quick-control:active {
+  box-shadow: inset 1px 1px 3px #4e6c9155;
+  transform: translateY(1px);
+}
+.os-clock .os-quick-control .system-icon {
+  width: 19px;
+  height: 19px;
+  stroke: currentColor;
+  opacity: 1;
+}
+.os-clock-calendar {
+  flex-shrink: 0;
+}
+.os-desktop .os-calendar-toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 3px 7px;
+  min-height: 36px;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+}
+.os-calendar-toggle > .system-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.85;
+}
+.os-desktop .os-calendar-toggle:hover,
+.os-desktop .os-calendar-toggle[aria-expanded='true'] {
+  border-color: #a4b8d17a;
+  background: #ffffff14;
+  box-shadow: inset 0 1px #ffffff14;
+}
+.os-calendar-toggle time {
+  display: grid;
+  gap: 1px;
+  text-align: center;
+  line-height: 1.25;
+}
+.os-desktop .os-clock .os-calendar-toggle small {
+  color: #fff;
+  opacity: 0.8;
+  margin: 0;
+}
+.os-calendar-toggle .os-taskbar-date {
+  font-size: 8px;
+  opacity: 0.8;
+}
+.os-calendar-panel {
+  position: absolute;
+  z-index: 600;
+  right: 8px;
+  bottom: 49px;
+  width: 354px;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100svh - 104px);
+  display: flex;
+  flex-direction: column;
+  color: #25354b;
+  background: #f1f2f5;
+  border: 1px solid #24374e;
+  border-radius: 6px 6px 3px 3px;
+  box-shadow:
+    0 16px 50px #0007,
+    2px 2px 0 #ffffff40 inset;
+  overflow: hidden;
+  font:
+    11px/1.5 Tahoma,
+    sans-serif;
+  animation: calendar-open 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: bottom right;
+}
+.os-calendar-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 6px 5px 10px;
+  background: linear-gradient(#718092, #465363 13%, #2d3948 83%, #202b38);
+  color: #fff;
+  border-bottom: 1px solid #17283e;
+}
+.os-calendar-titlebar > span {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-weight: bold;
+}
+.os-calendar-titlebar .system-icon {
+  width: 16px;
+  height: 16px;
+}
+.os-desktop .os-calendar-titlebar > button {
+  color: #fff;
+  background: linear-gradient(135deg, #f5b4a5, #de644a 50%, #b8341a);
+  border: 1px solid #fff9;
+  border-radius: 3px;
+  padding: 3px;
+}
+.os-calendar-body {
+  padding: 17px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #a8b5c5 #e9edf3;
+}
+.os-calendar-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.os-calendar-time > div {
+  display: grid;
+  gap: 2px;
+}
+.os-desktop .os-calendar-panel small {
+  font-size: 9px;
+  opacity: 1;
+  margin: 0;
+  color: #637084;
+}
+.os-calendar-time > div > small {
+  letter-spacing: 0.12em;
+  font-size: 8px;
+}
+.os-calendar-time strong {
+  font: 31px/1.2 var(--f-mono);
+  letter-spacing: -0.05em;
+  color: #21354f;
+  font-variant-numeric: tabular-nums;
+}
+.os-desktop .os-calendar-panel .os-calendar-today {
+  color: #253e60;
+  background: linear-gradient(#fff, #e4e9f0);
+  border: 1px solid #a6b3c5;
+  border-radius: 3px;
+  padding: 5px 10px;
+  box-shadow: inset 1px 1px #fff;
+}
+.os-calendar-today-label {
+  color: #67758a;
+  font-size: 10px;
+  margin: 6px 0 15px;
+}
+.os-calendar-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #cdd5df;
+  padding-top: 10px;
+  margin-bottom: 6px;
+}
+.os-calendar-navigation h2 {
+  font:
+    bold 12px Tahoma,
+    sans-serif;
+  margin: 0;
+  outline-offset: 4px;
+}
+.os-desktop .os-calendar-navigation > button {
+  font-size: 23px;
+  line-height: 1;
+  width: 30px;
+  height: 28px;
+  color: #334f72;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+}
+.os-desktop .os-calendar-navigation > button:hover {
+  background: #e0e7f0;
+  border-color: #a9b7ca;
+}
+.os-calendar-weekdays,
+.os-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+  text-align: center;
+}
+.os-calendar-weekdays {
+  color: #728196;
+  font-size: 9px;
+  padding: 5px 0 7px;
+}
+.os-desktop .os-calendar-days > button {
+  position: relative;
+  height: 31px;
+  color: #34445b;
+  font:
+    11px Tahoma,
+    sans-serif;
+  background: #fff9;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.os-desktop .os-calendar-days > button:hover {
+  border-color: #8da4c1;
+  background: #e6edf7;
+}
+.os-desktop .os-calendar-days > button.is-today {
+  border-color: #527cae;
+  font-weight: bold;
+  color: #214c80;
+}
+.os-desktop .os-calendar-days > button[aria-pressed='true'] {
+  background: linear-gradient(#4c6f97, #304c6d);
+  border-color: #2d4869;
+  color: #fff;
+  box-shadow: inset 0 1px #a0b9d5;
+}
+.os-calendar-days i {
+  position: absolute;
+  bottom: 2px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #6b75b0;
+}
+.os-calendar-days i.milestone {
+  background: #bd8124;
+}
+.os-calendar-days [aria-pressed='true'] i {
+  background: #fff;
+}
+.os-calendar-selected {
+  margin-top: 13px;
+  padding: 10px 12px;
+  background: #e4e9f1;
+  border: 1px solid #cbd4e1;
+  border-left: 3px solid #647b9e;
+  border-radius: 2px;
+  min-height: 70px;
+}
+.os-calendar-selected strong {
+  display: block;
+  font-size: 12px;
+  color: #2d4160;
+  margin-top: 3px;
+}
+.os-calendar-selected p {
+  margin: 4px 0 0;
+  color: #637087;
+  font-size: 10px;
+}
+.os-calendar-memories {
+  border-top: 1px solid #cdd5df;
+  padding-top: 12px;
+  margin-top: 15px;
+}
+.os-calendar-memories h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font:
+    bold 10px Tahoma,
+    sans-serif;
+  color: #56677f;
+  margin: 0 0 6px;
+}
+.os-calendar-memories h3 > span {
+  background: #dce3ee;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #556985;
+}
+.os-desktop .os-calendar-memories > button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  width: 100%;
+  padding: 8px 3px;
+  color: #34465e;
+  border: 0;
+  border-bottom: 1px solid #dce1e9;
+  background: transparent;
+  border-radius: 3px;
+}
+.os-desktop .os-calendar-memories > button:hover {
+  background: #e0e7f0;
+}
+.os-calendar-memories > button > span:nth-child(2) {
+  flex: 1;
+  display: grid;
+  gap: 1px;
+}
+.os-calendar-memories strong {
+  font-size: 10px;
+  font-weight: 600;
+}
+.os-calendar-event-mark {
+  font-size: 18px;
+  width: 24px;
+  height: 26px;
+  text-align: center;
+  color: #6b75a6;
+}
+.milestone .os-calendar-event-mark {
+  color: #a7772e;
+}
+.os-calendar-footnote {
+  margin: 12px 0 0;
+  color: #8591a2;
+  font-size: 9px;
+  text-align: center;
+}
+@keyframes calendar-open {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 640px) {
+  .os-clock {
+    gap: 6px;
+  }
+  .os-desktop .os-clock .os-quick-control {
+    width: 27px;
+    height: 28px;
+    flex-basis: 27px;
+  }
+  .os-calendar-toggle > .system-icon,
+  .os-network-indicator {
+    display: none;
+  }
+  .os-desktop .os-calendar-toggle {
+    padding: 3px;
+  }
+  .os-desktop .os-calendar-toggle time {
+    font-size: 10px;
+  }
+  .os-calendar-panel {
+    bottom: 48px;
+    max-height: calc(100svh - 96px);
+  }
+  .os-calendar-body {
+    padding: 13px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .os-calendar-panel {
+    animation: none;
+  }
+}
+html[data-motion='reduced'] .os-calendar-panel {
+  animation: none;
+}

@@ -4,7 +4,7 @@ The homepage is a real Three.js scene using the supplied retro computer. Scroll 
 
 The outer room theme is adjustable using **Homepage theme** directly above Enter computer, in **Display & accessibility**, or in the desktop **Appearance** app. Blue hour, Warm studio and Slate evening persist locally without changing the desktop wallpaper. Their colour variables are grouped in `src/xp.css` under “User-facing outer-room controls”.
 
-The desktop uses Luna-inspired blue title bars, Tahoma text, beveled controls, a green Start button and a black boot screen with animated three-block loading. `src/xp.css` is imported last by `src/main.jsx` to keep these styles consistent across OS panels. The local Chrome recreation uses the supplied `public/svg` Chrome, Google, LinkedIn and GitHub marks plus an Instagram SVG added to that collection; the Google wordmark is stored locally from Google's official branding endpoint.
+The desktop uses graphite XP title bars, Tahoma text, beveled controls, a green Start button and a black boot screen with animated three-block loading. `src/desktop-finish.css` follows the base XP styles; `src/showcase-finish.css` and `src/calendar.css` finish reading pages and taskbar details. The local Chrome recreation uses the supplied `public/svg` Chrome, Google, LinkedIn and GitHub marks plus an Instagram SVG added to that collection; the Google wordmark is stored locally from Google's official branding endpoint.
 
 Typing in Chrome fills the full saved question without navigating. **Search now**, the search arrow or **Enter** submits it after typing completes. The Google home screen uses a flex layout within the window's available height; result lists and profile previews can scroll normally. Terminal commands include Windows-style `DIR` and `CLS` aliases alongside `ls` and `clear`.
 
@@ -84,5 +84,19 @@ Brand marks use the supplied SVG folder, with missing available marks imported f
 
 Appearance adds Builder’s evening as an optional wallpaper alongside Bliss and all previous choices. The image, generation prompt and saved location are documented in `docs/personal-wallpaper.md`.
 
-Run `node --test tests/*.test.mjs` for the nine current data, route, asset and audio regression checks.
+The taskbar clock opens an IST calendar with month navigation, Today, event markers,
+and selectable dates to remember. The five birthdays recur annually; the Techfest
+win is a fixed 21 December 2025 milestone. Escape closes the calendar without
+exiting the computer. The tray's accessibility and sound icons use dark strokes
+on silver buttons for visibility. The floating guide yields space while the calendar is open.
 
+Project order is shared across the OS explorer, showcase, overview and case-study
+navigation. Desktop readers show the full problem, approach, features, tradeoffs
+and product captures from the existing case-study data.
+
+Run `npm test` for the data, calendar, route, asset and audio regression checks.
+
+
+Reading pages support neutral light and black dark modes. The navigation theme
+toggle saves the choice across routes and reloads; it does not change the room
+palette or desktop wallpaper.
