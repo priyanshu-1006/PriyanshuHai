@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-01T21:18:00.775Z",
-  "partial": true,
+  "generatedAt": "2026-11-03T07:03:29.198Z",
+  "partial": false,
   "user": {
     "login": "priyanshu-1006",
     "name": "Priyanshu Chaurasia",
@@ -14,21 +14,21 @@
   },
   "totals": {
     "repos": 20,
-    "commits": 280,
+    "commits": 284,
     "topContributorIn": 14,
     "stars": 3,
     "externalRepos": 3,
-    "recentPushes": 4,
-    "activeDays": 3
+    "recentPushes": 5,
+    "activeDays": 4
   },
   "calendar": {
-    "total": 1100,
+    "total": 1116,
     "commits": null,
     "pullRequests": null,
     "issues": null,
     "reviews": null,
     "private": null,
-    "activeDays": 220,
+    "activeDays": 222,
     "busiestDay": {
       "date": "2026-01-05",
       "contributionCount": 38
@@ -1493,18 +1493,59 @@
       {
         "d": "2026-11-01",
         "c": 1
+      },
+      {
+        "d": "2026-11-02",
+        "c": 14
+      },
+      {
+        "d": "2026-11-03",
+        "c": 2
       }
     ],
     "source": "github-public-profile",
-    "fetchedAt": "2026-11-01T21:18:00.721Z"
+    "fetchedAt": "2026-11-03T07:03:29.155Z"
   },
   "history": {
     "source": "github-public-commit-search",
-    "fetchedAt": "2026-11-01T21:18:00.775Z",
-    "totalIndexed": 483,
+    "fetchedAt": "2026-11-03T07:03:29.199Z",
+    "totalIndexed": 486,
     "sampled": true,
     "incomplete": false,
     "commits": [
+      {
+        "sha": "b5aa0215807e090a932735598791c3ff8d739ae4",
+        "shortSha": "b5aa021",
+        "repository": "priyanshu-1006/priyanshu-1006",
+        "repoName": "priyanshu-1006",
+        "message": "fix: make profile contribution grid readable and explorable",
+        "authoredAt": "2026-11-02T04:34:31.000+05:30",
+        "committedAt": "2026-11-02T04:34:31.000+05:30",
+        "url": "https://github.com/priyanshu-1006/priyanshu-1006/commit/b5aa0215807e090a932735598791c3ff8d739ae4",
+        "automated": false
+      },
+      {
+        "sha": "b9a485a06df721197a76168cabf884a98a12fcc2",
+        "shortSha": "b9a485a",
+        "repository": "priyanshu-1006/priyanshu-1006",
+        "repoName": "priyanshu-1006",
+        "message": "feat: upgrade profile with portfolio projects and live activity",
+        "authoredAt": "2026-11-02T03:46:34.000+05:30",
+        "committedAt": "2026-11-02T03:46:34.000+05:30",
+        "url": "https://github.com/priyanshu-1006/priyanshu-1006/commit/b9a485a06df721197a76168cabf884a98a12fcc2",
+        "automated": false
+      },
+      {
+        "sha": "48fa9fe27b75654345ab511d3c6251adfa15d933",
+        "shortSha": "48fa9fe",
+        "repository": "priyanshu-1006/PriyanshuHai",
+        "repoName": "PriyanshuHai",
+        "message": "Updates",
+        "authoredAt": "2026-11-02T03:16:26.000+05:30",
+        "committedAt": "2026-11-02T03:16:26.000+05:30",
+        "url": "https://github.com/priyanshu-1006/PriyanshuHai/commit/48fa9fe27b75654345ab511d3c6251adfa15d933",
+        "automated": false
+      },
       {
         "sha": "d3199aa38889584787877c98df546d0284ed26bc",
         "shortSha": "d3199aa",
@@ -2571,46 +2612,13 @@
         "committedAt": "2026-04-06T14:19:29.000+05:30",
         "url": "https://github.com/riteshydv05/Grylink_New/commit/db904a146148671a20496885e21b6191fdf4d23b",
         "automated": false
-      },
-      {
-        "sha": "8cab65a1d543cce64ec4e3c127ee07ec29d415fd",
-        "shortSha": "8cab65a",
-        "repository": "riteshydv05/Grylink_New",
-        "repoName": "Grylink_New",
-        "message": "FBDF and BDF done",
-        "authoredAt": "2026-04-06T14:18:38.000+05:30",
-        "committedAt": "2026-04-06T14:18:38.000+05:30",
-        "url": "https://github.com/riteshydv05/Grylink_New/commit/8cab65a1d543cce64ec4e3c127ee07ec29d415fd",
-        "automated": false
-      },
-      {
-        "sha": "8c518bf5ac23d118a49efad955f78de6313a7d60",
-        "shortSha": "8c518bf",
-        "repository": "priyanshu-1006/GDG-Edit",
-        "repoName": "GDG-Edit",
-        "message": "feat: implement student selection and profile navigation in induction analytics",
-        "authoredAt": "2026-04-03T17:43:08.000+05:30",
-        "committedAt": "2026-04-03T17:43:08.000+05:30",
-        "url": "https://github.com/priyanshu-1006/GDG-Edit/commit/8c518bf5ac23d118a49efad955f78de6313a7d60",
-        "automated": false
-      },
-      {
-        "sha": "2073532bcf88a9ed32d2f2f9487788c9e0969aa7",
-        "shortSha": "2073532",
-        "repository": "priyanshu-1006/GDG-Edit",
-        "repoName": "GDG-Edit",
-        "message": "feat: add assigned students section with clickable evaluation cards",
-        "authoredAt": "2026-04-03T17:33:16.000+05:30",
-        "committedAt": "2026-04-03T17:33:16.000+05:30",
-        "url": "https://github.com/priyanshu-1006/GDG-Edit/commit/2073532bcf88a9ed32d2f2f9487788c9e0969aa7",
-        "automated": false
       }
     ]
   },
   "languages": [
     {
       "name": "JavaScript",
-      "commits": 114
+      "commits": 123
     },
     {
       "name": "TypeScript",
@@ -2652,8 +2660,7 @@
       "contributors": 5,
       "top": false,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:20.457Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:21.463Z"
     },
     {
       "name": "Haazir-Smart-Attendence-Management-System",
@@ -2673,8 +2680,7 @@
       "contributors": 4,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:23.376Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:24.748Z"
     },
     {
       "name": "DSA",
@@ -2694,8 +2700,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:18.701Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:19.511Z"
     },
     {
       "name": "bookease-client",
@@ -2715,8 +2720,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:26.175Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:26.983Z"
     },
     {
       "name": "Generative-AI",
@@ -2736,8 +2740,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:18.192Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:19.006Z"
     },
     {
       "name": "PrimeAI-2025",
@@ -2757,8 +2760,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:22.500Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:23.809Z"
     },
     {
       "name": "PathFinder-AI",
@@ -2778,8 +2780,7 @@
       "contributors": 3,
       "top": false,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:25.161Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:25.958Z"
     },
     {
       "name": "Aurora-ForeCasting-Intelligence-Platform",
@@ -2799,8 +2800,7 @@
       "contributors": 3,
       "top": false,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:20.919Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:21.887Z"
     },
     {
       "name": "bookease-server",
@@ -2820,8 +2820,27 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:26.538Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:27.497Z"
+    },
+    {
+      "name": "priyanshu-1006",
+      "full": "priyanshu-1006/priyanshu-1006",
+      "owner": "priyanshu-1006",
+      "url": "https://github.com/priyanshu-1006/priyanshu-1006",
+      "description": null,
+      "language": "JavaScript",
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-11-01T23:05:55Z",
+      "createdAt": "2025-10-23T19:46:37Z",
+      "commits": 7,
+      "totalCommits": 7,
+      "share": 1,
+      "rank": 1,
+      "contributors": 1,
+      "top": true,
+      "external": false,
+      "checkedAt": "2026-11-03T07:03:17.370Z"
     },
     {
       "name": "FinAgent",
@@ -2841,8 +2860,27 @@
       "contributors": 4,
       "top": false,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:22.073Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:23.332Z"
+    },
+    {
+      "name": "PriyanshuHai",
+      "full": "priyanshu-1006/PriyanshuHai",
+      "owner": "priyanshu-1006",
+      "url": "https://github.com/priyanshu-1006/PriyanshuHai",
+      "description": null,
+      "language": "JavaScript",
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-11-01T21:46:41Z",
+      "createdAt": "2026-08-22T22:06:26Z",
+      "commits": 6,
+      "totalCommits": 6,
+      "share": 1,
+      "rank": 1,
+      "contributors": 1,
+      "top": true,
+      "external": false,
+      "checkedAt": "2026-11-03T07:03:17.880Z"
     },
     {
       "name": "Ai-Support-System",
@@ -2862,50 +2900,7 @@
       "contributors": 2,
       "top": false,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:19.112Z",
-      "cached": true
-    },
-    {
-      "name": "priyanshu-1006",
-      "full": "priyanshu-1006/priyanshu-1006",
-      "owner": "priyanshu-1006",
-      "url": "https://github.com/priyanshu-1006/priyanshu-1006",
-      "description": null,
-      "language": null,
-      "stars": 0,
-      "forks": 0,
-      "pushedAt": "2025-10-23T20:19:07Z",
-      "createdAt": "2025-10-23T19:46:37Z",
-      "commits": 5,
-      "totalCommits": 5,
-      "share": 1,
-      "rank": 1,
-      "contributors": 1,
-      "top": true,
-      "external": false,
-      "checkedAt": "2026-11-01T20:23:24.141Z",
-      "cached": true
-    },
-    {
-      "name": "PriyanshuHai",
-      "full": "priyanshu-1006/PriyanshuHai",
-      "owner": "priyanshu-1006",
-      "url": "https://github.com/priyanshu-1006/PriyanshuHai",
-      "description": null,
-      "language": "JavaScript",
-      "stars": 0,
-      "forks": 0,
-      "pushedAt": "2026-11-01T20:10:55Z",
-      "createdAt": "2026-08-22T22:06:26Z",
-      "commits": 4,
-      "totalCommits": 4,
-      "share": 1,
-      "rank": 1,
-      "contributors": 1,
-      "top": true,
-      "external": false,
-      "checkedAt": "2026-11-01T20:23:17.280Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:20.036Z"
     },
     {
       "name": "Little_Code",
@@ -2925,8 +2920,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:17.678Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:18.557Z"
     },
     {
       "name": "PrimeTrade.ai",
@@ -2946,8 +2940,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:19.520Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:20.557Z"
     },
     {
       "name": "Pramaan-AI",
@@ -2967,8 +2960,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:19.946Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:20.956Z"
     },
     {
       "name": "Immerse-2026",
@@ -2988,8 +2980,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:21.284Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:22.377Z"
     },
     {
       "name": "Job-Import-System",
@@ -3009,8 +3000,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:21.671Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:22.907Z"
     },
     {
       "name": "Library-Management-System-App",
@@ -3030,8 +3020,7 @@
       "contributors": 1,
       "top": true,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:23.750Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:25.140Z"
     },
     {
       "name": "GDG_Website",
@@ -3051,8 +3040,7 @@
       "contributors": 3,
       "top": false,
       "external": false,
-      "checkedAt": "2026-11-01T20:23:24.746Z",
-      "cached": true
+      "checkedAt": "2026-11-03T07:03:25.551Z"
     }
   ],
   "external": [
@@ -3062,7 +3050,7 @@
       "owner": "riteshydv05",
       "url": "https://github.com/riteshydv05/Grylink_New",
       "description": null,
-      "commits": 51,
+      "commits": 50,
       "lastCommit": "2026-07-08T01:18:12.000+05:30",
       "external": true
     },
@@ -3099,9 +3087,20 @@
     {
       "date": "2026-10-24",
       "pushes": 1
+    },
+    {
+      "date": "2026-11-01",
+      "pushes": 1
     }
   ],
   "recent": [
+    {
+      "type": "PushEvent",
+      "repo": "priyanshu-1006/PriyanshuHai",
+      "at": "2026-11-01T20:52:04Z",
+      "ref": null,
+      "action": null
+    },
     {
       "type": "PushEvent",
       "repo": "priyanshu-1006/Generative-AI",
